@@ -6,9 +6,9 @@ Php Approachable Microframework
 
 # Installation
 
-To install via Composer :
+To install via Composer => $ composer require pjs/pam
 
-$ composer require pjs/pam
+After that, open the file app/index.php for instructions about the app folder
 
 
 

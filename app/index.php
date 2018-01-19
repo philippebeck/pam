@@ -16,8 +16,11 @@
 // To install via Composer :
 //$ composer require pjs/pam
 
-// !! => After that, you need to move this file in your public folder
-// !! => And you need to move App_Twig_Extension in your src/Helper
+
+// After that you need to do 3 things (for the moment, I will change this in a near future) :
+// !! => First, you need to move this file in your public folder, or the content of this file in your index.php (see here line 67)
+// !! => Then, you need to move App_Twig_Extension in your src/Helper, or create one Twig Extension with the same name & location (see FrontController.php line 72)
+// !! => And, you need to put this folder (app) with the config.php inside, in your project root folder (see PDOFactory.php line 29)
 
 
 
