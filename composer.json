@@ -1,12 +1,22 @@
 {
-  "name": "pam.php",
+  "name": "pjs/pam",
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/philippebeck/pam.php"
+    "url": "https://github.com/philippebeck/pam"
   },
   "type": "framework",
   "description": "Php Approachable Microframework",
+  "keywords": ["log","logging"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Philippe Beck",
+      "email": "philippe@philippebeck.net",
+      "homepage": "http://philippebeck.net",
+      "role": "Developer"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "App\\": "src/",

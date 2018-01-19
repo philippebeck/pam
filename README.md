@@ -1,4 +1,4 @@
-# Pam.php
+# Pam
 Php Approachable Microframework
 *******************************
 
