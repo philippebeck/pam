@@ -26,7 +26,7 @@ class PDOFactory
   public static function getConnection()
   {
     // DataBase constants
-    require_once dirname(dirname(dirname(__DIR__))).'/app/config.php';
+    require_once dirname(dirname(dirname(dirname(__DIR__)))).'/app/config.php';
 
     // Checks if Pdo connection doesn't exist
     if (is_null(self::$pdo))
