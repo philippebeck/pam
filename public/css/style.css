@@ -1,0 +1,37 @@
+/* ***************** */
+/* ***** STYLE ***** */
+/* ***************** */
+
+
+body {
+  line-height: 2;
+  text-align: center;
+  background-color: LightCyan;
+}
+
+h1 {
+  display: inline-block;
+  padding: .5rem 1rem;
+  color: DodgerBlue;
+  border: thin solid DodgerBlue;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 20rem;
+  margin-bottom: 2rem;
+}
+
+
+p {
+  max-width: 50rem;
+  margin: auto;
+  text-align: justify;
+}
+
+footer {
+  margin-top: 3rem;
+}
