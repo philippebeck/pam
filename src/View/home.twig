@@ -1,0 +1,35 @@
+{# ********************* #}
+{# ***** HOME VIEW ***** #}
+{# ********************* #}
+
+
+{% extends 'layout.twig' %}
+
+{% block title %}Php Approachable Microframework{% endblock %}
+
+{% block description %}Microframework PHP with MVC architecture - Render with Twig{% endblock %}
+
+
+{% block main %}
+
+<main>
+
+  <img src="../public/img/pam.svg" alt="Logo Pam">
+
+  <p>Pam is a microframework PHP based on MVC architecture.</p>
+
+  <p>Pam is very easy to use & very light to implement.</p>
+
+  <p>The Model part can be used for all CRUD actions and doesn't need to be overloaded for basic actions.</p>
+
+  <p>The View part uses the template engine Twig, so it's possible to use variables, fonctions, filters, etc...</p>
+
+  <p>The Controller part inherit from the main controller some very useful fonctions & the FrontController structure the application with action methods.</p>
+
+  <p>Sessions are managed by Pam for log, user & message actions.</p>
+
+  <p>DataBase access is managed too obviously, through the PDO class.</p>
+
+</main>
+
+{% endblock %}
