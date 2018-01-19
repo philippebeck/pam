@@ -18,10 +18,7 @@
     }
   ],
   "autoload": {
-    "psr-4": {
-      "App\\": "src/",
-      "Pam\\": "vendor/pjs"
-    }
+    "psr-4": { "Pam\\": "" }
   },
   "require": {
     "twig/twig": "^2.0"
