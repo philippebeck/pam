@@ -1,0 +1,29 @@
+{
+  "name": "pam.php",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/philippebeck/pam.php"
+  },
+  "type": "framework",
+  "description": "Php Approachable Microframework",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/",
+      "Tests\\": "tests/",
+      "Pam\\": "bin/"
+    }
+  },
+  "require": {
+    "twig/twig": "^2.0",
+    "phpunit/phpunit": "^6.4"
+  },
+  "require-dev": {
+    "panique/php-sass": "1.0"
+  },
+  "config": {
+    "platform": {
+      "php": "7.0.22"
+    }
+  }
+}
