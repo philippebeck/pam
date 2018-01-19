@@ -1,6 +1,6 @@
 {
   "name": "pjs/pam",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/philippebeck/pam"
@@ -20,16 +20,11 @@
   "autoload": {
     "psr-4": {
       "App\\": "src/",
-      "Tests\\": "tests/",
-      "Pam\\": "bin/"
+      "Pam\\": "vendor/pjs"
     }
   },
   "require": {
-    "twig/twig": "^2.0",
-    "phpunit/phpunit": "^6.4"
-  },
-  "require-dev": {
-    "panique/php-sass": "1.0"
+    "twig/twig": "^2.0"
   },
   "config": {
     "platform": {
