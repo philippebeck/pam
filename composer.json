@@ -7,7 +7,7 @@
   },
   "type": "framework",
   "description": "Php Approachable Microframework",
-  "keywords": ["log","logging"],
+  "keywords": ["php","framework","mvc"],
   "license": "MIT",
   "authors": [
     {
