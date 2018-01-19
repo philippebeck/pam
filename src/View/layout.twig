@@ -1,0 +1,50 @@
+{# ****************** #}
+{# ***** LAYOUT ***** #}
+{# ****************** #}
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+
+<!-- ***** Head ***** -->
+<head>
+
+  <!-- Main Meta Data -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Main Title -->
+  <title>{% block title %}{% endblock %}</title>
+
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="../public/css/style.css">
+
+</head>
+<body>
+
+
+  <!-- ***** Header ***** -->
+  <header>
+
+    <!-- Main Title -->
+    <h1>{{ block('title') }}</h1>
+
+  </header>
+
+
+  <!-- ***** Main ***** -->
+  {% block main %}{% endblock %}
+
+
+  <!-- ***** Footer ***** -->
+  <footer>
+
+    <!-- License Link -->
+    <a href="https://github.com/philippebeck/pam.php/blob/master/LICENSE" rel="noopener" rel="noreferrer" target="_blank" title="License">MIT &copy; Philippe Beck - 2018</a>
+
+  </footer>
+
+</body>
+</html>
