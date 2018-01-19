@@ -1,10 +1,18 @@
 # Pam
+
 Php Approachable Microframework
-*******************************
+
+
+
+# Installation
+
+To install via Composer :
+
+$ composer require pjs/pam
+
 
 
 # Overview
-**********
 
 Pam is a microframework PHP based on MVC architecture.
 
@@ -21,13 +29,13 @@ Sessions are managed by Pam for log, user & message actions.
 DataBase access is managed too obviously, through the PDO class.
 
 
+
 # Documentation
-***************
 
 The documentation will be added as soon as possible... please apologize for the inconvenience...
 
 
+
 # Contribution
-**************
 
 Pam needs you if you like it : sends pull requests on GitHub to improve it !!
