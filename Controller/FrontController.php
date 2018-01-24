@@ -24,6 +24,8 @@ class FrontController implements FrontControllerInterface
 
   // Protected properties
   protected $twig           = null;
+  protected $page           = null;
+  protected $rubric         = null;
   protected $controller     = self::DEFAULT_CONTROLLER;
   protected $action         = self::DEFAULT_ACTION;
 
@@ -88,11 +90,17 @@ class FrontController implements FrontControllerInterface
     {
       $_GET['access'] = 'home';
     }
-    // Cuts the $_GET access value with the exclamation point
-    $access = explode('!', $_GET['access']);
+    // Stores the $_GET['access'] value to this page
+    $this->page = $_GET['access'];
 
-    // Attributes the first access string to the current controller
-    $this->controller = $access[0];
+    // Cuts this page value with the exclamation point
+    $access = explode('!', $this->page);
+
+    // Attributes the first access string to this rubric
+    $this->rubric = $access[0];
+
+    // Attributes the value of this rubric to this controller
+    $this->controller = $this->rubric;
 
     // If set, attributes the second access string to the current action method
     // if not set, attributes the string index
@@ -116,7 +124,7 @@ class FrontController implements FrontControllerInterface
     if (!class_exists($this->controller))
     {
       // Creates a warning message to inform that the asking page is not available
-      Session::createAlert('Cette page est introuvable sur le serveur... Vous avez été redirigé vers la page d\'accueil...', 'warning');
+      Session::createAlert('La page ' . $this->page . ' est introuvable sur le serveur... Vous avez été redirigé vers la page d\'accueil...', 'warning');
 
       // Attributes the default path & controller to the current controller
       $this->controller = self::DEFAULT_PATH . self::DEFAULT_CONTROLLER;
@@ -137,7 +145,7 @@ class FrontController implements FrontControllerInterface
     if (!method_exists($this->controller, $this->action))
     {
       // Creates a warning message to inform that the asking page is not available
-      Session::createAlert('Cette page est introuvable sur le serveur... Vous avez été redirigé vers la page d\'accueil...', 'warning');
+      Session::createAlert('La page ' . $this->page . ' est introuvable sur le serveur... Vous avez été redirigé vers la page ' . $this->rubric . '...', 'warning');
 
       // Attributes the default action method to the current action method
       $this->action = self::DEFAULT_ACTION;
