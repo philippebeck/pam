@@ -6,16 +6,13 @@ Php Approachable Microframework
 
 # Installation
 
-How to install in 4 steps:
+How to install in 3 steps:
 
-1 / Install via Composer => $ composer require pjs/pam
+1 / $ composer require pjs/pam
 
-2 / Move the file app/index.php in your web root folder, or the content of this file in your index.php (see index.php line 12)
+2 / Move the content of the folder vendor/pjs/pam/Project in your project root folder
 
-3 / Then, you need to move App_Twig_Extension in your src/Helper, or create one Twig Extension with the same name & location (see FrontController.php line 72)
-
-4 / And, you need to put this folder (app) with the config.php inside, in your project root folder (see PDOFactory.php line 29)
-
+3 / $ composer dump-autoload
 
 
 # Overview
@@ -38,7 +35,7 @@ Access to the database is obviously managed by the Database part, via the PDO cl
 
 # Documentation
 
-You will find the documentation very soon here => https://philippebeck.net/index.php?access=pjs!pam
+You will find the documentation here => https://philippebeck.net/index.php?access=pjs!pam
 
 
 
