@@ -1,5 +1,8 @@
 <?php
 
+// ***************** \\
+// ***** INDEX ***** \\
+// ***************** \\
 
 use Pam\Controller\FrontController;
 
