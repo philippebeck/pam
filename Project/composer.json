@@ -1,0 +1,19 @@
+{
+  "name": "pam/project",
+  "version": "0.1.0",
+  "type": "website",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/",
+      "Pam\\": "vendor/pjs/pam/"
+    }
+  },
+  "require": {
+    "pjs/pam": "^0.1.9"
+  },
+  "config": {
+    "platform": {
+      "php": "7.0.22"
+    }
+  }
+}
