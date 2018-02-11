@@ -4,7 +4,7 @@
 
 
 
--- !! This is a database example, allowing to start the Framework...
+-- !! This is a database example, allowing to start the Framework if needed...
 
 
 

@@ -9,7 +9,7 @@
     }
   },
   "require": {
-    "pjs/pam": "^0.1.9"
+    "pjs/pam": "^0.2.0"
   },
   "config": {
     "platform": {
