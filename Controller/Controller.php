@@ -89,7 +89,7 @@ abstract class Controller implements ControllerInterface
     if ($_FILES['file']['error'] > 0)
     {
       // Creates a warning message to inform the user about the error
-      Session::createAlert('Erreur lors du transfert du fichier...', 'warning');
+      htmlspecialchars(Session::createAlert('Erreur lors du transfert du fichier...', 'warning'));
     }
     else {
       // Stores the file name
@@ -105,7 +105,7 @@ abstract class Controller implements ControllerInterface
       if ($result)
       {
         // Creates a valid message to confirm the transfer
-        Session::createAlert('Transfert du nouveau fichier réussi !', 'valid');
+        htmlspecialchars(Session::createAlert('Transfert du nouveau fichier réussi !', 'valid'));
       }
       // Returns the file name
       return $fileName;
