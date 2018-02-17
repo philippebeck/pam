@@ -123,9 +123,6 @@ class FrontController implements FrontControllerInterface
     // Checks if the current controller is an existing class
     if (!class_exists($this->controller))
     {
-      // Creates a warning message to inform that the asking page is not available
-      Session::createAlert('La page ' . $this->page . ' est introuvable sur le serveur... Vous avez été redirigé vers la page d\'accueil...', 'warning');
-
       // Attributes the default path & controller to the current controller
       $this->controller = self::DEFAULT_PATH . self::DEFAULT_CONTROLLER;
     }
@@ -144,9 +141,6 @@ class FrontController implements FrontControllerInterface
     // Checks if the current action method exists in the current controller
     if (!method_exists($this->controller, $this->action))
     {
-      // Creates a warning message to inform that the asking page is not available
-      Session::createAlert('La page ' . $this->page . ' est introuvable sur le serveur... Vous avez été redirigé vers la page ' . $this->rubric . '...', 'warning');
-
       // Attributes the default action method to the current action method
       $this->action = self::DEFAULT_ACTION;
     }
