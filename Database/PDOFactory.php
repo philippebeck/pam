@@ -8,6 +8,8 @@ namespace Pam\Database;
 
 use \PDO;
 
+// DataBase constants
+require_once dirname(dirname(dirname(dirname(__DIR__)))) . '/app/config.php';
 
 /** *********************************************\
  * Creates the pdo connection if it doesn't exist
@@ -17,43 +19,41 @@ class PDOFactory
   // Unique pdo instance starts at null
   static private $pdo = null;
 
+  // Credentials for PDO instance
+  private const CREDENTIALS = CREDENTIALS;
+
+  // dsn for PDO instance
+  private const DSN = 'mysql:host=' . CREDENTIALS['host'] . ';dbname=' . CREDENTIALS['dbname'];
+
+  // Options for PDO instance
+  private const OPTIONS = OPTIONS;
+
 
   /** *********************************\
-  * Returns the connection if it exists
-  * Otherwise it creates it before returning it
-  * @return PDO $pdo => The connection to the database
-  */
-  public static function getConnection()
+   * Returns the connection if it exists
+   * Otherwise it creates it before returning it
+   * @return PDO $pdo => The connection to the database
+   */
+  public static function getConnection() : PDOStatement
   {
-    // DataBase constants
-    require_once dirname(dirname(dirname(dirname(__DIR__)))).'/app/config.php';
+    // Checks if PDO connection doesn't exist
+    if (is_null(self::$pdo)) {
+      try {
+        // Creates & stores the PDO instance
+        $pdo = new PDO($this->DSN, $this->CREDENTIALS['user'], $this->CREDENTIALS['password'], $this->OPTIONS);
 
-    // Checks if Pdo connection doesn't exist
-    if (is_null(self::$pdo))
-    {
-      // Creates the first parameters for the new pdo concerning the database
-      $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME;
+        // Stores the PDO instance
+        self::$pdo = $pdo;
 
-      // Sets & stores the pdo options as the last parameters for the new pdo
-      $options = [
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-      ];
-      // Creates & stores the pdo connection
-      $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+        // Returns the PDO instance
+        return $pdo;
+      } catch (PDOException $e) {
+        // Log the error message
+        error_log($e->getMessage());
 
-      // Sets the encoding characters
-      $pdo->exec('SET NAMES UTF8');
-
-      // Stores the pdo connection
-      self::$pdo = $pdo;
-
-      // Returns the connection
-      return $pdo;
-    }
-    else {
-      // Return the pdo connection
-      return self::$pdo;
+        // Throw an Exception
+        throw new \ErrorException('Failed to instance PDO');
+      }
     }
   }
 }

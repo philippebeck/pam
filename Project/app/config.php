@@ -9,14 +9,16 @@
  * Defines the global constants for access to the database
  */
 
- // You need to replace the database host here
-define('DB_HOST', 'localhost');
+const CREDENTIALS = [
+    "host" => "localhost",
+    "user" => "root",
+    "password" => "",
+    "dbname" => "pam"
+];
 
-// You need to replace the database name here
-define('DB_NAME', 'pam');
-
-// You need to replace the database username here
-define('DB_USER', 'root');
-
-// You need to put the database user password here
-define('DB_PASS', '');
+// Options for PDO instance
+const OPTIONS = [
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+];
