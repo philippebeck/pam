@@ -37,7 +37,7 @@ Access to the database is obviously managed by the Database part, via the PDO cl
 
 - You will find the documentation in English here => https://github.com/philippebeck/pam/wiki
 
-- You will find the documentation in French here => https://philippebeck.net/index.php?access=pjs!pam
+- You will find the documentation in French here => https://philippebeck.net/?access=pjs!pam
 
 
 

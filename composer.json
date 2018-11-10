@@ -1,31 +1,32 @@
 {
   "name": "pjs/pam",
-  "version": "0.2.4",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/philippebeck/pam"
-  },
+  "version": "0.2.5",
   "type": "framework",
   "description": "Php Approachable Microframework",
-  "keywords": ["php","framework","mvc"],
+  "keywords": [
+    "php",
+    "framework",
+    "mvc"
+  ],
   "license": "MIT",
   "authors": [
     {
       "name": "Philippe Beck",
       "email": "philippe@philippebeck.net",
       "homepage": "https://philippebeck.net",
-      "role": "Developer"
+      "role": "Lead Developer"
     }
   ],
   "autoload": {
     "psr-4": { "Pam\\": "" }
   },
   "require": {
-    "twig/twig": "^2.0"
+    "php": "^7.0",
+    "twig/twig": "^2.5"
   },
   "config": {
     "platform": {
-      "php": "7.0.22"
+      "php": "7.0"
     }
   }
 }
