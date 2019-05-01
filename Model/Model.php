@@ -46,29 +46,25 @@ abstract class Model implements ModelInterface
     public function list(string $value = null, string $key = null, int $order = 0)
     {
         // Checks if a key was given
-        if (isset($key))
-        {
+        if (isset($key)) {
+
             // Checks if the order needed is Ascendant
-            if ($order == 1)
-            {
+            if ($order == 1) {
+
                 // Any key could be use in the where clause
                 $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
-            }
-            else {
+            } else {
                 // Any key could be use in the where clause & an order by clause will be add
                 $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ? ORDER BY ' . $key . ' DESC';
             }
             // Executes the query with parameters, then returns the results
             return $this->database->results($query, [$value]);
-        }
-        else {
+        } else {
             // Checks if the order needed is Ascendant
-            if ($order == 1)
-            {
+            if ($order == 1) {
                 // The query would have no where clause & no order by clause
                 $query = 'SELECT * FROM ' . $this->table;
-            }
-            else {
+            } else {
                 // The query would have no where clause, but an order by clause
                 $query = 'SELECT * FROM ' . $this->table . ' ORDER BY id DESC';
             }
@@ -106,12 +102,11 @@ abstract class Model implements ModelInterface
     public function read(string $value, string $key = null)
     {
         // Checks if a key was given
-        if (isset($key))
-        {
+        if (isset($key)) {
+
             // Any key could be use in the where clause
             $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
-        }
-        else {
+        } else {
             // The id key would be use in the where clause
             $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ?';
         }
@@ -132,8 +127,8 @@ abstract class Model implements ModelInterface
         $set = null;
 
         // Loops on the new data
-        foreach ($data as $dataKey => $dataValue)
-        {
+        foreach ($data as $dataKey => $dataValue) {
+
             // Creates the set string
             $set .= $dataKey . ' = "' . $dataValue . '", ';
         }
@@ -141,12 +136,11 @@ abstract class Model implements ModelInterface
         $set = substr_replace($set, '', -2);
 
         // Checks if a key was given
-        if (isset($key))
-        {
+        if (isset($key)) {
+
             // Any key could be use in the where clause
             $query = 'UPDATE ' . $this->table . ' SET ' . $set . ' WHERE ' . $key . ' = ?';
-        }
-        else {
+        } else {
             // The id key would be use in the where clause
             $query = 'UPDATE ' . $this->table . ' SET ' . $set . ' WHERE id = ?';
         }
@@ -163,12 +157,11 @@ abstract class Model implements ModelInterface
     public function delete(string $value, string $key = null)
     {
         // Checks if a key was given
-        if (isset($key))
-        {
+        if (isset($key)) {
+
             // Any key could be use in the where clause
             $query = 'DELETE FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
-        }
-        else {
+        } else {
             // The id key would be use in the where clause
             $query = 'DELETE FROM ' . $this->table . ' WHERE id = ?';
         }
