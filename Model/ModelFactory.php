@@ -26,8 +26,8 @@ class ModelFactory
     static public function get($table)
     {
         // Checks if object model exist
-        if (array_key_exists($table, self::$models))
-        {
+        if (array_key_exists($table, self::$models)) {
+
             // Returns the existing model object
             return self::$models[$table];
         }
