@@ -74,12 +74,11 @@ abstract class Controller implements ControllerInterface
     public function upload($fileDir)
     {
         // Checks if there is an upload error
-        if ($_FILES['file']['error'] > 0)
-        {
+        if ($_FILES['file']['error'] > 0) {
+
             // Creates a warning message to inform the user about the error
             htmlspecialchars(Session::createAlert('Erreur lors du transfert du fichier...', 'warning'));
-        }
-        else {
+        } else {
             // Stores the file name
             $fileName = $_FILES['file']['name'];
 
@@ -90,8 +89,8 @@ abstract class Controller implements ControllerInterface
             $result  = move_uploaded_file($_FILES['file']['tmp_name'], $filePath);
 
             // Checks if there is a result
-            if ($result)
-            {
+            if ($result) {
+
                 // Creates a valid message to confirm the transfer
                 htmlspecialchars(Session::createAlert('Transfert du nouveau fichier réussi !', 'valid'));
             }
