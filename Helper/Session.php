@@ -19,14 +19,14 @@ class Session
     public function __construct()
     {
         // Checks if a session doesn't exist
-        if (session_status() == PHP_SESSION_NONE)
-        {
+        if (session_status() == PHP_SESSION_NONE) {
+
             // We start it
             session_start();
         }
         // Checks if the session has an array for messages
-        if (array_key_exists('alert', $_SESSION) == false)
-        {
+        if (array_key_exists('alert', $_SESSION) == false) {
+
             // We create it
             $_SESSION['alert'] = array();
         }
@@ -42,13 +42,12 @@ class Session
     public static function createSession(int $id, string $name, string $image, string $email)
     {
         // Creates the user session with the user datas
-        $_SESSION['user'] =
-            [
-                'id'    => $id,
-                'name'  => $name,
-                'image' => $image,
-                'email' => $email
-            ];
+        $_SESSION['user'] = [
+            'id'    => $id,
+            'name'  => $name,
+            'image' => $image,
+            'email' => $email
+        ];
     }
 
     /** ***********************\
@@ -70,11 +69,10 @@ class Session
     public static function isLogged()
     {
         // Checks if the key user exists in the session
-        if (array_key_exists('user', $_SESSION))
-        {
+        if (array_key_exists('user', $_SESSION)) {
+
             // Checks if the value from the key user is missing
-            if (!empty($_SESSION['user']))
-            {
+            if (!empty($_SESSION['user'])) {
                 return true;
             }
             return false;
@@ -89,8 +87,7 @@ class Session
     public static function userId()
     {
         // Checks if a user is connected
-        if (self::isLogged() == false)
-        {
+        if (self::isLogged() == false) {
             return null;
         }
         // Returns the user id
@@ -104,8 +101,7 @@ class Session
     public static function userName()
     {
         // Checks if a user is connected
-        if (self::isLogged() == false)
-        {
+        if (self::isLogged() == false) {
             return null;
         }
         // Returns the user name
@@ -119,8 +115,7 @@ class Session
     public static function userImage()
     {
         // Checks if a user is connected
-        if (self::isLogged() == false)
-        {
+        if (self::isLogged() == false) {
             return null;
         }
         // returns the user image
@@ -134,8 +129,7 @@ class Session
     public static function userEmail()
     {
         // Checks if a user is connected
-        if (self::isLogged() == false)
-        {
+        if (self::isLogged() == false) {
             return null;
         }
         // Returns the user email
@@ -188,8 +182,8 @@ class Session
     public static function readType()
     {
         // Checks if the alert session is set
-        if (isset($_SESSION['alert']))
-        {
+        if (isset($_SESSION['alert'])) {
+
             // Displays the alert type
             echo $_SESSION['alert']['type'];
         }
@@ -201,8 +195,8 @@ class Session
     public static function readMessage()
     {
         // Checks if the alert session is set
-        if (isset($_SESSION['alert']))
-        {
+        if (isset($_SESSION['alert'])) {
+
             // Displays the alert message
             echo $_SESSION['alert']['message'];
 
