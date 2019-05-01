@@ -6,31 +6,33 @@
 
 namespace Pam\View;
 
-use Pam\Model\ModelFactory;
 use Pam\Helper\Session;
+use Pam\Model\ModelFactory;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /** ************************\
  * Extends Twig with Pam code
  */
-class Pam_Twig_Extension extends \Twig_Extension
+class PamTwigExtension extends AbstractExtension
 {
     /** ***********************************************************\
      * Returns an array of functions to add to the Twig functions
-     * @return Twig_Function[] => the array who contains all functions for Twig
+     * @return TwigFunction[] => the array who contains all functions for Twig
      */
     public function getFunctions()
     {
         // Returns an array of Twig functions
         return array(
-            new \Twig_Function('url',         array($this, 'url')),
-            new \Twig_Function('isLogged',    array($this, 'isLogged')),
-            new \Twig_Function('userId',      array($this, 'userId')),
-            new \Twig_Function('userName',    array($this, 'userName')),
-            new \Twig_Function('userImage',   array($this, 'userImage')),
-            new \Twig_Function('userEmail',   array($this, 'userEmail')),
-            new \Twig_Function('hasAlert',    array($this, 'hasAlert')),
-            new \Twig_Function('readType',    array($this, 'readType')),
-            new \Twig_Function('readMessage', array($this, 'readMessage'))
+            new TwigFunction('url',         array($this, 'url')),
+            new TwigFunction('isLogged',    array($this, 'isLogged')),
+            new TwigFunction('userId',      array($this, 'userId')),
+            new TwigFunction('userName',    array($this, 'userName')),
+            new TwigFunction('userImage',   array($this, 'userImage')),
+            new TwigFunction('userEmail',   array($this, 'userEmail')),
+            new TwigFunction('hasAlert',    array($this, 'hasAlert')),
+            new TwigFunction('readType',    array($this, 'readType')),
+            new TwigFunction('readMessage', array($this, 'readMessage'))
         );
     }
 
@@ -126,6 +128,22 @@ class Pam_Twig_Extension extends \Twig_Extension
         }
         // Returns the user email
         return $_SESSION['user']['email'];
+    }
+
+    /** ***********************************************\
+     * Checks the connection then returns the admin email
+     * @return string => the user email
+     */
+    public function adminEmail()
+    {
+        // Checks if a user is connected
+        if (Session::isLogged() == false) {
+            return null;
+        }
+        // Reads the admin datas, then stores it
+        $admin = ModelFactory::get('User')->read(1);
+        // Returns the admin email
+        return $admin['email'];
     }
 
     /** *****************************************\
