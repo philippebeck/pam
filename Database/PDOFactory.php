@@ -27,8 +27,8 @@ class PDOFactory
         require_once dirname(dirname(dirname(dirname(__DIR__)))).'/config/bdd.php';
 
         // Checks if Pdo connection doesn't exist
-        if (is_null(self::$pdo))
-        {
+        if (is_null(self::$pdo)) {
+
             // Creates the first parameters for the new pdo concerning the database
             $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME;
 
@@ -48,8 +48,8 @@ class PDOFactory
 
             // Returns the connection
             return $pdo;
-        }
-        else {
+        } else {
+
             // Return the pdo connection
             return self::$pdo;
         }
