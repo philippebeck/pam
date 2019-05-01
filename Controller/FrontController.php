@@ -129,7 +129,7 @@ class FrontController implements FrontControllerInterface
     public function setAction()
     {
         // Constructs the current action method
-        $this->action = ucfirst(strtolower($this->action)) . 'Action';
+        $this->action = strtolower($this->action) . 'Action';
 
         // Checks if the current action method exists in the current controller
         if (!method_exists($this->controller, $this->action))
