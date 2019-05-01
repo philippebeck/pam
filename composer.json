@@ -21,15 +21,15 @@
     "psr-4": { "Pam\\": "" }
   },
   "require": {
-    "php": "^7.0",
-    "twig/twig": "^2.5"
+    "php": "^7.3",
+    "twig/twig": "^2.9.0"
   },
   "require-dev": {
     "tracy/tracy": "^2.6.2"
   },
   "config": {
     "platform": {
-      "php": "7.0"
+      "php": "7.3"
     }
   }
 }
