@@ -6,6 +6,8 @@
 
 namespace Pam\Helper;
 
+use Pam\Model\ModelFactory;
+
 /** ******************\
  * Helper Session class
  */
@@ -138,6 +140,22 @@ class Session
         }
         // Returns the user email
         return $_SESSION['user']['email'];
+    }
+
+    /** ***********************************************\
+     * Checks the connection then returns the admin email
+     * @return string => the user email
+     */
+    public static function adminEmail()
+    {
+        // Checks if a user is connected
+        if (Session::isLogged() == false) {
+            return null;
+        }
+        // Reads the admin datas, then stores it
+        $admin = ModelFactory::get('User')->read(1);
+        // Returns the admin email
+        return $admin['email'];
     }
 
     /** *********************************************\
