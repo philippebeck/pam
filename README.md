@@ -1,19 +1,20 @@
+[![Pam Logo](Project/public/img/pam.png)](https://github.com/philippebeck/pam)
+
 # Pam
 
 Php Approachable Microframework
 
-
+[![Packagist Version](https://img.shields.io/packagist/v/pjs/pam.svg?label=Packagist)](https://packagist.org/packages/pjs/pam)
 
 # Installation
 
 How to install in 3 steps:
 
-1 / $ composer require pjs/pam
+1. $ composer require pjs/pam
 
-2 / Move the content of the folder vendor/pjs/pam/Project in your project root folder
+2. Move the content of the folder vendor/pjs/pam/Project in your project root folder
 
-3 / $ composer dump-autoload
-
+3. $ composer dump-autoload
 
 # Overview
 
@@ -31,15 +32,11 @@ The sessions are managed by Pam for user connection actions & user message actio
 
 Access to the database is obviously managed by the Database part, via the PDO class.
 
-
-
 # Documentation
 
 - You will find the documentation in English here => https://github.com/philippebeck/pam/wiki
 
 - You will find the documentation in French here => https://philippebeck.net/?access=pjs!pam
-
-
 
 # Contribution
 
