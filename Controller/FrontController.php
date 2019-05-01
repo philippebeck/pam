@@ -81,8 +81,7 @@ class FrontController implements FrontControllerInterface
     public function parseUrl()
     {
         // Checks if the key access doesn't exist or if this key is not define
-        if (!array_key_exists('access', $_GET) || !isset($_GET['access']))
-        {
+        if (!array_key_exists('access', $_GET) || !isset($_GET['access'])) {
             $_GET['access'] = 'home';
         }
         // Stores the $_GET['access'] value to this page
@@ -115,8 +114,8 @@ class FrontController implements FrontControllerInterface
         $this->controller = self::DEFAULT_PATH . $this->controller;
 
         // Checks if the current controller is an existing class
-        if (!class_exists($this->controller))
-        {
+        if (!class_exists($this->controller)) {
+            
             // Attributes the default path & controller to the current controller
             $this->controller = self::DEFAULT_PATH . self::DEFAULT_CONTROLLER;
         }
@@ -132,8 +131,8 @@ class FrontController implements FrontControllerInterface
         $this->action = strtolower($this->action) . 'Action';
 
         // Checks if the current action method exists in the current controller
-        if (!method_exists($this->controller, $this->action))
-        {
+        if (!method_exists($this->controller, $this->action)) {
+
             // Attributes the default action method to the current action method
             $this->action = self::DEFAULT_ACTION;
         }
