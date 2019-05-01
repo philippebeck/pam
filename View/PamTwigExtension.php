@@ -30,6 +30,7 @@ class PamTwigExtension extends AbstractExtension
             new TwigFunction('userName',    array($this, 'userName')),
             new TwigFunction('userImage',   array($this, 'userImage')),
             new TwigFunction('userEmail',   array($this, 'userEmail')),
+            new TwigFunction('adminEmail',  array($this, 'adminEmail')),
             new TwigFunction('hasAlert',    array($this, 'hasAlert')),
             new TwigFunction('readType',    array($this, 'readType')),
             new TwigFunction('readMessage', array($this, 'readMessage'))
@@ -58,8 +59,7 @@ class PamTwigExtension extends AbstractExtension
     public function isLogged()
     {
         // Checks if the key user exists in the session
-        if (array_key_exists('user', $_SESSION))
-        {
+        if (array_key_exists('user', $_SESSION)) {
             // Checks if the value from the key user is missing
             if (!empty($_SESSION['user']))
             {
@@ -77,8 +77,7 @@ class PamTwigExtension extends AbstractExtension
     public function userId()
     {
         // Checks if a user is connected
-        if ($this->isLogged() == false)
-        {
+        if ($this->isLogged() == false) {
             return null;
         }
         // Returns the user id
@@ -92,8 +91,7 @@ class PamTwigExtension extends AbstractExtension
     public function userName()
     {
         // Checks if a user is connected
-        if ($this->isLogged() == false)
-        {
+        if ($this->isLogged() == false) {
             return null;
         }
         // Returns the user name
@@ -107,8 +105,7 @@ class PamTwigExtension extends AbstractExtension
     public function userImage()
     {
         // Checks if a user is connected
-        if ($this->isLogged() == false)
-        {
+        if ($this->isLogged() == false) {
             return null;
         }
         // returns the user image
@@ -122,8 +119,7 @@ class PamTwigExtension extends AbstractExtension
     public function userEmail()
     {
         // Checks if a user is connected
-        if ($this->isLogged() == false)
-        {
+        if ($this->isLogged() == false) {
             return null;
         }
         // Returns the user email
@@ -162,8 +158,7 @@ class PamTwigExtension extends AbstractExtension
     public function readType()
     {
         // Checks if the alert session is set
-        if (isset($_SESSION['alert']))
-        {
+        if (isset($_SESSION['alert'])) {
             // Displays the alert type
             echo $_SESSION['alert']['type'];
         }
@@ -175,8 +170,7 @@ class PamTwigExtension extends AbstractExtension
     public function readMessage()
     {
         // Checks if the alert session is set
-        if (isset($_SESSION['alert']))
-        {
+        if (isset($_SESSION['alert'])) {
             // Displays the alert message
             echo $_SESSION['alert']['message'];
 
