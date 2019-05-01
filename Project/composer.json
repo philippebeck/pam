@@ -1,6 +1,7 @@
 {
-  "name": "pam/project",
+  "name": "organization/project",
   "version": "0.1.0",
+  "description": "Write your awesome description here !",
   "type": "website",
   "autoload": {
     "psr-4": {
@@ -9,11 +10,11 @@
     }
   },
   "require": {
-    "pjs/pam": "^0.2.0"
+    "pjs/pam": "^0.3.0"
   },
   "config": {
     "platform": {
-      "php": "7.0.22"
+      "php": "7.3"
     }
   }
 }
