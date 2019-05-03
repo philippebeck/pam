@@ -49,7 +49,7 @@ abstract class Model implements ModelInterface
         if (isset($key)) {
 
             // Checks if the order needed is Ascendant
-            if ($order == 1) {
+            if ($order == 0) {
 
                 // Any key could be use in the where clause
                 $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
@@ -59,9 +59,10 @@ abstract class Model implements ModelInterface
             }
             // Executes the query with parameters, then returns the results
             return $this->database->results($query, [$value]);
+            
         } else {
             // Checks if the order needed is Ascendant
-            if ($order == 1) {
+            if ($order == 0) {
                 // The query would have no where clause & no order by clause
                 $query = 'SELECT * FROM ' . $this->table;
             } else {
