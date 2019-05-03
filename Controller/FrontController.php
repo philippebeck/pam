@@ -6,9 +6,9 @@
 
 namespace Pam\Controller;
 
-use \Twig_Environment;
-use \Twig_Extension_Debug;
-use \Twig_Loader_Filesystem;
+use \Twig\Environment;
+use \Twig\Extension\DebugExtension;
+use \Twig\Loader\FilesystemLoader;
 use Pam\Helper\Session;
 use Pam\View\PamTwigExtension;
 
@@ -58,16 +58,16 @@ class FrontController implements FrontControllerInterface
     public function setTemplate()
     {
         // Creates the loader & sets the template directory path
-        $loader = new Twig_Loader_Filesystem('../src/View');
+        $loader = new FilesystemLoader('../src/View');
 
         // Creates the template engine
-        $twig = new Twig_Environment($loader, array(
+        $twig = new Environment($loader, array(
             'cache' => false,
             'debug' => true
         ));
 
         // Adds Twig extensions
-        $twig->addExtension(new Twig_Extension_Debug());
+        $twig->addExtension(new DebugExtension());
         $twig->addExtension(new PamTwigExtension());
 
         // Attributes the template engine to the current object
