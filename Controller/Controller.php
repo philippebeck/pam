@@ -69,7 +69,9 @@ abstract class Controller implements ControllerInterface
      */
     public function upload($fileDir)
     {
-        if ($_FILES['file']['error'] > 0) {
+        $fileError = $_FILES['file']['error'];
+
+        if ($fileError > 0) {
             htmlspecialchars(Session::createAlert('Erreur lors du transfert du fichier...', 'warning'));
         } else {
             $fileName = $_FILES['file']['name'];
