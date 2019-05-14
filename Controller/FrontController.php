@@ -9,7 +9,6 @@ namespace Pam\Controller;
 use \Twig\Environment;
 use \Twig\Extension\DebugExtension;
 use \Twig\Loader\FilesystemLoader;
-use Pam\Helper\Session;
 use Pam\View\PamTwigExtension;
 
 /** ****************************\
@@ -34,9 +33,6 @@ class FrontController implements FrontControllerInterface
      */
     public function __construct()
     {
-        // Starts or continues session
-        $session = new Session();
-
         // Sets the template engine
         $this->setTemplate();
 
