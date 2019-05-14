@@ -66,6 +66,7 @@ class Session
     public static function userId()
     {
         if (self::isLogged() == false) {
+
             return null;
         }
 
