@@ -74,7 +74,7 @@ class FrontController implements FrontControllerInterface
             $_GET['access'] = 'home';
         }
 
-        $this->page = $_GET['access'];
+        $this->page = strval($_GET['access']);
         $access = explode('!', $this->page);
 
         $this->controller   = $access[0];
