@@ -1,44 +1,44 @@
 <?php
 
-// ******************************** \\
-// ***** CONTROLLER INTERFACE ***** \\
-// ******************************** \\
-
 namespace Pam\Controller;
 
-/** ***********************************\
- * All controller classes specifications
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+
+/**
+ * Interface ControllerInterface
+ * @package Pam\Controller
  */
 interface ControllerInterface
 {
-    /** ***********************\
-     * Returns the url of a page
-     * @param  string $page   => the name of the page
-     * @param  array  $params => the url parameters
-     * @return string         => the page url
+    /**
+     * @param string $page
+     * @param array $params
+     * @return mixed
      */
     public function url(string $page, array $params = []);
 
-    /** *****************************************\
-     * Redirects to a page with the function url()
-     * @param string $page   => the name of the page
-     * @param array  $params => the url parameters
+    /**
+     * @param string $page
+     * @param array $params
+     * @return mixed
      */
     public function redirect(string $page, array $params = []);
 
-    /** ***************\
-     * Renders the views
-     * @param  string $view   => the view to render
-     * @param  array  $params => (the parameters to render the view)
-     * @return string         => the render of the view
+    /**
+     * @param string $view
+     * @param array $params
+     * @return mixed
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function render(string $view, array $params = []);
 
-    /** *********************************\
-     * Uploads a file to a specific folder
-     * And returns the file name
-     * @param  string $fileDir  => the folder(s) from the file folder
-     * @return string $fileName => the file name
+    /**
+     * @param $fileDir
+     * @return mixed
      */
     public function upload($fileDir);
 }
