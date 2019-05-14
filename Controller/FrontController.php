@@ -25,7 +25,6 @@ class FrontController implements FrontControllerInterface
     // Protected properties
     protected $twig           = null;
     protected $page           = null;
-    protected $rubric         = null;
     protected $controller     = self::DEFAULT_CONTROLLER;
     protected $action         = self::DEFAULT_ACTION;
 
@@ -90,14 +89,11 @@ class FrontController implements FrontControllerInterface
         // Cuts this page value with the exclamation point
         $access = explode('!', $this->page);
 
-        // Attributes the first access string to this rubric
-        $this->rubric = $access[0];
-
-        // Attributes the value of this rubric to this controller
-        $this->controller = $this->rubric;
+        // Attributes the first access string to this controller
+        $this->controller = $access[0];
 
         // If set, attributes the second access string to the current action method
-        // if not set, attributes the string index
+        // If not set, attributes the string index
         $this->action = count($access) == 1 ? 'index' : $access[1];
     }
 
