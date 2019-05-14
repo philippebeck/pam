@@ -23,7 +23,8 @@
   "require": {
     "php": "^7.2",
     "twig/twig": "^2.9.0",
-    "tracy/tracy": "^2.6.2"
+    "tracy/tracy": "^2.6.2",
+    "ext-json": "*"
   },
   "config": {
     "platform": {
