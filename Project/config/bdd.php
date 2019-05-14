@@ -1,22 +1,13 @@
 <?php
 
-// ********************** \\
-// ***** CONFIG BDD ***** \\
-// ********************** \\
-
-
-/** ******************************************************\
- * Defines the global constants for access to the database
- */
-
  // You need to replace the database host here
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'host');
 
 // You need to replace the database name here
-define('DB_NAME', 'pam');
+define('DB_NAME', 'name');
 
 // You need to replace the database username here
-define('DB_USER', 'root');
+define('DB_USER', 'username');
 
 // You need to put the database user password here
-define('DB_PASS', '');
+define('DB_PASS', 'password');
