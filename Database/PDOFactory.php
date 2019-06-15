@@ -20,7 +20,7 @@ class PDOFactory
      */
     public static function getConnection()
     {
-        require_once dirname(dirname(dirname(dirname(__DIR__)))).'/config/bdd.php';
+        require_once '../../../../config/bdd.php';
 
         if (is_null(self::$pdo)) {
 
