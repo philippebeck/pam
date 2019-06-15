@@ -6,7 +6,8 @@ Php Approachable Microframework
 
 [![Packagist Version](https://img.shields.io/packagist/v/pjs/pam.svg?label=Packagist)](https://packagist.org/packages/pjs/pam)
 
-# Installation
+
+## Installation
 
 How to install in 3 steps:
 
@@ -16,7 +17,7 @@ How to install in 3 steps:
 
 3. $ composer dump-autoload
 
-# Overview
+## Overview
 
 Pam is a PHP microframework based on the MVC architecture.
 
@@ -32,10 +33,10 @@ The sessions are managed by Pam for user connection actions & user message actio
 
 Access to the database is obviously managed by the Database part, via the PDO class.
 
-# Documentation
+## Documentation
 
-- You will find the documentation here => https://github.com/philippebeck/pam/wiki
+You will find the documentation here => https://github.com/philippebeck/pam/wiki
 
-# Contribution
+## Contribution
 
 Pam needs you if you like it : sends pull requests on GitHub to improve it !!
