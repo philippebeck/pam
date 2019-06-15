@@ -70,12 +70,13 @@ class FrontController implements FrontControllerInterface
      */
     public function parseUrl()
     {
-        if (!array_key_exists('access', $_GET) || !isset($_GET['access'])) {
-            $_GET['access'] = 'home';
+        $access = filter_input(INPUT_GET, 'access');
+
+        if (!isset($access)) {
+            $access = 'home';
         }
 
-        $this->page = strval($_GET['access']);
-        $access = explode('!', $this->page);
+        $access = explode('!', $access);
 
         $this->controller   = $access[0];
         $this->action       = count($access) == 1 ? 'index' : $access[1];
