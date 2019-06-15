@@ -1,5 +1,5 @@
-'use strict';
+"use strict";
 
-document.addEventListener('DOMContentLoaded', function(e) {
+document.addEventListener("DOMContentLoaded", function(e) {
   // Put your project script here
 });
