@@ -6,7 +6,6 @@ Php Approachable Microframework
 
 [![Packagist Version](https://img.shields.io/packagist/v/pjs/pam.svg?label=Packagist)](https://packagist.org/packages/pjs/pam)
 
-
 ## Installation
 
 How to install in 3 steps:
@@ -35,7 +34,7 @@ Access to the database is obviously managed by the Database part, via the PDO cl
 
 ## Documentation
 
-You will find the documentation here => https://github.com/philippebeck/pam/wiki
+You will find the documentation here => [https://github.com/philippebeck/pam/wiki](https://github.com/philippebeck/pam/wiki)
 
 ## Contribution
 
