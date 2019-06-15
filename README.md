@@ -16,6 +16,8 @@ How to install in 3 steps:
 
 ## Overview
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a23727fb6954400b6c3a38a0105089e)](https://www.codacy.com/app/philippebeck/pam?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=philippebeck/pam&amp;utm_campaign=Badge_Grade)
+
 Pam is a PHP microframework based on the MVC architecture.
 
 Pam is very easy to use & very light to implement.
