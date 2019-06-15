@@ -4,7 +4,7 @@ use Pam\Controller\FrontController;
 use Pam\Helper\Session;
 use Tracy\Debugger;
 
-require_once dirname(__DIR__).'/vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 $session            = new Session();
 $frontController    = new FrontController();
