@@ -10,11 +10,9 @@ Php Approachable Microframework
 
 How to install in 3 steps:
 
-1. $ composer require pjs/pam
-
-2. Move the content of the folder vendor/pjs/pam/Project in your project root folder
-
-3. $ composer dump-autoload
+  1. $ composer require pjs/pam
+  2. Move the content of the folder vendor/pjs/pam/Project in your project root folder
+  3. $ composer dump-autoload
 
 ## Overview
 
