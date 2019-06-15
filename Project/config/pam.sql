@@ -1,13 +1,12 @@
 -- !! This is a database example, allowing to start the Framework if needed...
 
--- Drops the old database before creates a new one
--- You need to replace pam with your db name
-DROP DATABASE IF EXISTS pam;
+-- For the lines 6, 9 & 12 : you must replace pam with the name of your database & uncomment
 
--- Creates the database
--- You need to replace pam with your db name
-CREATE DATABASE pam CHARACTER SET utf8;
+-- To delete the old database before creating a new one, in the following line
+-- DROP DATABASE IF EXISTS pam;
 
--- Uses the database
--- You need to replace pam with your db name
-USE pam;
+-- To create the database, at the following line
+-- CREATE DATABASE pam CHARACTER SET utf8;
+
+-- To use the database, at the following line
+-- USE pam;
