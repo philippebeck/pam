@@ -22,7 +22,7 @@ class PDOFactory
     {
         require_once '../../../../config/bdd.php';
 
-        if (is_null(self::$pdo)) {
+        if (self::$pdo === null) {
 
             $dsn        = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME;
             $options    = [
