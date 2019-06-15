@@ -76,7 +76,7 @@ abstract class Controller implements ControllerInterface
         } else {
             $fileName = $_FILES['file']['name'];
 
-            $filePath = dirname(dirname(dirname(dirname(__DIR__)))) . "/public/{$fileDir}/{$fileName}";
+            $filePath = "../../../../public/{$fileDir}/{$fileName}";
 
             $result  = move_uploaded_file($_FILES['file']['tmp_name'], $filePath);
 
