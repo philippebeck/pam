@@ -63,19 +63,6 @@ class Session
     /**
      * @return array|null
      */
-    public static function userId()
-    {
-        if (self::isLogged() == false) {
-
-            return null;
-        }
-
-        return $_SESSION['user']['id'];
-    }
-
-    /**
-     * @return array|null
-     */
     public static function userName()
     {
         if (self::isLogged() == false) {
@@ -97,19 +84,6 @@ class Session
         }
 
         return $_SESSION['user']['image'];
-    }
-
-    /**
-     * @return array|null
-     */
-    public static function userEmail()
-    {
-        if (self::isLogged() == false) {
-
-            return null;
-        }
-
-        return $_SESSION['user']['email'];
     }
 
     /**
