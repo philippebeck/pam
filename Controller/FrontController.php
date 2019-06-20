@@ -23,11 +23,6 @@ class FrontController implements FrontControllerInterface
     protected $twig = null;
 
     /**
-     * @var null
-     */
-    protected $page = null;
-
-    /**
      * @var string
      */
     protected $controller = self::DEFAULT_CONTROLLER;
