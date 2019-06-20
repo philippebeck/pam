@@ -32,9 +32,8 @@ class PDOFactory
 
             $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
             $pdo->exec('SET NAMES UTF8');
-            self::$pdo = $pdo;
 
-            return $pdo;
+            self::$pdo = $pdo;
         }
 
         return self::$pdo;
