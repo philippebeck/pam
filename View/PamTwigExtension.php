@@ -21,10 +21,8 @@ class PamTwigExtension extends AbstractExtension
         return array(
             new TwigFunction('url',         array($this, 'url')),
             new TwigFunction('isLogged',    array($this, 'isLogged')),
-            new TwigFunction('userId',      array($this, 'userId')),
             new TwigFunction('userName',    array($this, 'userName')),
             new TwigFunction('userImage',   array($this, 'userImage')),
-            new TwigFunction('userEmail',   array($this, 'userEmail')),
             new TwigFunction('hasAlert',    array($this, 'hasAlert')),
             new TwigFunction('readType',    array($this, 'readType')),
             new TwigFunction('readMessage', array($this, 'readMessage'))
@@ -62,19 +60,6 @@ class PamTwigExtension extends AbstractExtension
     /**
      * @return array|null
      */
-    public function userId()
-    {
-        if ($this->isLogged() == false) {
-
-            return null;
-        }
-
-        return $_SESSION['user']['id'];
-    }
-
-    /**
-     * @return array|null
-     */
     public function userName()
     {
         if ($this->isLogged() == false) {
@@ -96,34 +81,6 @@ class PamTwigExtension extends AbstractExtension
         }
 
         return $_SESSION['user']['image'];
-    }
-
-    /**
-     * @return array|null
-     */
-    public function userEmail()
-    {
-        if ($this->isLogged() == false) {
-
-            return null;
-        }
-
-        return $_SESSION['user']['email'];
-    }
-
-    /**
-     * @return array|null
-     */
-    public function adminEmail()
-    {
-        if (Session::isLogged() == false) {
-
-            return null;
-        }
-
-        $admin = ModelFactory::get('User')->read(1);
-
-        return $admin['email'];
     }
 
     /**
