@@ -1,6 +1,6 @@
 {
   "name": "pjs/pam",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "type": "framework",
   "description": "Php Approachable Microframework",
   "keywords": [
@@ -22,9 +22,10 @@
   },
   "require": {
     "php": "^7.2",
-    "symfony/var-dumper": "^4.2.9",
-    "twig/twig": "^2.10.0",
-    "tracy/tracy": "^2.6.2"
+    "firebase/php-jwt": "5.x",
+    "symfony/var-dumper": "4.x",
+    "twig/twig": "2.x",
+    "tracy/tracy": "2.x"
   },
   "config": {
     "platform": {
