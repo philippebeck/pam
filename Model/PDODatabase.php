@@ -1,12 +1,12 @@
 <?php
 
-namespace Pam\Database;
+namespace Pam\Model;
 
 use PDO;
 
 /**
  * Class PDODatabase
- * @package Pam\Database
+ * @package Pam\Model
  */
 class PDODatabase implements DatabaseInterface
 {
