@@ -1,6 +1,6 @@
 {
   "name": "pjs/pam",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "type": "framework",
   "description": "Php Approachable Microframework",
   "keywords": [
