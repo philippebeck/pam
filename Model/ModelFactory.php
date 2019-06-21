@@ -2,9 +2,6 @@
 
 namespace Pam\Model;
 
-use Pam\Database\PDODatabase;
-use Pam\Database\PDOFactory;
-
 /**
  * Class ModelFactory
  * @package Pam\Model

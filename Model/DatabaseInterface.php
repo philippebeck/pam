@@ -1,10 +1,10 @@
 <?php
 
-namespace Pam\Database;
+namespace Pam\Model;
 
 /**
  * Interface DatabaseInterface
- * @package Pam\Database
+ * @package Pam\Model
  */
 interface DatabaseInterface
 {

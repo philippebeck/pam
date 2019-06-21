@@ -1,12 +1,12 @@
 <?php
 
-namespace Pam\Database;
+namespace Pam\Model;
 
 use PDO;
 
 /**
  * Class PDOFactory
- * @package Pam\Database
+ * @package Pam\Model
  */
 class PDOFactory
 {
