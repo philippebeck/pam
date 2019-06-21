@@ -20,7 +20,7 @@ class PDOFactory
      */
     public static function getConnection()
     {
-        require_once '../../../../config/bdd.php';
+        require_once '../config/bdd.php';
 
         if (self::$pdo === null) {
 
