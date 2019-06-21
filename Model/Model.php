@@ -2,8 +2,6 @@
 
 namespace Pam\Model;
 
-use Pam\Database\DatabaseInterface;
-
 /**
  * Class Model
  * @package Pam\Model
