@@ -75,8 +75,7 @@ abstract class Controller implements ControllerInterface
             htmlspecialchars(Session::createAlert('Erreur lors du transfert du fichier...', 'warning'));
         } else {
             $fileName = $_FILES['file']['name'];
-
-            $filePath = "../../../../public/{$fileDir}/{$fileName}";
+            $filePath = "{$fileDir}/{$fileName}";
 
             $result  = move_uploaded_file($_FILES['file']['tmp_name'], $filePath);
 
