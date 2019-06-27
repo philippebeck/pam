@@ -23,7 +23,7 @@
   "require": {
     "php": "^7.2",
     "firebase/php-jwt": "5.x",
-    "symfony/var-dumper": "4.x",
+    "symfony/var-dumper": "4.3.2",
     "twig/twig": "2.x",
     "tracy/tracy": "2.x"
   },
