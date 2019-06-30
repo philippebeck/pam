@@ -6,7 +6,6 @@ use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
-use Pam\Helper\Session;
 
 /**
  * Class Controller
@@ -69,10 +68,12 @@ abstract class Controller implements ControllerInterface
      */
     public function upload($fileDir)
     {
-        $fileError = $_FILES['file']['error'];
+        $fileError      = $_FILES['file']['error'];
+        $uploadAlert    = new CookieController();
 
         if ($fileError > 0) {
-            htmlspecialchars(Session::createAlert('Erreur lors du transfert du fichier...', 'warning'));
+            $uploadAlert->createAlert('File transfer error...', 'warning');
+
         } else {
             $fileName = $_FILES['file']['name'];
             $filePath = "{$fileDir}/{$fileName}";
@@ -80,7 +81,7 @@ abstract class Controller implements ControllerInterface
             $result  = move_uploaded_file($_FILES['file']['tmp_name'], $filePath);
 
             if ($result) {
-                htmlspecialchars(Session::createAlert('Transfert du nouveau fichier réussi !', 'valid'));
+                $uploadAlert->createAlert('Transfer the new file successfully !', 'valid');
             }
 
             return $fileName;
