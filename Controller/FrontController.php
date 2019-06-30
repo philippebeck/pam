@@ -110,7 +110,7 @@ class FrontController implements FrontControllerInterface
         $this->controller   = new $this->controller($this->twig);
         $response           = call_user_func([$this->controller, $this->action]);
 
-        echo $response;
+        echo filter_var($response);
     }
 }
 
