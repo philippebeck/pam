@@ -12,16 +12,21 @@ use Twig\TwigFunction;
  */
 class CookieTwigExtension extends AbstractExtension
 {
+    protected $cookie;
+
+    public function __construct()
+    {
+        $this->cookie = new CookieController();
+    }
+
     /**
      * @return array|TwigFunction[]
      */
     public function getFunctions()
     {
         return array(
-            new TwigFunction('hasAlert',    array($this, 'hasAlert')),
-            new TwigFunction('readAlert',   array($this, 'readAlert')),
-            new TwigFunction('readType',    array($this, 'readType')),
-            new TwigFunction('readMessage', array($this, 'readMessage'))
+            new TwigFunction('hasAlert', array($this, 'hasAlert')),
+            new TwigFunction('readAlert', array($this, 'readAlert'))
         );
     }
 
@@ -30,9 +35,7 @@ class CookieTwigExtension extends AbstractExtension
      */
     public function hasAlert()
     {
-        $cookie = new CookieController();
-
-        return empty($cookie->readCookie('alert')) == false;
+        return empty($this->cookie->readCookie('alert')) == false;
     }
 
     /**
@@ -40,34 +43,11 @@ class CookieTwigExtension extends AbstractExtension
      */
     public function readAlert()
     {
-        $cookie = new CookieController();
-
-        return $cookie->readCookie('alert');
-    }
-
-    /**
-     * @return mixed|void
-     */
-    public function readType()
-    {
-        $alert = $this->readAlert();
+        $alert = $this->cookie->readCookie('alert');
 
         if (isset($alert)) {
-            echo filter_var($alert['type']);
-        }
-    }
-
-    /**
-     * @return mixed|void
-     */
-    public function readMessage()
-    {
-        $cookie = new CookieController();
-        $alert  = $this->readAlert();
-
-        if (isset($alert)) {
-            echo filter_var($alert['message']);
-            $cookie->deleteCookie('alert');
+            echo filter_var($alert);
+            $this->cookie->deleteCookie('alert');
         }
     }
 }
