@@ -80,16 +80,16 @@ abstract class Controller implements ControllerInterface
      */
     public function upload($fileDir)
     {
-        $fileError = $_FILES['file']['error'];
+        $fileError = filter_var($_FILES['file']['error'], FILTER_SANITIZE_STRING);
 
         if ($fileError > 0) {
             $this->cookie->createAlert('File transfer error...', 'warning');
 
         } else {
-            $fileName = $_FILES['file']['name'];
+            $fileName = filter_var($_FILES['file']['name'], FILTER_SANITIZE_STRING);
             $filePath = "{$fileDir}/{$fileName}";
 
-            $result  = move_uploaded_file($_FILES['file']['tmp_name'], $filePath);
+            $result  = move_uploaded_file(filter_var($_FILES['file']['tmp_name'], FILTER_SANITIZE_STRING), $filePath);
 
             if ($result) {
                 $this->cookie->createAlert('Transfer the new file successfully !', 'valid');
