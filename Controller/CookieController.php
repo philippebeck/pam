@@ -10,16 +10,16 @@ class CookieController implements CookieControllerInterface
 {
     /**
      * @param string $name
-     * @param array $data
+     * @param string $value
      * @param int $expire
      * @return mixed|void
      */
-    public function createCookie(string $name, array $data = [], int $expire = 0)
+    public function createCookie(string $name, string $value = '', int $expire = 0)
     {
         if ($expire === 0) {
             $expire = time() + 3600;
         }
-        setcookie($name, $data, $expire, '/');
+        setcookie($name, $value, $expire, '/');
     }
 
     /**
@@ -38,7 +38,7 @@ class CookieController implements CookieControllerInterface
     public function deleteCookie(string $name)
     {
         if (filter_input(INPUT_COOKIE, $name) !== null) {
-            $this->createCookie($name, [], time() - 3600);
+            $this->createCookie($name, '', time() - 3600);
 
             return true;
         }
@@ -47,16 +47,10 @@ class CookieController implements CookieControllerInterface
 
     /**
      * @param string $message
-     * @param string $type
      */
-    public function createAlert(string $message, string $type = 'default')
+    public function createAlert(string $message)
     {
-        $alert = array(
-            'message' => $message,
-            'type'    => $type
-        );
-
-        $this->createCookie('alert', $alert);
+        $this->createCookie('alert', $message);
     }
 
     /**
@@ -68,34 +62,14 @@ class CookieController implements CookieControllerInterface
     }
 
     /**
-     * @return mixed
+     * @return mixed|void
      */
     public function readAlert()
     {
-        return $this->readCookie('alert');
-    }
-
-    /**
-     * @return mixed|void
-     */
-    public function readType()
-    {
-        $alert = $this->readAlert();
+        $alert = $this->readCookie('alert');
 
         if (isset($alert)) {
-            echo filter_var($alert['type']);
-        }
-    }
-
-    /**
-     * @return mixed|void
-     */
-    public function readMessage()
-    {
-        $alert = $this->readAlert();
-
-        if (isset($alert)) {
-            echo filter_var($alert['message']);
+            echo filter_var($alert);
             $this->deleteCookie('alert');
         }
     }
