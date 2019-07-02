@@ -9,16 +9,6 @@ namespace Pam\Controller;
 class SessionController implements SessionControllerInterface
 {
     /**
-     * SessionController constructor.
-     */
-    public function __construct()
-    {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-    }
-
-    /**
      * @param int $id
      * @param string $name
      * @param string $image
@@ -48,9 +38,9 @@ class SessionController implements SessionControllerInterface
      */
     public function isLogged()
     {
-        if (array_key_exists('user', filter_input_array(INPUT_SESSION))) {
+        if (array_key_exists('user', filter_var_array($_SESSION))) {
 
-            if (!empty(filter_input(INPUT_SESSION, 'user'))) {
+            if (!empty(filter_var_array($_SESSION['user']))) {
 
                 return true;
             }
@@ -59,24 +49,16 @@ class SessionController implements SessionControllerInterface
     }
 
     /**
-     * @return null
+     * @return mixed
      */
-    public function readUser()
+    public function userName()
     {
         if ($this->isLogged() == false) {
 
             return null;
         }
-    }
 
-    /**
-     * @return mixed
-     */
-    public function userName()
-    {
-        $this->readUser();
-
-        return filter_input(INPUT_SESSION, ['user']['name']);
+        return filter_var($_SESSION['user']['name']);
     }
 
     /**
@@ -84,9 +66,12 @@ class SessionController implements SessionControllerInterface
      */
     public function userImage()
     {
-        $this->readUser();
+        if ($this->isLogged() == false) {
 
-        return filter_input(INPUT_SESSION, ['user']['image']);
+            return null;
+        }
+
+        return filter_var($_SESSION['user']['image']);
     }
 }
 
