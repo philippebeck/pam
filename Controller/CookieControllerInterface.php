@@ -7,11 +7,11 @@ interface CookieControllerInterface
 {
     /**
      * @param string $name
-     * @param array $data
+     * @param string $value
      * @param int $expire
      * @return mixed|void
      */
-    public function createCookie(string $name, array $data = [], int $expire = 0);
+    public function createCookie(string $name, string $value = '', int $expire = 0);
 
     /**
      * @param string $name
@@ -27,28 +27,18 @@ interface CookieControllerInterface
 
     /**
      * @param string $message
-     * @param string $type
      */
-    public function createAlert(string $message, string $type = 'default');
+    public function createAlert(string $message);
 
     /**
      * @return bool
      */
     public function hasAlert();
 
+
     /**
-     * @return mixed
+     * @return mixed|void
      */
     public function readAlert();
-
-    /**
-     * @return mixed|void
-     */
-    public function readType();
-
-    /**
-     * @return mixed|void
-     */
-    public function readMessage();
 }
 
