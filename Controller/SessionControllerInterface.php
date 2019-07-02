@@ -26,12 +26,6 @@ interface SessionControllerInterface
      */
     public function isLogged();
 
-
-    /**
-     * @return null
-     */
-    public function readUser();
-
     /**
      * @return mixed
      */

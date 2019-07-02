@@ -16,7 +16,17 @@ abstract class Controller implements ControllerInterface
     /**
      * @var Environment
      */
-    private $twig;
+    protected $twig;
+
+    /**
+     * @var CookieController
+     */
+    protected $cookie;
+
+    /**
+     * @var SessionController
+     */
+    protected $session;
 
     /**
      * Controller constructor
@@ -24,7 +34,9 @@ abstract class Controller implements ControllerInterface
      */
     public function __construct(Environment $twig)
     {
-        $this->twig = $twig;
+        $this->twig     = $twig;
+        $this->cookie   = new CookieController();
+        $this->session  = new SessionController();
     }
 
     /**
@@ -68,11 +80,10 @@ abstract class Controller implements ControllerInterface
      */
     public function upload($fileDir)
     {
-        $fileError      = $_FILES['file']['error'];
-        $uploadAlert    = new CookieController();
+        $fileError = $_FILES['file']['error'];
 
         if ($fileError > 0) {
-            $uploadAlert->createAlert('File transfer error...', 'warning');
+            $this->cookie->createAlert('File transfer error...', 'warning');
 
         } else {
             $fileName = $_FILES['file']['name'];
@@ -81,7 +92,7 @@ abstract class Controller implements ControllerInterface
             $result  = move_uploaded_file($_FILES['file']['tmp_name'], $filePath);
 
             if ($result) {
-                $uploadAlert->createAlert('Transfer the new file successfully !', 'valid');
+                $this->cookie->createAlert('Transfer the new file successfully !', 'valid');
             }
 
             return $fileName;
