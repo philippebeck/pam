@@ -12,13 +12,6 @@ use Twig\TwigFunction;
  */
 class CookieTwigExtension extends AbstractExtension
 {
-    protected $cookie;
-
-    public function __construct()
-    {
-        $this->cookie = new CookieController();
-    }
-
     /**
      * @return array|TwigFunction[]
      */
@@ -35,7 +28,7 @@ class CookieTwigExtension extends AbstractExtension
      */
     public function hasAlert()
     {
-        return empty($this->cookie->readCookie('alert')) == false;
+        return empty(filter_input(INPUT_COOKIE, 'alert')) == false;
     }
 
     /**
@@ -43,11 +36,19 @@ class CookieTwigExtension extends AbstractExtension
      */
     public function readAlert()
     {
-        $alert = $this->cookie->readCookie('alert');
+        $alert = filter_input(INPUT_COOKIE, 'alert');
 
         if (isset($alert)) {
+
             echo filter_var($alert);
-            $this->cookie->deleteCookie('alert');
+
+            if (filter_input(INPUT_COOKIE, 'alert') !== null) {
+
+                setcookie('alert', '', time() - 3600, '/');
+
+                return true;
+            }
+            return false;
         }
     }
 }
