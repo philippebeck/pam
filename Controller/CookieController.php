@@ -38,6 +38,7 @@ class CookieController implements CookieControllerInterface
     public function deleteCookie(string $name)
     {
         if (filter_input(INPUT_COOKIE, $name) !== null) {
+
             $this->createCookie($name, '', time() - 3600);
 
             return true;
@@ -69,7 +70,9 @@ class CookieController implements CookieControllerInterface
         $alert = $this->readCookie('alert');
 
         if (isset($alert)) {
+
             echo filter_var($alert);
+
             $this->deleteCookie('alert');
         }
     }
