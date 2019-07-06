@@ -13,7 +13,7 @@ class PDOFactory
     /**
      * @var null
      */
-    static private $pdo = null;
+    private static $pdo = null;
 
     /**
      * @return PDO|null

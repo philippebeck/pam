@@ -11,7 +11,7 @@ class ModelFactory
     /**
      * @var array
      */
-    static private $models = [];
+    private static $models = [];
 
     /**
      * @param $table
