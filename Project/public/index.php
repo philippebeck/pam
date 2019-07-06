@@ -1,12 +1,14 @@
 <?php
 
 use Pam\Controller\FrontController;
-use Pam\Helper\Session;
 use Tracy\Debugger;
 
 require_once '../vendor/autoload.php';
 
-$session            = new Session();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $frontController    = new FrontController();
 
 // Basic tests area
