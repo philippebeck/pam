@@ -80,7 +80,7 @@ abstract class Controller implements ControllerInterface
      */
     public function upload($fileDir)
     {
-        $file = filter_var_array($_FILES['file']);
+        $file = filter_var_array($_FILES['file'], FILTER_SANITIZE_SPECIAL_CHARS);
 
         try {
             if (!isset($file['error']) || is_array($file['error'])) {
