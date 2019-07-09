@@ -5,8 +5,25 @@ namespace Pam\View;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
+/**
+ * Class SessionTwigExtension
+ * @package Pam\View
+ */
 class SessionTwigExtension extends AbstractExtension
 {
+    /**
+     * @var array|mixed
+     */
+    private $session = [];
+
+    /**
+     * SessionTwigExtension constructor.
+     */
+    public function __construct()
+    {
+        $this->session = filter_var_array($_SESSION);
+    }
+
     /**
      * @return array|TwigFunction[]
      */
@@ -24,9 +41,9 @@ class SessionTwigExtension extends AbstractExtension
      */
     public function isLogged()
     {
-        if (array_key_exists('user', filter_var_array($_SESSION))) {
+        if (array_key_exists('user', $this->session)) {
 
-            if (!empty(filter_var_array($_SESSION['user']))) {
+            if (!empty(filter_var_array($this->session['user']))) {
 
                 return true;
             }
@@ -44,7 +61,7 @@ class SessionTwigExtension extends AbstractExtension
             return null;
         }
 
-        return filter_var($_SESSION['user']['name']);
+        return filter_var($this->session['user']['name']);
     }
 
     /**
@@ -57,7 +74,7 @@ class SessionTwigExtension extends AbstractExtension
             return null;
         }
 
-        return filter_var($_SESSION['user']['image']);
+        return filter_var($this->session['user']['image']);
     }
 }
 

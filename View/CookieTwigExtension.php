@@ -2,7 +2,6 @@
 
 namespace Pam\View;
 
-use Pam\Controller\CookieController;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -12,6 +11,19 @@ use Twig\TwigFunction;
  */
 class CookieTwigExtension extends AbstractExtension
 {
+    /**
+     * @var mixed|null
+     */
+    private $alert = null;
+
+    /**
+     * CookieTwigExtension constructor.
+     */
+    public function __construct()
+    {
+        $this->alert = filter_input(INPUT_COOKIE, 'alert');
+    }
+
     /**
      * @return array|TwigFunction[]
      */
@@ -28,7 +40,7 @@ class CookieTwigExtension extends AbstractExtension
      */
     public function hasAlert()
     {
-        return empty(filter_input(INPUT_COOKIE, 'alert')) == false;
+        return empty($this->alert) == false;
     }
 
     /**
@@ -36,13 +48,11 @@ class CookieTwigExtension extends AbstractExtension
      */
     public function readAlert()
     {
-        $alert = filter_input(INPUT_COOKIE, 'alert');
+        if (isset($this->alert)) {
 
-        if (isset($alert)) {
+            echo filter_var($this->alert);
 
-            echo filter_var($alert);
-
-            if (filter_input(INPUT_COOKIE, 'alert') !== null) {
+            if ($this->alert !== null) {
 
                 setcookie('alert', '', time() - 3600, '/');
 
