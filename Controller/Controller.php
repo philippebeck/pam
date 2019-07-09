@@ -58,8 +58,7 @@ abstract class Controller implements ControllerInterface
      */
     public function redirect(string $page, array $params = [])
     {
-        header('Location: ' . $this->url($page, $params));
-        exit;
+        return header('Location: ' . $this->url($page, $params));
     }
 
     /**
