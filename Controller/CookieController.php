@@ -9,6 +9,19 @@ namespace Pam\Controller;
 class CookieController implements CookieControllerInterface
 {
     /**
+     * @var mixed
+     */
+    private $cookie = [];
+
+    /**
+     * CookieController constructor.
+     */
+    public function __construct()
+    {
+        $this->cookie = filter_input_array(INPUT_COOKIE);
+    }
+
+    /**
      * @param string $name
      * @param string $value
      * @param int $expire
@@ -28,7 +41,7 @@ class CookieController implements CookieControllerInterface
      */
     public function readCookie(string $name)
     {
-        return filter_input(INPUT_COOKIE, $name);
+        return filter_var($this->cookie[$name]);
     }
 
     /**
@@ -37,7 +50,7 @@ class CookieController implements CookieControllerInterface
      */
     public function deleteCookie(string $name)
     {
-        if (filter_input(INPUT_COOKIE, $name) !== null) {
+        if (filter_var($this->cookie[$name]) !== null) {
 
             $this->createCookie($name, '', time() - 3600);
 
