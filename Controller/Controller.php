@@ -2,6 +2,7 @@
 
 namespace Pam\Controller;
 
+use http\Exception\RuntimeException;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -80,23 +81,43 @@ abstract class Controller implements ControllerInterface
      */
     public function upload($fileDir)
     {
-        $fileError = filter_var($_FILES['file']['error'], FILTER_SANITIZE_STRING);
+        $file = filter_var_array($_FILES['file']);
 
-        if ($fileError > 0) {
-            $this->cookie->createAlert('File transfer error...', 'warning');
-
-        } else {
-            $fileName = filter_var($_FILES['file']['name'], FILTER_SANITIZE_STRING);
-            $filePath = "{$fileDir}/{$fileName}";
-
-            $result  = move_uploaded_file(filter_var($_FILES['file']['tmp_name'], FILTER_SANITIZE_STRING), $filePath);
-
-            if ($result) {
-                $this->cookie->createAlert('Transfer the new file successfully !', 'valid');
+        try {
+            if (!isset($file['error']) || is_array($file['error'])) {
+                throw new RuntimeException('Invalid parameters...');
             }
 
-            return $fileName;
+            switch ($file['error']) {
+                case UPLOAD_ERR_OK:
+                    break;
+                case UPLOAD_ERR_NO_FILE:
+                    throw new RuntimeException('No file sent...');
+                case UPLOAD_ERR_INI_SIZE:
+                case UPLOAD_ERR_FORM_SIZE:
+                    throw new RuntimeException('Exceeded filesize limit...');
+                default:
+                    throw new RuntimeException('Unknown errors...');
+            }
+
+            if ($file['size'] > 1000000) {
+                throw new RuntimeException('Exceeded filesize limit...');
+            }
+
+            if (!move_uploaded_file(filter_var($_FILES['file']['tmp_name']), "{$fileDir}/{$file['name']}")) {
+                $this->cookie->createAlert('Failed to move uploaded file...');
+                //throw new RuntimeException('Failed to move uploaded file...');
+            }
+
+            $this->cookie->createAlert('File is uploaded successfully !');
+
+            return $file['name'];
+
+        } catch (RuntimeException $e) {
+
+            $this->cookie->createAlert($e->getMessage());
         }
     }
 }
+
 
