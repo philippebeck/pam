@@ -48,7 +48,7 @@ Access to the database is obviously managed by the Database part, via the PDO cl
 
 [![Packagist Version](https://img.shields.io/packagist/v/pjs/pam.svg?label=Packagist)](https://packagist.org/packages/pjs/pam)
 
-Composer : `composer require philippebeck/pam`  
+Composer : `composer require pjs/pam`  
 
 ---
 
@@ -84,11 +84,7 @@ The project contains 4 folders :
 
 ## Language
 
-Animadio is a CSS framework whose library is composed only of CSS source code: jQuery, or even Javascript, are not included or needed in production...
-
-Grunt is the only JavaScript app used in the framework developement side for recursive tasks (concat, source map, webkit & min) to build the library file (but it can be used to concat CSS elements of your choice)
-
-You can simply use the library & if you want or if you need : you can overload the CSS variables.
+Pam is wrote with PHP
 
 [![GitHub Top Language](https://img.shields.io/github/languages/top/philippebeck/pam.svg?label=PHP)](https://github.com/philippebeck/pam)
 
