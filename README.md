@@ -44,7 +44,6 @@ Access to the database is obviously managed by the Database part, via the PDO cl
 
 ## Package Manager
 
-
 [![Packagist Version](https://img.shields.io/packagist/v/pjs/pam.svg?label=Packagist)](https://packagist.org/packages/pjs/pam)
 
 Composer : `composer require pjs/pam`  
