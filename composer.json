@@ -24,8 +24,7 @@
     "php": "^7.2",
     "symfony/var-dumper": "4.x",
     "twig/twig": "2.x",
-    "tracy/tracy": "2.x",
-    "ext-http": "^3.2"
+    "tracy/tracy": "2.x"
   },
   "config": {
     "platform": {
