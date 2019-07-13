@@ -4,7 +4,6 @@
 
 Php Approachable Microframework
 
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/philippebeck/pam.svg?label=Last+Commit)](https://github.com/philippebeck/pam/commits/master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a23727fb6954400b6c3a38a0105089e)](https://www.codacy.com/app/philippebeck/pam?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=philippebeck/pam&amp;utm_campaign=Badge_Grade)
 [![CodeClimate Maintainability](https://img.shields.io/codeclimate/maintainability-percentage/philippebeck/pam.svg?label=Maintainability)](https://codeclimate.com/github/philippebeck/pam)
 
@@ -44,7 +43,6 @@ Access to the database is obviously managed by the Database part, via the PDO cl
 ---
 
 ## Package Manager
-
 
 [![Packagist Version](https://img.shields.io/packagist/v/pjs/pam.svg?label=Packagist)](https://packagist.org/packages/pjs/pam)
 
@@ -95,7 +93,7 @@ Pam is wrote with PHP
 Pam has continuous support !
 
 [![Project Maintained](https://img.shields.io/maintenance/yes/2019.svg?label=Maintained)](https://github.com/philippebeck/pam)
-[![GitHub Commit Activity](https://img.shields.io/github/commit-activity/m/philippebeck/pam.svg?label=Commit+Activity)](https://github.com/philippebeck/pam/graphs/commit-activity)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/philippebeck/pam.svg?label=Last+Commit)](https://github.com/philippebeck/pam/commits/master)
 
 ---
 
