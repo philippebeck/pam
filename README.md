@@ -139,7 +139,7 @@ Pam needs you if you like it : sends pull requests on GitHub to improve it !!
 
 Pam is maintained under the [Semantic Versioning 2.0.0](https://semver.org)
 
-[![GitHub Version](https://img.shields.io/github/tag/philippebeck/pam.svg?label=Version)](https://github.com/philippebeck/pam/blob/master/package.json)
+[![GitHub Version](https://img.shields.io/github/tag/philippebeck/pam.svg?label=Version)](https://github.com/philippebeck/pam/blob/master/composer.json)
 
 ---
 
