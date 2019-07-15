@@ -99,6 +99,8 @@ abstract class Controller implements ControllerInterface
 
         } catch (Exception $e) {
             $this->cookie->createAlert($e->getMessage());
+
+            return false;
         }
     }
 }
