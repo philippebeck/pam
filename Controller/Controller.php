@@ -87,34 +87,20 @@ abstract class Controller implements ControllerInterface
             if (!isset($file['error']) || is_array($file['error'])) {
                 throw new Exception('Invalid parameters...');
             }
-
-            switch ($file['error']) {
-                case UPLOAD_ERR_OK:
-                    break;
-                case UPLOAD_ERR_NO_FILE:
-                    throw new Exception('No file sent...');
-                case UPLOAD_ERR_INI_SIZE:
-                case UPLOAD_ERR_FORM_SIZE:
-                    throw new Exception('Exceeded filesize limit...');
-                default:
-                    throw new Exception('Unknown errors...');
-            }
-
             if ($file['size'] > 1000000) {
                 throw new Exception('Exceeded filesize limit...');
             }
-
             if (!move_uploaded_file(filter_var($file['tmp_name']), $destination)) {
                 throw new Exception('Failed to move uploaded file...');
             }
-
             $this->cookie->createAlert('File is uploaded successfully !');
 
             return $file['name'];
 
         } catch (Exception $e) {
-
             $this->cookie->createAlert($e->getMessage());
+
+            return false;
         }
     }
 }
