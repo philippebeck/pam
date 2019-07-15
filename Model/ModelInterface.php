@@ -11,10 +11,9 @@ interface ModelInterface
     /**
      * @param string|null $value
      * @param string|null $key
-     * @param int $order
      * @return array|mixed
      */
-    public function list(string $value = null, string $key = null, int $order = 0);
+    public function list(string $value = null, string $key = null);
 
     /**
      * @param array $data

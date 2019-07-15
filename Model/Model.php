@@ -32,27 +32,16 @@ abstract class Model implements ModelInterface
     /**
      * @param string|null $value
      * @param string|null $key
-     * @param int $order
      * @return array|mixed
      */
-    public function list(string $value = null, string $key = null, int $order = 0)
+    public function list(string $value = null, string $key = null)
     {
         if (isset($key)) {
-
-            if ($order == 0) {
-                $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
-            } else {
-                $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ? ORDER BY ' . $key . ' DESC';
-            }
+            $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
 
             return $this->database->results($query, [$value]);
         }
-
-        if ($order == 0) {
-            $query = 'SELECT * FROM ' . $this->table;
-        } else {
-            $query = 'SELECT * FROM ' . $this->table . ' ORDER BY id DESC';
-        }
+        $query = 'SELECT * FROM ' . $this->table;
 
         return $this->database->results($query);
     }
