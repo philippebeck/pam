@@ -55,10 +55,7 @@ class CookieTwigExtension extends AbstractExtension
             if ($this->alert !== null) {
 
                 setcookie('alert', '', time() - 3600, '/');
-
-                return true;
             }
-            return false;
         }
     }
 }
