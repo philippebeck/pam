@@ -53,10 +53,7 @@ class CookieController implements CookieControllerInterface
         if (filter_var($this->cookie[$name]) !== null) {
 
             $this->createCookie($name, '', time() - 3600);
-
-            return true;
         }
-        return false;
     }
 
     /**
