@@ -5,12 +5,11 @@
   "type": "website",
   "autoload": {
     "psr-4": {
-      "App\\": "src/",
-      "Pam\\": "vendor/pjs/pam/"
+      "App\\": "src/"
     }
   },
   "require": {
-    "pjs/pam": "^0.3.0"
+    "pjs/pam": "0.x"
   },
   "config": {
     "platform": {

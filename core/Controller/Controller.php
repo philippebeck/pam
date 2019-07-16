@@ -58,7 +58,8 @@ abstract class Controller implements ControllerInterface
      */
     public function redirect(string $page, array $params = [])
     {
-        return header('Location: ' . $this->url($page, $params));
+        header('Location: ' . $this->url($page, $params));
+        exit;
     }
 
     /**
@@ -81,7 +82,7 @@ abstract class Controller implements ControllerInterface
     public function upload($fileDir)
     {
         $file           = filter_var_array($_FILES['file']);
-        $destination    = "__DIR__ . {$fileDir}/{$file['name']}";
+        $destination    = "{$fileDir}/{$file['name']}";
 
         try {
             if (!isset($file['error']) || is_array($file['error'])) {
