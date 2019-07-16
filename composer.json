@@ -18,7 +18,9 @@
     }
   ],
   "autoload": {
-    "psr-4": { "Pam\\": "" }
+    "psr-4": {
+      "Pam\\": "core/"
+    }
   },
   "require": {
     "php": "^7.2",
