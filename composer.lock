@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b87213c2243ec718c6f30961a58582f0",
+    "content-hash": "e56a6f346c7adb0fd2dd861fe785b325",
     "packages": [
         {
             "name": "symfony/polyfill-ctype",
@@ -256,16 +256,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.6.3",
+            "version": "v2.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "7613eeff265b49a865add75360d1962449e3c12f"
+                "reference": "cad2ec2c40cee828ce5538a4bc5bbde7045a7c1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/7613eeff265b49a865add75360d1962449e3c12f",
-                "reference": "7613eeff265b49a865add75360d1962449e3c12f",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/cad2ec2c40cee828ce5538a4bc5bbde7045a7c1b",
+                "reference": "cad2ec2c40cee828ce5538a4bc5bbde7045a7c1b",
                 "shasum": ""
             },
             "require": {
@@ -319,7 +319,7 @@
                 "nette",
                 "profiler"
             ],
-            "time": "2019-06-18T12:20:11+00:00"
+            "time": "2019-07-16T14:23:55+00:00"
         },
         {
             "name": "twig/twig",

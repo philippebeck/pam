@@ -1,4 +1,4 @@
-[![Pam Logo](Project/public/img/pam.png)](https://github.com/philippebeck/pam)
+[![Pam Logo](project/public/img/pam.png)](https://github.com/philippebeck/pam)
 
 # Pam
 
@@ -17,9 +17,9 @@ The model part can be used for all CRUD actions & does not need to be overloaded
 
 The View part uses the Twig template engine, so it's possible to use variables, functions, filters, etc.
 
-The Controller part inherits the essential methods of the main controller & the FrontController structures the input of the application.
+The Controller part inherits the essential methods of the main controller (this includes session & cookie) & the FrontController structures the input of the application.
 
-The sessions are managed by Pam for user connection actions & user message actions.
+The sessions are managed by Pam for user connection actions & the cookies for user message actions.
 
 Access to the database is obviously managed by the Database part, via the PDO class.
 
@@ -65,16 +65,16 @@ Composer : `composer require pjs/pam`
 How to install in 3 steps:
 
 1.  $ composer require pjs/pam
-2.  Move the content of the folder vendor/pjs/pam/Project in your project root folder
+2.  Move the content of the folder vendor/pjs/pam/project in your project root folder
 3.  $ composer dump-autoload
 
 ---
 
 ## Content
 
-The project contains 4 folders :  
--   the MVC source code : `Model` - `View` - `Controller`  
--   the Project example : `Project`  
+The project contains 2 folders :  
+-   core = the MVC source code : `Model` - `View` - `Controller`  
+-   project = the Project starter : `config` - `public` `src`  
 
 [![CSS Code Size](https://img.shields.io/github/languages/code-size/philippebeck/pam.svg?label=Code+Size)](https://github.com/philippebeck/pam/tree/master)
 
@@ -139,7 +139,7 @@ Pam needs you if you like it : sends pull requests on GitHub to improve it !!
 
 Pam is maintained under the [Semantic Versioning 2.0.0](https://semver.org)
 
-[![GitHub Version](https://img.shields.io/github/tag/philippebeck/pam.svg?label=Version)](https://github.com/philippebeck/pam/blob/master/package.json)
+[![GitHub Version](https://img.shields.io/github/tag/philippebeck/pam.svg?label=Version)](https://github.com/philippebeck/pam/blob/master/composer.json)
 
 ---
 
@@ -162,6 +162,7 @@ Code released under the MIT License
 ---
 
 ## Support on Beerpay
+
 Hey dude! Help me out for a couple of :beers:!
 
 [![Beerpay](https://beerpay.io/philippebeck/pam/badge.svg?style=beer-square)](https://beerpay.io/philippebeck/pam)  [![Beerpay](https://beerpay.io/philippebeck/pam/make-wish.svg?style=flat-square)](https://beerpay.io/philippebeck/pam?focus=wish)
