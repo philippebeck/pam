@@ -11,7 +11,7 @@ class CookieController implements CookieControllerInterface
     /**
      * @var mixed
      */
-    private $cookie = [];
+    private $cookie;
 
     /**
      * CookieController constructor.
