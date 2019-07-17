@@ -14,11 +14,20 @@ class CookieController implements CookieControllerInterface
     private $cookie;
 
     /**
+     * @var
+     */
+    private $alert;
+
+    /**
      * CookieController constructor.
      */
     public function __construct()
     {
         $this->cookie = filter_input_array(INPUT_COOKIE);
+
+        if (isset($this->cookie['alert'])) {
+            $this->alert  = $this->cookie['alert'];
+        }
     }
 
     /**
