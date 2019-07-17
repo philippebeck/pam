@@ -13,12 +13,15 @@ class CookieController implements CookieControllerInterface
      */
     private $cookie;
 
+    private $alert;
+
     /**
      * CookieController constructor.
      */
     public function __construct()
     {
         $this->cookie = filter_input_array(INPUT_COOKIE);
+        $this->alert  = $this->cookie['alert'];
     }
 
     /**
@@ -69,7 +72,7 @@ class CookieController implements CookieControllerInterface
      */
     public function hasAlert()
     {
-        return empty($this->readCookie('alert')) == false;
+        return empty($this->alert) == false;
     }
 
     /**
@@ -77,11 +80,9 @@ class CookieController implements CookieControllerInterface
      */
     public function readAlert()
     {
-        $alert = $this->readCookie('alert');
+        if (isset($this->alert)) {
 
-        if (isset($alert)) {
-
-            echo filter_var($alert);
+            echo filter_var($this->alert);
 
             $this->deleteCookie('alert');
         }
