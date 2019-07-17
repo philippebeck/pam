@@ -74,35 +74,5 @@ abstract class Controller implements ControllerInterface
     {
         return $this->twig->render($view, $params);
     }
-
-    /**
-     * @param $fileDir
-     * @return mixed
-     */
-    public function upload($fileDir)
-    {
-        $file           = filter_var_array($_FILES['file']);
-        $destination    = "{$fileDir}/{$file['name']}";
-
-        try {
-            if (!isset($file['error']) || is_array($file['error'])) {
-                throw new Exception('Invalid parameters...');
-            }
-            if ($file['size'] > 1000000) {
-                throw new Exception('Exceeded filesize limit...');
-            }
-            if (!move_uploaded_file(filter_var($file['tmp_name']), $destination)) {
-                throw new Exception('Failed to move uploaded file...');
-            }
-            $this->cookie->createAlert('File is uploaded successfully !');
-
-            return $file['name'];
-
-        } catch (Exception $e) {
-            $this->cookie->createAlert($e->getMessage());
-
-            return false;
-        }
-    }
 }
 
