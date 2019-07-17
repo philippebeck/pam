@@ -25,6 +25,21 @@ abstract class Controller implements ControllerInterface
     protected $cookie;
 
     /**
+     * @var FilesController
+     */
+    protected $files;
+
+    /**
+     * @var GetController
+     */
+    protected $get;
+
+    /**
+     * @var PostController
+     */
+    protected $post;
+
+    /**
      * @var SessionController
      */
     protected $session;
@@ -35,8 +50,12 @@ abstract class Controller implements ControllerInterface
      */
     public function __construct(Environment $twig)
     {
-        $this->twig     = $twig;
+        $this->twig = $twig;
+
         $this->cookie   = new CookieController();
+        $this->files    = new FilesController();
+        $this->get      = new GetController();
+        $this->post     = new PostController();
         $this->session  = new SessionController();
     }
 
