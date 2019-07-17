@@ -35,11 +35,5 @@ interface ControllerInterface
      * @throws SyntaxError
      */
     public function render(string $view, array $params = []);
-
-    /**
-     * @param $fileDir
-     * @return mixed
-     */
-    public function upload($fileDir);
 }
 
