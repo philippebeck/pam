@@ -5,7 +5,7 @@
 Php Approachable Microframework
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a23727fb6954400b6c3a38a0105089e)](https://www.codacy.com/app/philippebeck/pam?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=philippebeck/pam&amp;utm_campaign=Badge_Grade)
-[![CodeClimate Maintainability](https://img.shields.io/codeclimate/maintainability-percentage/philippebeck/pam.svg?label=Maintainability)](https://codeclimate.com/github/philippebeck/pam)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6cb34d98d271777ecdb1/maintainability)](https://codeclimate.com/github/philippebeck/pam/maintainability)
 
 ## Overview
 
