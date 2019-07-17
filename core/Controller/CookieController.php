@@ -44,7 +44,7 @@ class CookieController implements CookieControllerInterface
      */
     public function readCookie(string $name)
     {
-        return filter_var($this->cookie[$name]);
+        return $this->cookie[$name];
     }
 
     /**
@@ -53,7 +53,7 @@ class CookieController implements CookieControllerInterface
      */
     public function deleteCookie(string $name)
     {
-        if (filter_var($this->cookie[$name]) !== null) {
+        if ($this->cookie[$name] !== null) {
 
             $this->createCookie($name, '', time() - 3600);
         }
