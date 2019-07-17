@@ -13,6 +13,11 @@ class FilesController implements FilesControllerInterface
     /**
      * @var
      */
+    private $files;
+
+    /**
+     * @var
+     */
     private $file;
 
     /**
@@ -20,7 +25,11 @@ class FilesController implements FilesControllerInterface
      */
     public function __construct()
     {
-        $this->file = filter_var_array($_FILES['file']);
+        $this->files = filter_var_array($_FILES);
+
+        if (isset($this->files['file'])) {
+            $this->file = $this->files['file'];
+        }
     }
 
     /**
