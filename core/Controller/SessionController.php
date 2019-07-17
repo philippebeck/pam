@@ -11,7 +11,7 @@ class SessionController implements SessionControllerInterface
     /**
      * @var array|mixed
      */
-    private $session = [];
+    private $session;
 
     /**
      * SessionController constructor.
