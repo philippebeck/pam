@@ -35,6 +35,14 @@ class FilesController implements FilesControllerInterface
     /**
      * @return mixed
      */
+    public function getFilesArray()
+    {
+        return $this->files;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getFileArray()
     {
         return $this->file;

@@ -11,6 +11,11 @@ interface FilesControllerInterface
     /**
      * @return mixed
      */
+    public function getFilesArray();
+
+    /**
+     * @return mixed
+     */
     public function getFileArray();
 
     /**
