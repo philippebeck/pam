@@ -2,7 +2,6 @@
 
 namespace Pam\Controller;
 
-use Exception;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
