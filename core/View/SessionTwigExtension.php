@@ -31,8 +31,10 @@ class SessionTwigExtension extends AbstractExtension
     {
         return array(
             new TwigFunction('isLogged',    array($this, 'isLogged')),
+            new TwigFunction('userId',      array($this, 'userId')),
             new TwigFunction('userName',    array($this, 'userName')),
-            new TwigFunction('userImage',   array($this, 'userImage'))
+            new TwigFunction('userImage',   array($this, 'userImage')),
+            new TwigFunction('userEmail',   array($this, 'userEmail'))
         );
     }
 
@@ -43,12 +45,25 @@ class SessionTwigExtension extends AbstractExtension
     {
         if (array_key_exists('user', $this->session)) {
 
-            if (!empty(filter_var_array($this->session['user']))) {
+            if (!empty($this->session['user'])) {
 
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function userId()
+    {
+        if ($this->isLogged() == false) {
+
+            return null;
+        }
+
+        return $this->session['user']['id'];
     }
 
     /**
@@ -61,7 +76,7 @@ class SessionTwigExtension extends AbstractExtension
             return null;
         }
 
-        return filter_var($this->session['user']['name']);
+        return $this->session['user']['name'];
     }
 
     /**
@@ -74,7 +89,20 @@ class SessionTwigExtension extends AbstractExtension
             return null;
         }
 
-        return filter_var($this->session['user']['image']);
+        return $this->session['user']['image'];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function userEmail()
+    {
+        if ($this->isLogged() == false) {
+
+            return null;
+        }
+
+        return $this->session['user']['email'];
     }
 }
 
