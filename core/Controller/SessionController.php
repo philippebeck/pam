@@ -6,7 +6,7 @@ namespace Pam\Controller;
  * Class SessionController
  * @package Pam\Controller
  */
-class SessionController implements SessionControllerInterface
+class SessionController
 {
     /**
      * @var array|mixed

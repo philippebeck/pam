@@ -6,7 +6,7 @@ namespace Pam\Controller;
  * Class PostController
  * @package Pam\Controller
  */
-class PostController implements PostControllerInterface
+class PostController
 {
     /**
      * @var mixed

@@ -6,7 +6,7 @@ namespace Pam\Controller;
  * Class CookieController
  * @package Pam\Controller
  */
-class CookieController implements CookieControllerInterface
+class CookieController
 {
     /**
      * @var mixed

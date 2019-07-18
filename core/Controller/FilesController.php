@@ -8,7 +8,7 @@ use Exception;
  * Class FilesController
  * @package Pam\Controller
  */
-class FilesController implements FilesControllerInterface
+class FilesController
 {
     /**
      * @var

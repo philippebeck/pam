@@ -6,7 +6,7 @@ namespace Pam\Controller;
  * Class GetController
  * @package Pam\Controller
  */
-class GetController implements GetControllerInterface
+class GetController
 {
     /**
      * @var mixed
