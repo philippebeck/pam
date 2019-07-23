@@ -71,14 +71,22 @@ class SessionController
     }
 
     /**
+     * @return null|void
+     */
+    public function ifNotLogged()
+    {
+        if ($this->isLogged() === false) {
+
+            return null;
+        }
+    }
+
+    /**
      * @return mixed
      */
     public function userId()
     {
-        if ($this->isLogged() == false) {
-
-            return null;
-        }
+        $this->ifNotLogged();
 
         return $this->user['id'];
     }
@@ -88,10 +96,7 @@ class SessionController
      */
     public function userName()
     {
-        if ($this->isLogged() == false) {
-
-            return null;
-        }
+        $this->ifNotLogged();
 
         return $this->user['name'];
     }
@@ -101,10 +106,7 @@ class SessionController
      */
     public function userImage()
     {
-        if ($this->isLogged() == false) {
-
-            return null;
-        }
+        $this->ifNotLogged();
 
         return $this->user['image'];
     }
@@ -114,10 +116,7 @@ class SessionController
      */
     public function userEmail()
     {
-        if ($this->isLogged() == false) {
-
-            return null;
-        }
+        $this->ifNotLogged();
 
         return $this->user['email'];
     }
