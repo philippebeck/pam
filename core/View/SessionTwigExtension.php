@@ -14,7 +14,12 @@ class SessionTwigExtension extends AbstractExtension
     /**
      * @var array|mixed
      */
-    private $session = [];
+    private $session;
+
+    /**
+     * @var mixed
+     */
+    private $user;
 
     /**
      * SessionTwigExtension constructor.
@@ -22,6 +27,10 @@ class SessionTwigExtension extends AbstractExtension
     public function __construct()
     {
         $this->session = filter_var_array($_SESSION);
+
+        if (isset($this->session['user'])) {
+            $this->user = $this->session['user'];
+        }
     }
 
     /**
@@ -30,11 +39,10 @@ class SessionTwigExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction('isLogged',    array($this, 'isLogged')),
-            new TwigFunction('userId',      array($this, 'userId')),
-            new TwigFunction('userName',    array($this, 'userName')),
-            new TwigFunction('userImage',   array($this, 'userImage')),
-            new TwigFunction('userEmail',   array($this, 'userEmail'))
+            new TwigFunction('isLogged',        array($this, 'isLogged')),
+            new TwigFunction('getSessionArray', array($this, 'getSessionArray')),
+            new TwigFunction('getUserArray',    array($this, 'getUserArray')),
+            new TwigFunction('getUserVar',      array($this, 'getUserVar'))
         );
     }
 
@@ -54,55 +62,38 @@ class SessionTwigExtension extends AbstractExtension
     }
 
     /**
-     * @return mixed
+     * @return array|mixed
      */
-    public function userId()
+    public function getSessionArray()
     {
-        if ($this->isLogged() == false) {
-
-            return null;
-        }
-
-        return $this->session['user']['id'];
+        return $this->session;
     }
 
     /**
      * @return mixed
      */
-    public function userName()
+    public function getUserArray()
     {
-        if ($this->isLogged() == false) {
+        if ($this->isLogged() === false) {
 
             return null;
         }
 
-        return $this->session['user']['name'];
+        return $this->user;
     }
 
     /**
+     * @param $var
      * @return mixed
      */
-    public function userImage()
+    public function getUserVar($var)
     {
-        if ($this->isLogged() == false) {
+        if ($this->isLogged() === false) {
 
             return null;
         }
 
-        return $this->session['user']['image'];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function userEmail()
-    {
-        if ($this->isLogged() == false) {
-
-            return null;
-        }
-
-        return $this->session['user']['email'];
+        return $this->user[$var];
     }
 }
 

@@ -14,11 +14,20 @@ class SessionController
     private $session;
 
     /**
+     * @var mixed
+     */
+    private $user;
+
+    /**
      * SessionController constructor.
      */
     public function __construct()
     {
         $this->session = filter_var_array($_SESSION);
+
+        if (isset($this->session['user'])) {
+            $this->user = $this->session['user'];
+        }
     }
 
     /**
@@ -53,7 +62,7 @@ class SessionController
     {
         if (array_key_exists('user', $this->session)) {
 
-            if (!empty($this->session['user'])) {
+            if (!empty($this->user)) {
 
                 return true;
             }
@@ -62,55 +71,38 @@ class SessionController
     }
 
     /**
-     * @return mixed
+     * @return array|mixed
      */
-    public function userId()
+    public function getSessionArray()
     {
-        if ($this->isLogged() == false) {
-
-            return null;
-        }
-
-        return $this->session['user']['id'];
+        return $this->session;
     }
 
     /**
      * @return mixed
      */
-    public function userName()
+    public function getUserArray()
     {
-        if ($this->isLogged() == false) {
+        if ($this->isLogged() === false) {
 
             return null;
         }
 
-        return $this->session['user']['name'];
+        return $this->user;
     }
 
     /**
+     * @param $var
      * @return mixed
      */
-    public function userImage()
+    public function getUserVar($var)
     {
-        if ($this->isLogged() == false) {
+        if ($this->isLogged() === false) {
 
             return null;
         }
 
-        return $this->session['user']['image'];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function userEmail()
-    {
-        if ($this->isLogged() == false) {
-
-            return null;
-        }
-
-        return $this->session['user']['email'];
+        return $this->user[$var];
     }
 }
 
