@@ -44,25 +44,31 @@ class CookieController
         setcookie($name, $value, $expire, '/');
     }
 
-    /**
-     * @param string $name
-     * @return mixed
-     */
-    public function readCookie(string $name)
-    {
-        return $this->cookie[$name];
-    }
 
-    /**
-     * @param string $name
-     * @return bool
-     */
-    public function deleteCookie(string $name)
+    public function destroyCookie(string $name)
     {
         if ($this->cookie[$name] !== null) {
 
             $this->createCookie($name, '', time() - 3600);
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCookieArray()
+    {
+        return $this->cookie;
+    }
+
+
+    /**
+     * @param string $var
+     * @return mixed
+     */
+    public function getCookieVar(string $var)
+    {
+        return $this->cookie[$var];
     }
 
     /**
@@ -90,7 +96,7 @@ class CookieController
 
             echo filter_var($this->alert);
 
-            $this->deleteCookie('alert');
+            $this->destroyCookie('alert');
         }
     }
 }
