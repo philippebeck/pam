@@ -12,16 +12,25 @@ use Twig\TwigFunction;
 class CookieTwigExtension extends AbstractExtension
 {
     /**
-     * @var mixed|null
+     * @var mixed
      */
-    private $alert = null;
+    private $cookie;
+
+    /**
+     * @var
+     */
+    private $alert;
 
     /**
      * CookieTwigExtension constructor.
      */
     public function __construct()
     {
-        $this->alert = filter_input(INPUT_COOKIE, 'alert');
+        $this->cookie = filter_input_array(INPUT_COOKIE);
+
+        if (isset($this->cookie['alert'])) {
+            $this->alert  = $this->cookie['alert'];
+        }
     }
 
     /**
@@ -30,9 +39,28 @@ class CookieTwigExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction('hasAlert', array($this, 'hasAlert')),
-            new TwigFunction('readAlert', array($this, 'readAlert'))
+            new TwigFunction('getCookieArray',  array($this, 'getCookieArray')),
+            new TwigFunction('getCookieVar',    array($this, 'getCookieVar')),
+            new TwigFunction('hasAlert',        array($this, 'hasAlert')),
+            new TwigFunction('readAlert',       array($this, 'readAlert'))
         );
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCookieArray()
+    {
+        return $this->cookie;
+    }
+
+    /**
+     * @param string $var
+     * @return mixed
+     */
+    public function getCookieVar(string $var)
+    {
+        return $this->cookie[$var];
     }
 
     /**
