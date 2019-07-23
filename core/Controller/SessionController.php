@@ -14,11 +14,20 @@ class SessionController
     private $session;
 
     /**
+     * @var mixed
+     */
+    private $user;
+
+    /**
      * SessionController constructor.
      */
     public function __construct()
     {
         $this->session = filter_var_array($_SESSION);
+
+        if (isset($this->session['user'])) {
+            $this->user = $this->session['user'];
+        }
     }
 
     /**
@@ -53,7 +62,7 @@ class SessionController
     {
         if (array_key_exists('user', $this->session)) {
 
-            if (!empty($this->session['user'])) {
+            if (!empty($this->user)) {
 
                 return true;
             }
@@ -71,7 +80,7 @@ class SessionController
             return null;
         }
 
-        return $this->session['user']['id'];
+        return $this->user['id'];
     }
 
     /**
@@ -84,7 +93,7 @@ class SessionController
             return null;
         }
 
-        return $this->session['user']['name'];
+        return $this->user['name'];
     }
 
     /**
@@ -97,7 +106,7 @@ class SessionController
             return null;
         }
 
-        return $this->session['user']['image'];
+        return $this->user['image'];
     }
 
     /**
@@ -110,7 +119,7 @@ class SessionController
             return null;
         }
 
-        return $this->session['user']['email'];
+        return $this->user['email'];
     }
 }
 
