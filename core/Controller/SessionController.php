@@ -71,54 +71,38 @@ class SessionController
     }
 
     /**
-     * @return null|void
+     * @return array|mixed
      */
-    public function ifNotLogged()
+    public function getSessionArray()
+    {
+        return $this->session;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserArray()
     {
         if ($this->isLogged() === false) {
 
             return null;
         }
+
+        return $this->user;
     }
 
     /**
+     * @param $var
      * @return mixed
      */
-    public function userId()
+    public function getUserVar($var)
     {
-        $this->ifNotLogged();
+        if ($this->isLogged() === false) {
 
-        return $this->user['id'];
-    }
+            return null;
+        }
 
-    /**
-     * @return mixed
-     */
-    public function userName()
-    {
-        $this->ifNotLogged();
-
-        return $this->user['name'];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function userImage()
-    {
-        $this->ifNotLogged();
-
-        return $this->user['image'];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function userEmail()
-    {
-        $this->ifNotLogged();
-
-        return $this->user['email'];
+        return $this->user[$var];
     }
 }
 
