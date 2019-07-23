@@ -61,7 +61,6 @@ class CookieController
         return $this->cookie;
     }
 
-
     /**
      * @param string $var
      * @return mixed
