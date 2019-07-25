@@ -34,7 +34,7 @@ abstract class Model implements ModelInterface
      * @param string|null $key
      * @return array|mixed
      */
-    public function list(string $value = null, string $key = null)
+    public function listData(string $value = null, string $key = null)
     {
         if (isset($key)) {
             $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
@@ -49,7 +49,7 @@ abstract class Model implements ModelInterface
     /**
      * @param array $data
      */
-    public function create(array $data)
+    public function createData(array $data)
     {
         $keys   = implode(', ', array_keys($data));
         $values = implode('", "', $data);
@@ -63,7 +63,7 @@ abstract class Model implements ModelInterface
      * @param string|null $key
      * @return array|mixed
      */
-    public function read(string $value, string $key = null)
+    public function readData(string $value, string $key = null)
     {
         if (isset($key)) {
             $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
@@ -79,7 +79,7 @@ abstract class Model implements ModelInterface
      * @param array $data
      * @param string|null $key
      */
-    public function update(string $value, array $data, string $key = null)
+    public function updateData(string $value, array $data, string $key = null)
     {
         $set = null;
 
@@ -102,7 +102,7 @@ abstract class Model implements ModelInterface
      * @param string $value
      * @param string|null $key
      */
-    public function delete(string $value, string $key = null)
+    public function deleteData(string $value, string $key = null)
     {
         if (isset($key)) {
             $query = 'DELETE FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
