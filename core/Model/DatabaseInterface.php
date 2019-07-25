@@ -13,20 +13,20 @@ interface DatabaseInterface
      * @param array $params
      * @return mixed
      */
-    public function result(string $query, array $params = []);
+    public function getData(string $query, array $params = []);
 
     /**
      * @param string $query
      * @param array $params
      * @return mixed
      */
-    public function results(string $query, array $params = []);
+    public function getAllData(string $query, array $params = []);
 
     /**
      * @param string $query
      * @param array $params
      * @return mixed
      */
-    public function action(string $query, array $params = []);
+    public function setData(string $query, array $params = []);
 }
 

@@ -18,7 +18,7 @@ class PDOFactory
     /**
      * @return PDO|null
      */
-    public static function getConnection()
+    public static function getPDO()
     {
         require_once '../config/db.php';
 

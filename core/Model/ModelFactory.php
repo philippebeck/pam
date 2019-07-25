@@ -17,14 +17,14 @@ class ModelFactory
      * @param $table
      * @return mixed
      */
-    public static function get($table)
+    public static function getModel($table)
     {
         if (array_key_exists($table, self::$models)) {
             return self::$models[$table];
         }
 
         $class  = 'App\Model\\' . ucfirst($table) . 'Model';
-        $pdo    = PDOFactory::getConnection();
+        $pdo    = PDOFactory::getPDO();
 
         $database   = new PDODatabase($pdo);
         $model      = new $class($database);

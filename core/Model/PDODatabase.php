@@ -29,7 +29,7 @@ class PDODatabase implements DatabaseInterface
      * @param array $params
      * @return mixed
      */
-    public function result(string $query, array $params = [])
+    public function getData(string $query, array $params = [])
     {
         $PDOStatement = $this->pdo->prepare($query);
         $PDOStatement->execute($params);
@@ -42,7 +42,7 @@ class PDODatabase implements DatabaseInterface
      * @param array $params
      * @return array|mixed
      */
-    public function results(string $query, array $params = [])
+    public function getAllData(string $query, array $params = [])
     {
         $PDOStatement = $this->pdo->prepare($query);
         $PDOStatement->execute($params);
@@ -55,7 +55,7 @@ class PDODatabase implements DatabaseInterface
      * @param array $params
      * @return bool|mixed
      */
-    public function action(string $query, array $params = [])
+    public function setData(string $query, array $params = [])
     {
         $PDOStatement = $this->pdo->prepare($query);
 
