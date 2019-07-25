@@ -43,7 +43,7 @@ abstract class Model implements ModelInterface
         }
         $query = 'SELECT * FROM ' . $this->table;
 
-        return $this->database->results($query);
+        return $this->database->getAllData($query);
     }
 
     /**
@@ -55,7 +55,7 @@ abstract class Model implements ModelInterface
         $values = implode('", "', $data);
         $query  = 'INSERT INTO ' . $this->table . ' (' . $keys . ') VALUES ("' . $values . '")';
 
-        $this->database->action($query);
+        $this->database->setData($query);
     }
 
     /**
@@ -71,7 +71,7 @@ abstract class Model implements ModelInterface
             $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ?';
         }
 
-        return $this->database->result($query, [$value]);
+        return $this->database->getData($query, [$value]);
     }
 
     /**
@@ -95,7 +95,7 @@ abstract class Model implements ModelInterface
             $query = 'UPDATE ' . $this->table . ' SET ' . $set . ' WHERE id = ?';
         }
 
-        $this->database->action($query, [$value]);
+        $this->database->setData($query, [$value]);
     }
 
     /**
@@ -110,7 +110,7 @@ abstract class Model implements ModelInterface
             $query = 'DELETE FROM ' . $this->table . ' WHERE id = ?';
         }
 
-        $this->database->action($query, [$value]);
+        $this->database->setData($query, [$value]);
     }
 }
 
