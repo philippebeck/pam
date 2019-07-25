@@ -24,7 +24,7 @@ class ModelFactory
         }
 
         $class  = 'App\Model\\' . ucfirst($table) . 'Model';
-        $pdo    = PDOFactory::getConnection();
+        $pdo    = PDOFactory::getPDO();
 
         $database   = new PDODatabase($pdo);
         $model      = new $class($database);
