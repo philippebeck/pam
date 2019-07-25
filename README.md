@@ -19,7 +19,9 @@ The View part uses the Twig template engine, so it's possible to use variables, 
 
 The Controller part inherits the essential methods of the main controller (this includes session & cookie) & the FrontController structures the input of the application.
 
-The sessions are managed by Pam for user connection actions & the cookies for user message actions.
+The sessions are managed by Pam for user connection actions & the cookies for user message actions, all with filters
+
+The files, get & post superglobals are managed by controllers with filters too.
 
 Access to the database is obviously managed by the Database part, via the PDO class.
 
