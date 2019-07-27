@@ -20,7 +20,7 @@ class PDOFactory
      */
     public static function getPDO()
     {
-        include_once '../config/db.php';
+        require_once '../config/db.php';
 
         if (self::$pdo === null) {
 
