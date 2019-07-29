@@ -92,8 +92,7 @@ class CookieController
     public function readAlert()
     {
         if (isset($this->alert)) {
-
-            echo filter_var($this->alert);
+            echo filter_var($this->alert, FILTER_SANITIZE_SPECIAL_CHARS);
 
             $this->destroyCookie('alert');
         }

@@ -77,11 +77,9 @@ class CookieTwigExtension extends AbstractExtension
     public function readAlert()
     {
         if (isset($this->alert)) {
-
-            echo filter_var($this->alert);
+            echo filter_var($this->alert, FILTER_SANITIZE_SPECIAL_CHARS);
 
             if ($this->alert !== null) {
-
                 setcookie('alert', '', time() - 3600, '/');
             }
         }

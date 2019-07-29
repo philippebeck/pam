@@ -9,7 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$frontController    = new FrontController();
+$frontController = new FrontController();
 
 // Basic tests area
 Debugger::enable();
