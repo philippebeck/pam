@@ -50,18 +50,15 @@ class FrontController implements FrontControllerInterface
      */
     public function setTemplate()
     {
-        $loader = new FilesystemLoader('../src/View');
-        $twig   = new Environment($loader, array(
+        $this->twig   = new Environment(new FilesystemLoader('../src/View'), array(
             'cache' => false,
             'debug' => true
         ));
 
-        $twig->addExtension(new DebugExtension());
-        $twig->addExtension(new ControllerTwigExtension());
-        $twig->addExtension(new SessionTwigExtension());
-        $twig->addExtension(new CookieTwigExtension());
-
-        $this->twig = $twig;
+        $this->twig->addExtension(new DebugExtension());
+        $this->twig->addExtension(new ControllerTwigExtension());
+        $this->twig->addExtension(new SessionTwigExtension());
+        $this->twig->addExtension(new CookieTwigExtension());
     }
 
     /**
