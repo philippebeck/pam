@@ -2,7 +2,7 @@
   "name": "organization/project",
   "version": "0.1.0",
   "description": "Write your awesome description here !",
-  "type": "website",
+  "type": "library",
   "autoload": {
     "psr-4": {
       "App\\": "src/"
