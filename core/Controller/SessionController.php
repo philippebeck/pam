@@ -84,8 +84,7 @@ class SessionController
     public function getUserArray()
     {
         if ($this->isLogged() === false) {
-
-            return null;
+            $this->user = [];
         }
 
         return $this->user;
@@ -98,8 +97,7 @@ class SessionController
     public function getUserVar($var)
     {
         if ($this->isLogged() === false) {
-
-            return null;
+            $this->user[$var] = null;
         }
 
         return $this->user[$var];

@@ -38,7 +38,7 @@ abstract class Model implements ModelInterface
         if (isset($key)) {
             $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
 
-            return $this->database->results($query, [$value]);
+            return $this->database->getAllData($query, [$value]);
         }
         $query = 'SELECT * FROM ' . $this->table;
 
