@@ -25,7 +25,9 @@ abstract class Model implements ModelInterface
     public function __construct(DatabaseInterface $database)
     {
         $this->database = $database;
-        $this->table    = ucfirst(str_replace('Model', '', array_pop(explode('\\', get_class($this)))));
+
+        $model          = explode('\\', get_class($this));
+        $this->table    = ucfirst(str_replace('Model', '', array_pop($model)));
     }
 
     /**
