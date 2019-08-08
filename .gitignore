@@ -1,6 +1,2 @@
 .idea/
-config/db.php
-config/db.sql
-public/img/
-public/node_modules/
 vendor/
