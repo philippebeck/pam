@@ -24,6 +24,11 @@ abstract class Controller implements ControllerInterface
     protected $cookie;
 
     /**
+     * @var EnvController
+     */
+    protected $env;
+
+    /**
      * @var FilesController
      */
     protected $files;
@@ -37,6 +42,11 @@ abstract class Controller implements ControllerInterface
      * @var PostController
      */
     protected $post;
+
+    /**
+     * @var ServerController
+     */
+    protected $server;
 
     /**
      * @var SessionController
