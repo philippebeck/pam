@@ -23,10 +23,8 @@ class ModelFactory
             return self::$models[$table];
         }
 
-        $class      = 'App\Model\\' . ucfirst($table) . 'Model';
-        $database   = new PDODatabase(PDOFactory::getPDO());
-
-        self::$models[$table] = new $class($database);
+        $class = 'App\Model\\' . ucfirst($table) . 'Model';
+        self::$models[$table] = new $class(new PDODatabase(PDOFactory::getPDO()));
 
         return self::$models[$table];
     }
