@@ -62,9 +62,11 @@ abstract class Controller implements ControllerInterface
         $this->twig = $twig;
 
         $this->cookie   = new CookieController();
+        $this->env      = new EnvController();
         $this->files    = new FilesController();
         $this->get      = new GetController();
         $this->post     = new PostController();
+        $this->server   = new ServerController();
         $this->session  = new SessionController();
     }
 
