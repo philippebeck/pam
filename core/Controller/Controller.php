@@ -16,12 +16,17 @@ abstract class Controller implements ControllerInterface
     /**
      * @var Environment
      */
-    protected $twig;
+    private $twig;
 
     /**
      * @var CookieController
      */
     protected $cookie;
+
+    /**
+     * @var EnvController
+     */
+    protected $env;
 
     /**
      * @var FilesController
@@ -39,6 +44,11 @@ abstract class Controller implements ControllerInterface
     protected $post;
 
     /**
+     * @var ServerController
+     */
+    protected $server;
+
+    /**
      * @var SessionController
      */
     protected $session;
@@ -52,9 +62,11 @@ abstract class Controller implements ControllerInterface
         $this->twig = $twig;
 
         $this->cookie   = new CookieController();
+        $this->env      = new EnvController();
         $this->files    = new FilesController();
         $this->get      = new GetController();
         $this->post     = new PostController();
+        $this->server   = new ServerController();
         $this->session  = new SessionController();
     }
 
@@ -77,6 +89,7 @@ abstract class Controller implements ControllerInterface
     public function redirect(string $page, array $params = [])
     {
         header('Location: ' . $this->url($page, $params));
+
         exit;
     }
 

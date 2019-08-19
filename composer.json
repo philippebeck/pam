@@ -1,6 +1,6 @@
 {
   "name": "pjs/pam",
-  "version": "0.5.9",
+  "version": "0.6.0",
   "type": "project",
   "description": "Php Approachable Microframework",
   "keywords": [
@@ -24,7 +24,6 @@
   },
   "require": {
     "php": "^7.2",
-    "symfony/var-dumper": "4.x",
     "twig/twig": "2.x"
   },
   "require-dev": {
