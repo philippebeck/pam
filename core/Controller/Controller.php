@@ -16,7 +16,7 @@ abstract class Controller implements ControllerInterface
     /**
      * @var Environment
      */
-    protected $twig;
+    private $twig;
 
     /**
      * @var CookieController
