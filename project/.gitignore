@@ -1,5 +1,7 @@
-config/db.php
-config/db.sql
-public/img/
-public/node_modules/
-vendor/
+# Uncomment lines for usage
+
+# config/db.php
+# config/db.sql
+# public/img/
+# public/node_modules/
+# vendor/
