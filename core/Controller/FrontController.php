@@ -2,12 +2,10 @@
 
 namespace Pam\Controller;
 
+use Pam\View\PamTwigExtension;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
-use Pam\View\ControllerTwigExtension;
-use Pam\View\CookieTwigExtension;
-use Pam\View\SessionTwigExtension;
 
 /**
  * Class FrontController
@@ -56,9 +54,7 @@ class FrontController implements FrontControllerInterface
         ));
 
         $this->twig->addExtension(new DebugExtension());
-        $this->twig->addExtension(new ControllerTwigExtension());
-        $this->twig->addExtension(new SessionTwigExtension());
-        $this->twig->addExtension(new CookieTwigExtension());
+        $this->twig->addExtension(new PamTwigExtension());
     }
 
     /**
