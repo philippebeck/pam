@@ -27,7 +27,6 @@
     "twig/twig": "2.x"
   },
   "require-dev": {
-    "symfony/var-dumper": "4.x",
     "tracy/tracy": "2.x"
   },
   "config": {
