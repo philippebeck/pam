@@ -92,9 +92,6 @@ class PamTwigExtension extends AbstractExtension
         return empty($this->alert) == false;
     }
 
-    /**
-     * @return mixed
-     */
     public function readAlert()
     {
         if (isset($this->alert)) {
