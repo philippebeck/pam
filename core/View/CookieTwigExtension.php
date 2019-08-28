@@ -40,7 +40,6 @@ class CookieTwigExtension extends AbstractExtension
     {
         return array(
             new TwigFunction('getCookieArray',  array($this, 'getCookieArray')),
-            new TwigFunction('getCookieVar',    array($this, 'getCookieVar')),
             new TwigFunction('hasAlert',        array($this, 'hasAlert')),
             new TwigFunction('readAlert',       array($this, 'readAlert'))
         );
@@ -52,15 +51,6 @@ class CookieTwigExtension extends AbstractExtension
     public function getCookieArray()
     {
         return $this->cookie;
-    }
-
-    /**
-     * @param string $var
-     * @return mixed
-     */
-    public function getCookieVar(string $var)
-    {
-        return $this->cookie[$var];
     }
 
     /**
