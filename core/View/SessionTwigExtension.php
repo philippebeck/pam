@@ -41,7 +41,6 @@ class SessionTwigExtension extends AbstractExtension
         return array(
             new TwigFunction('isLogged',        array($this, 'isLogged')),
             new TwigFunction('getSessionArray', array($this, 'getSessionArray')),
-            new TwigFunction('getUserArray',    array($this, 'getUserArray')),
             new TwigFunction('getUserVar',      array($this, 'getUserVar'))
         );
     }
@@ -67,18 +66,6 @@ class SessionTwigExtension extends AbstractExtension
     public function getSessionArray()
     {
         return $this->session;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserArray()
-    {
-        if ($this->isLogged() === false) {
-            $this->user = [];
-        }
-
-        return $this->user;
     }
 
     /**
