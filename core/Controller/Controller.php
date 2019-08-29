@@ -11,7 +11,7 @@ use Twig\Error\SyntaxError;
  * Class Controller
  * @package Pam\Controller
  */
-abstract class Controller implements ControllerInterface
+abstract class Controller
 {
     /**
      * @var Environment
