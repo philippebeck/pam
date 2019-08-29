@@ -11,7 +11,7 @@ use Twig\Loader\FilesystemLoader;
  * Class FrontController
  * @package Pam\Controller
  */
-class FrontController implements FrontControllerInterface
+class FrontController
 {
     const DEFAULT_PATH        = 'App\Controller\\';
     const DEFAULT_CONTROLLER  = 'HomeController';

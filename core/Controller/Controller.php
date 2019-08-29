@@ -11,7 +11,7 @@ use Twig\Error\SyntaxError;
  * Class Controller
  * @package Pam\Controller
  */
-abstract class Controller implements ControllerInterface
+abstract class Controller extends GlobalController
 {
     /**
      * @var Environment
@@ -19,55 +19,14 @@ abstract class Controller implements ControllerInterface
     private $twig;
 
     /**
-     * @var CookieController
-     */
-    protected $cookie;
-
-    /**
-     * @var EnvController
-     */
-    protected $env;
-
-    /**
-     * @var FilesController
-     */
-    protected $files;
-
-    /**
-     * @var GetController
-     */
-    protected $get;
-
-    /**
-     * @var PostController
-     */
-    protected $post;
-
-    /**
-     * @var ServerController
-     */
-    protected $server;
-
-    /**
-     * @var SessionController
-     */
-    protected $session;
-
-    /**
      * Controller constructor
      * @param Environment $twig
      */
     public function __construct(Environment $twig)
     {
-        $this->twig = $twig;
+        parent::__construct();
 
-        $this->cookie   = new CookieController();
-        $this->env      = new EnvController();
-        $this->files    = new FilesController();
-        $this->get      = new GetController();
-        $this->post     = new PostController();
-        $this->server   = new ServerController();
-        $this->session  = new SessionController();
+        $this->twig = $twig;
     }
 
     /**
@@ -106,4 +65,3 @@ abstract class Controller implements ControllerInterface
         return $this->twig->render($view, $params);
     }
 }
-
