@@ -24,10 +24,10 @@
   },
   "require": {
     "php": "^7.2",
-    "twig/twig": "2.x"
+    "twig/twig": "^2.11.3"
   },
   "require-dev": {
-    "tracy/tracy": "2.x"
+    "tracy/tracy": "^2.6.4"
   },
   "config": {
     "platform": {
