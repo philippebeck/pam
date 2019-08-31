@@ -1,12 +1,18 @@
 {
   "name": "pjs/pam",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "type": "project",
   "description": "Php Approachable Microframework",
   "keywords": [
     "php",
     "framework",
-    "mvc"
+    "mvc",
+    "Superglobal",
+    "filters",
+    "crud",
+    "prepared queries",
+    "twig extension",
+    "integrate profiler"
   ],
   "license": "MIT",
   "authors": [
