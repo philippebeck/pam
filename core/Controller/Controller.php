@@ -16,7 +16,7 @@ abstract class Controller extends GlobalController
     /**
      * @var Environment
      */
-    private $twig;
+    protected $twig;
 
     /**
      * Controller constructor
