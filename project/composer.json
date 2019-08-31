@@ -9,7 +9,7 @@
     }
   },
   "require": {
-    "pjs/pam": "0.x"
+    "pjs/pam": "1.x"
   },
   "require-dev": {
     "tracy/tracy": "2.x"
