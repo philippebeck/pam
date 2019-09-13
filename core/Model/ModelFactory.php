@@ -17,7 +17,7 @@ class ModelFactory
      * @param $table
      * @return mixed
      */
-    public static function getModel($table)
+    public static function getModel(string $table)
     {
         if (array_key_exists($table, self::$models)) {
             return self::$models[$table];
