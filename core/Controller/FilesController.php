@@ -61,7 +61,7 @@ class FilesController
      * @param $fileDir
      * @return mixed
      */
-    public function uploadFile($fileDir)
+    public function uploadFile(string $fileDir)
     {
         try {
             if (!isset($this->file['error']) || is_array($this->file['error'])) {
