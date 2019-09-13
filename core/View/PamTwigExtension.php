@@ -58,8 +58,8 @@ class PamTwigExtension extends AbstractExtension
             new TwigFunction('getCookieArray',  array($this, 'getCookieArray')),
             new TwigFunction('hasAlert',        array($this, 'hasAlert')),
             new TwigFunction('readAlert',       array($this, 'readAlert')),
-            new TwigFunction('isLogged',        array($this, 'isLogged')),
             new TwigFunction('getSessionArray', array($this, 'getSessionArray')),
+            new TwigFunction('isLogged',        array($this, 'isLogged')),
             new TwigFunction('getUserVar',      array($this, 'getUserVar'))
         );
     }
