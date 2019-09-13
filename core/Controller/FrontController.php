@@ -48,7 +48,7 @@ class FrontController
      */
     public function setTemplate()
     {
-        $this->twig   = new Environment(new FilesystemLoader('../src/View'), array(
+        $this->twig = new Environment(new FilesystemLoader('../src/View'), array(
             'cache' => false,
             'debug' => true
         ));
