@@ -20,17 +20,17 @@ class FrontController
     /**
      * @var null
      */
-    protected $twig = null;
+    private $twig = null;
 
     /**
      * @var string
      */
-    protected $controller = self::DEFAULT_CONTROLLER;
+    private $controller = self::DEFAULT_CONTROLLER;
 
     /**
      * @var string
      */
-    protected $action = self::DEFAULT_ACTION;
+    private $action = self::DEFAULT_ACTION;
 
     /**
      * FrontController constructor
