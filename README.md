@@ -29,7 +29,6 @@ Access to the database is obviously managed by the Database part, via the PDO cl
 
 -   [Package Manager](#package-manager)  
 -   [Download](#download)  
--   [Installation](#installation)  
 -   [Content](#content)  
 -   [Language](#language)  
 -   [Support](#support)  
@@ -62,21 +61,10 @@ Composer : `composer require pjs/pam`
 
 ---
 
-## Installation
-
-How to install in 3 steps:
-
-1.  `$ composer require pjs/pam`
-2.  Move the content of the folder vendor/pjs/pam/project in your project root folder
-3.  `$ composer dump-autoload`
-
----
-
 ## Content
 
-The project contains 2 folders :  
--   core = the MVC source code : `Model` - `View` - `Controller`  
--   project = the Project starter : `config` - `public` `src`  
+The project contains :  
+-   **core** folder => MVC source code : `Model` - `View` - `Controller`  
 
 [![CSS Code Size](https://img.shields.io/github/languages/code-size/philippebeck/pam.svg?label=Code+Size)](https://github.com/philippebeck/pam/tree/master)
 
