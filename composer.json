@@ -1,7 +1,7 @@
 {
   "name": "pjs/pam",
-  "version": "1.0.2",
-  "type": "project",
+  "version": "1.0.3",
+  "type": "library",
   "description": "Php Approachable Microframework",
   "keywords": [
     "php",
