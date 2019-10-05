@@ -33,7 +33,7 @@
     "twig/twig": "^2.12.0"
   },
   "require-dev": {
-    "tracy/tracy": "^2.6.4"
+    "tracy/tracy": "^2.7.0"
   },
   "config": {
     "platform": {
