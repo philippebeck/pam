@@ -13,7 +13,7 @@ class PDODatabase implements DatabaseInterface
     /**
      * @var PDO
      */
-    private $pdo;
+    private $pdo = null;
 
     /**
      * PDODatabase constructor.
@@ -62,4 +62,3 @@ class PDODatabase implements DatabaseInterface
         return $PDOStatement->execute($params);
     }
 }
-
