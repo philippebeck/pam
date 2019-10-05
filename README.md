@@ -1,4 +1,4 @@
-[![Pam Logo](https://philippebeck.net/img/projects/pam.png)](https://github.com/philippebeck/pam)
+[![Pam Logo](project/public/img/pam.png)](https://github.com/philippebeck/pam)
 
 # Pam
 
@@ -45,9 +45,9 @@ Access to the database is obviously managed by the Database part, via the PDO cl
 
 ## Package Manager
 
-[![Packagist Version](https://img.shields.io/packagist/v/pjs/pam.svg?label=Packagist)](https://packagist.org/packages/pjs/pam)
+[![Packagist Version](https://img.shields.io/packagist/v/philippebeck/pam.svg?label=Packagist)](https://packagist.org/packages/philippebeck/pam)
 
-Composer : `composer require pjs/pam`  
+Composer : `composer require philippebeck/pam`  
 
 ---
 
