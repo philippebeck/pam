@@ -8,18 +8,18 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
- * Class Controller
+ * Class MainController
  * @package Pam\Controller
  */
-abstract class Controller extends GlobalController
+abstract class MainController extends GlobalController
 {
     /**
      * @var Environment
      */
-    protected $twig;
+    protected $twig = null;
 
     /**
-     * Controller constructor
+     * MainController constructor
      * @param Environment $twig
      */
     public function __construct(Environment $twig)
