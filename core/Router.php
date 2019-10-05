@@ -1,6 +1,6 @@
 <?php
 
-namespace Pam\Controller;
+namespace Pam;
 
 use Pam\View\PamTwigExtension;
 use Twig\Environment;
@@ -8,10 +8,10 @@ use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 
 /**
- * Class FrontController
+ * Class Router
  * @package Pam\Controller
  */
-class FrontController
+class Router
 {
     const DEFAULT_PATH        = 'App\Controller\\';
     const DEFAULT_CONTROLLER  = 'HomeController';
@@ -33,7 +33,7 @@ class FrontController
     private $action = self::DEFAULT_ACTION;
 
     /**
-     * FrontController constructor
+     * Router constructor
      */
     public function __construct()
     {

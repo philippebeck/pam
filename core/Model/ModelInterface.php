@@ -40,4 +40,3 @@ interface ModelInterface
      */
     public function deleteData(string $value, string $key = null);
 }
-
