@@ -29,4 +29,3 @@ class ModelFactory
         return self::$models[$table];
     }
 }
-

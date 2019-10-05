@@ -31,4 +31,3 @@ class PDOFactory
         return self::$pdo;
     }
 }
-

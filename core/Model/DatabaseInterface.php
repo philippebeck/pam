@@ -29,4 +29,3 @@ interface DatabaseInterface
      */
     public function setData(string $query, array $params = []);
 }
-
