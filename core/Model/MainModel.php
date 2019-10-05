@@ -3,23 +3,23 @@
 namespace Pam\Model;
 
 /**
- * Class Model
+ * Class MainModel
  * @package Pam\Model
  */
-abstract class Model implements ModelInterface
+abstract class MainModel implements ModelInterface
 {
     /**
      * @var DatabaseInterface
      */
-    protected $database;
+    protected $database = null;
 
     /**
      * @var string
      */
-    protected $table;
+    protected $table = null;
 
     /**
-     * Model constructor
+     * MainModel constructor
      * @param DatabaseInterface $database
      */
     public function __construct(DatabaseInterface $database)
@@ -114,4 +114,3 @@ abstract class Model implements ModelInterface
         $this->database->setData($query, [$value]);
     }
 }
-
