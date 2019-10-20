@@ -2,10 +2,13 @@
 
 namespace Pam\Controller;
 
+use Pam\View\PamExtension;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
+use Twig\Extension\DebugExtension;
+use Twig\Loader\FilesystemLoader;
 
 /**
  * Class MainController
@@ -20,13 +23,18 @@ abstract class MainController extends GlobalController
 
     /**
      * MainController constructor
-     * @param Environment $twig
      */
-    public function __construct(Environment $twig)
+    public function __construct()
     {
         parent::__construct();
 
-        $this->twig = $twig;
+        $this->twig = new Environment(new FilesystemLoader('../src/View'), array(
+            'cache' => false,
+            'debug' => true
+        ));
+
+        $this->twig->addExtension(new DebugExtension());
+        $this->twig->addExtension(new PamExtension());
     }
 
     /**

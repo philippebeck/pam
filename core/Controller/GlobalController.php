@@ -2,6 +2,15 @@
 
 namespace Pam\Controller;
 
+use Pam\Controller\Globals\CookieController;
+use Pam\Controller\Globals\EnvController;
+use Pam\Controller\Globals\FilesController;
+use Pam\Controller\Globals\GetController;
+use Pam\Controller\Globals\PostController;
+use Pam\Controller\Globals\RequestController;
+use Pam\Controller\Globals\ServerController;
+use Pam\Controller\Globals\SessionController;
+
 /**
  * Class GlobalController
  * @package Pam\Controller

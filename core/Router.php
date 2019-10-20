@@ -2,11 +2,6 @@
 
 namespace Pam;
 
-use Pam\View\PamTwigExtension;
-use Twig\Environment;
-use Twig\Extension\DebugExtension;
-use Twig\Loader\FilesystemLoader;
-
 /**
  * Class Router
  * @package Pam\Controller
@@ -16,11 +11,6 @@ class Router
     const DEFAULT_PATH        = 'App\Controller\\';
     const DEFAULT_CONTROLLER  = 'HomeController';
     const DEFAULT_ACTION      = 'IndexAction';
-
-    /**
-     * @var null
-     */
-    private $twig = null;
 
     /**
      * @var string
@@ -37,24 +27,9 @@ class Router
      */
     public function __construct()
     {
-        $this->setTemplate();
         $this->parseUrl();
         $this->setController();
         $this->setAction();
-    }
-
-    /**
-     * @return mixed|void
-     */
-    public function setTemplate()
-    {
-        $this->twig = new Environment(new FilesystemLoader('../src/View'), array(
-            'cache' => false,
-            'debug' => true
-        ));
-
-        $this->twig->addExtension(new DebugExtension());
-        $this->twig->addExtension(new PamTwigExtension());
     }
 
     /**
@@ -104,7 +79,7 @@ class Router
      */
     public function run()
     {
-        $this->controller   = new $this->controller($this->twig);
+        $this->controller   = new $this->controller();
         $response           = call_user_func([$this->controller, $this->action]);
 
         echo filter_var($response);

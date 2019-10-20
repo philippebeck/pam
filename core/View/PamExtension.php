@@ -6,10 +6,10 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
- * Class PamTwigExtension
+ * Class PamExtension
  * @package Pam\View
  */
-class PamTwigExtension extends AbstractExtension
+class PamExtension extends AbstractExtension
 {
     /**
      * @var mixed
@@ -32,7 +32,7 @@ class PamTwigExtension extends AbstractExtension
     private $user;
 
     /**
-     * PamTwigExtension constructor.
+     * PamExtension constructor.
      */
     public function __construct()
     {
