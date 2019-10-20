@@ -1,6 +1,6 @@
 <?php
 
-namespace Pam\Controller;
+namespace Pam\Controller\Globals;
 
 /**
  * Class ServerController
