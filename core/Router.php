@@ -2,15 +2,17 @@
 
 namespace Pam;
 
+use Pam\Controller\MainController;
+
 /**
  * Class Router
  * @package Pam\Controller
  */
-class Router
+class Router extends MainController
 {
     const DEFAULT_PATH        = 'App\Controller\\';
     const DEFAULT_CONTROLLER  = 'HomeController';
-    const DEFAULT_ACTION      = 'IndexAction';
+    const DEFAULT_METHOD      = 'DefaultMethod';
 
     /**
      * @var string
@@ -20,16 +22,18 @@ class Router
     /**
      * @var string
      */
-    private $action = self::DEFAULT_ACTION;
+    private $method = self::DEFAULT_METHOD;
 
     /**
      * Router constructor
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->parseUrl();
         $this->setController();
-        $this->setAction();
+        $this->setMethod();
     }
 
     /**
@@ -37,7 +41,7 @@ class Router
      */
     public function parseUrl()
     {
-        $access = filter_input(INPUT_GET, 'access');
+        $access = $this->get->getGetVar('access');
 
         if (!isset($access)) {
             $access = 'home';
@@ -46,7 +50,7 @@ class Router
         $access = explode('!', $access);
 
         $this->controller   = $access[0];
-        $this->action       = count($access) == 1 ? 'index' : $access[1];
+        $this->method       = count($access) == 1 ? 'default' : $access[1];
     }
 
     /**
@@ -65,12 +69,12 @@ class Router
     /**
      * @return mixed|void
      */
-    public function setAction()
+    public function setMethod()
     {
-        $this->action = strtolower($this->action) . 'Action';
+        $this->method = strtolower($this->method) . 'Method';
 
-        if (!method_exists($this->controller, $this->action)) {
-            $this->action = self::DEFAULT_ACTION;
+        if (!method_exists($this->controller, $this->method)) {
+            $this->method = self::DEFAULT_METHOD;
         }
     }
 
@@ -80,7 +84,7 @@ class Router
     public function run()
     {
         $this->controller   = new $this->controller();
-        $response           = call_user_func([$this->controller, $this->action]);
+        $response           = call_user_func([$this->controller, $this->method]);
 
         echo filter_var($response);
     }
