@@ -11,7 +11,7 @@ class GetController
     /**
      * @var mixed
      */
-    private $get;
+    private $get = null;
 
     /**
      * GetController constructor.

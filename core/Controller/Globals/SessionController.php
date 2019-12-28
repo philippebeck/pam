@@ -11,12 +11,12 @@ class SessionController
     /**
      * @var array|mixed
      */
-    private $session;
+    private $session = null;
 
     /**
      * @var mixed
      */
-    private $user;
+    private $user = null;
 
     /**
      * SessionController constructor.

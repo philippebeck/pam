@@ -11,7 +11,7 @@ class ServerController
     /**
      * @var mixed
      */
-    private $server;
+    private $server = null;
 
     /**
      * PostController constructor.

@@ -11,12 +11,12 @@ class CookieController
     /**
      * @var mixed
      */
-    private $cookie;
+    private $cookie = null;
 
     /**
      * @var
      */
-    private $alert;
+    private $alert = null;
 
     /**
      * CookieController constructor.

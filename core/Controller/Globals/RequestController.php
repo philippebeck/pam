@@ -11,7 +11,7 @@ class RequestController
     /**
      * @var mixed
      */
-    private $request;
+    private $request = null;
 
     /**
      * PostController constructor.
