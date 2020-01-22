@@ -3,10 +3,10 @@
 namespace Pam\Model;
 
 /**
- * Interface DatabaseInterface
+ * Interface DbInterface
  * @package Pam\Model
  */
-interface DatabaseInterface
+interface DbInterface
 {
     /**
      * @param string $query

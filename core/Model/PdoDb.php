@@ -8,7 +8,7 @@ use PDO;
  * Class PdoDb
  * @package Pam\Model
  */
-class PdoDb implements DatabaseInterface
+class PdoDb implements DbInterface
 {
     /**
      * @var PDO
