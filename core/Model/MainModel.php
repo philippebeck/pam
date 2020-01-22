@@ -9,7 +9,7 @@ namespace Pam\Model;
 abstract class MainModel implements ModelInterface
 {
     /**
-     * @var DatabaseInterface
+     * @var DbInterface
      */
     protected $database = null;
 
@@ -20,9 +20,9 @@ abstract class MainModel implements ModelInterface
 
     /**
      * MainModel constructor
-     * @param DatabaseInterface $database
+     * @param DbInterface $database
      */
-    public function __construct(DatabaseInterface $database)
+    public function __construct(DbInterface $database)
     {
         $this->database = $database;
 
