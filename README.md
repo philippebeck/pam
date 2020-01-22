@@ -82,7 +82,7 @@ Pam is wrote with PHP
 
 Pam has continuous support !
 
-[![Project Maintained](https://img.shields.io/maintenance/yes/2019.svg?label=Maintained)](https://github.com/philippebeck/pam)
+[![Project Maintained](https://img.shields.io/maintenance/yes/2020.svg?label=Maintained)](https://github.com/philippebeck/pam)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/philippebeck/pam.svg?label=Last+Commit)](https://github.com/philippebeck/pam/commits/master)
 
 ---
