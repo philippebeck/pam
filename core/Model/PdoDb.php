@@ -5,10 +5,10 @@ namespace Pam\Model;
 use PDO;
 
 /**
- * Class PDOModel
+ * Class PdoDb
  * @package Pam\Model
  */
-class PDOModel implements DatabaseInterface
+class PdoDb implements DbInterface
 {
     /**
      * @var PDO
@@ -16,7 +16,7 @@ class PDOModel implements DatabaseInterface
     private $pdo = null;
 
     /**
-     * PDOModel constructor.
+     * PdoDb constructor.
      * @param PDO $pdo
      */
     public function __construct(PDO $pdo)

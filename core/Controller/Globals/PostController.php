@@ -11,7 +11,7 @@ class PostController
     /**
      * @var mixed
      */
-    private $post;
+    private $post = null;
 
     /**
      * PostController constructor.

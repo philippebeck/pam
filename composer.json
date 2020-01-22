@@ -1,6 +1,6 @@
 {
   "name": "philippebeck/pam",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "type": "library",
   "description": "Php Approachable Microframework",
   "keywords": [
@@ -30,10 +30,10 @@
   },
   "require": {
     "php": "^7.2",
-    "twig/twig": "^2.12.0"
+    "twig/twig": "^2.12.3"
   },
   "require-dev": {
-    "tracy/tracy": "^2.7.0"
+    "tracy/tracy": "^2.7.2"
   },
   "config": {
     "platform": {

@@ -20,42 +20,42 @@ abstract class GlobalController
     /**
      * @var CookieController
      */
-    protected $cookie;
+    protected $cookie = null;
 
     /**
      * @var EnvController
      */
-    protected $env;
+    protected $env = null;
 
     /**
      * @var FilesController
      */
-    protected $files;
+    protected $files = null;
 
     /**
      * @var GetController
      */
-    protected $get;
+    protected $get = null;
 
     /**
      * @var PostController
      */
-    protected $post;
+    protected $post = null;
 
     /**
      * @var RequestController
      */
-    protected $request;
+    protected $request = null;
 
     /**
      * @var ServerController
      */
-    protected $server;
+    protected $server = null;
 
     /**
      * @var SessionController
      */
-    protected $session;
+    protected $session = null;
 
     /**
      * GlobalController constructor

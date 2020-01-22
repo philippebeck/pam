@@ -14,22 +14,22 @@ class PamExtension extends AbstractExtension
     /**
      * @var mixed
      */
-    private $cookie;
+    private $cookie = null;
 
     /**
      * @var
      */
-    private $alert;
+    private $alert = null;
 
     /**
      * @var array|mixed
      */
-    private $session;
+    private $session = null;
 
     /**
      * @var mixed
      */
-    private $user;
+    private $user = null;
 
     /**
      * PamExtension constructor.

@@ -11,7 +11,7 @@ class EnvController
     /**
      * @var mixed
      */
-    private $env;
+    private $env = null;
 
     /**
      * PostController constructor.

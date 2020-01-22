@@ -13,12 +13,12 @@ class FilesController
     /**
      * @var
      */
-    private $files;
+    private $files = null;
 
     /**
      * @var
      */
-    private $file;
+    private $file = null;
 
     /**
      * FilesController constructor.

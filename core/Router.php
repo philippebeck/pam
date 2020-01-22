@@ -12,7 +12,7 @@ class Router extends MainController
 {
     const DEFAULT_PATH        = 'App\Controller\\';
     const DEFAULT_CONTROLLER  = 'HomeController';
-    const DEFAULT_METHOD      = 'DefaultMethod';
+    const DEFAULT_METHOD      = 'defaultMethod';
 
     /**
      * @var string
