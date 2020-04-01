@@ -9,12 +9,17 @@ namespace Pam\Controller\Globals;
 class SessionController
 {
     /**
-     * @var array|mixed
+     * @var mixed|null
      */
     private $session = null;
 
     /**
-     * @var mixed
+     * @var mixed|null
+     */
+    private $alert = null;
+
+    /**
+     * @var mixed|null
      */
     private $user = null;
 
@@ -23,7 +28,12 @@ class SessionController
      */
     public function __construct()
     {
+        if (array_key_exists('alert', $_SESSION) === false) {
+            $_SESSION['alert'] = [];
+        }
+
         $this->session = filter_var_array($_SESSION);
+        $this->alert = $this->session['alert'];
 
         if (isset($this->session['user'])) {
             $this->user = $this->session['user'];
@@ -31,28 +41,60 @@ class SessionController
     }
 
     /**
-     * @param int $id
-     * @param string $name
-     * @param string $image
-     * @param string $email
+     * @return array|mixed
      */
-    public function createSession(int $id, string $name, string $image, string $email)
+    public function getSessionArray()
     {
-        $_SESSION['user'] = [
-            'id'    => $id,
-            'name'  => $name,
-            'image' => $image,
-            'email' => $email
+        return $this->session;
+    }
+
+    /**
+     * @param string $message
+     * @param string $type
+     */
+    public function createAlert(string $message, string $type)
+    {
+        $_SESSION['alert'] = [
+            'message' => $message,
+            'type'    => $type
         ];
     }
 
     /**
-     * @return void
+     * @return bool
      */
-    public function destroySession()
+    public function hasAlert()
     {
-        $_SESSION['user'] = [];
-        session_destroy();
+        return empty($this->alert) === false;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAlertType()
+    {
+        if (isset($this->alert)) {
+
+            return $this->alert['type'];
+        }
+    }
+
+    public function getAlertMessage()
+    {
+        if (isset($this->alert)) {
+
+            echo $this->alert['message'];
+
+            unset($_SESSION['alert']);
+        }
+    }
+
+    /**
+     * @param array $user
+     */
+    public function createSession(array $user)
+    {
+        $_SESSION['user'] = $user;
     }
 
     /**
@@ -71,26 +113,6 @@ class SessionController
     }
 
     /**
-     * @return array|mixed
-     */
-    public function getSessionArray()
-    {
-        return $this->session;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserArray()
-    {
-        if ($this->isLogged() === false) {
-            $this->user = [];
-        }
-
-        return $this->user;
-    }
-
-    /**
      * @param $var
      * @return mixed
      */
@@ -101,6 +123,12 @@ class SessionController
         }
 
         return $this->user[$var];
+    }
+
+    public function destroySession()
+    {
+        $_SESSION['user'] = [];
+        session_destroy();
     }
 }
 
