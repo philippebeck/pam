@@ -41,7 +41,7 @@ class Router extends MainController
      */
     public function parseUrl()
     {
-        $access = $this->get->getGetVar('access');
+        $access = $this->globals->getGet()->getGetVar('access');
 
         if (!isset($access)) {
             $access = 'home';
