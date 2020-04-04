@@ -26,7 +26,6 @@ class PamExtension extends AbstractExtension
      */
     private $alert = null;
 
-
     /**
      * PamExtension constructor.
      */

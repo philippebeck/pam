@@ -22,6 +22,11 @@ abstract class MainController
     protected $globals = null;
 
     /**
+     * @var MailController|null
+     */
+    protected $mail = null;
+
+    /**
      * @var Environment|null
      */
     protected $twig = null;
@@ -31,7 +36,8 @@ abstract class MainController
      */
     public function __construct()
     {
-        $this->globals = new GlobalsController();
+        $this->globals  = new GlobalsController();
+        $this->mail     = new MailController();
 
         $this->twig = new Environment(new FilesystemLoader('../src/View'), array(
             'cache' => false,
