@@ -15,15 +15,17 @@ Pam is very easy to use & very light to implement.
 
 The model part can be used for all CRUD actions & does not need to be overloaded for basic actions.
 
+Access to the database is obviously managed by the Database part, via the PDO class.
+
 The View part uses the Twig template engine, so it's possible to use variables, functions, filters, etc.
 
 The Controller part inherits the essential methods of the MainController & the FrontController structures the input of the application.
 
-The sessions are managed by Pam for user connection actions & for user message actions, all with filters
+The sessions are managed by Pam for user connection actions & for user alert actions, all with filters
 
-All others superglobals are managed by controllers with filters too.
+All superglobals are managed by GlobalsController with filters too.
 
-Access to the database is obviously managed by the Database part, via the PDO class.
+The contact part is managed by MailController with SwiftMailer package.
 
 ## Summary
 
