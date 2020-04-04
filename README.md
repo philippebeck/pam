@@ -6,7 +6,6 @@ Php Approachable Microframework
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a23727fb6954400b6c3a38a0105089e)](https://www.codacy.com/app/philippebeck/pam?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=philippebeck/pam&amp;utm_campaign=Badge_Grade)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6cb34d98d271777ecdb1/maintainability)](https://codeclimate.com/github/philippebeck/pam/maintainability)
-[![Dependabot](https://badgen.net/dependabot/dependabot/dependabot-core/?icon=dependabot)](https://github.com/philippebeck/pam/graphs/contributors)
 
 ## Overview
 
@@ -18,11 +17,11 @@ The model part can be used for all CRUD actions & does not need to be overloaded
 
 The View part uses the Twig template engine, so it's possible to use variables, functions, filters, etc.
 
-The Controller part inherits the essential methods of the main controller (this includes session & cookie) & the FrontController structures the input of the application.
+The Controller part inherits the essential methods of the MainController & the FrontController structures the input of the application.
 
-The sessions are managed by Pam for user connection actions & the cookies for user message actions, all with filters
+The sessions are managed by Pam for user connection actions & for user message actions, all with filters
 
-The files, get & post superglobals are managed by controllers with filters too.
+All others superglobals are managed by controllers with filters too.
 
 Access to the database is obviously managed by the Database part, via the PDO class.
 
