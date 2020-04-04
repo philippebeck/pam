@@ -14,10 +14,15 @@ use Twig\Loader\FilesystemLoader;
  * Class MainController
  * @package Pam\Controller
  */
-abstract class MainController extends GlobalController
+abstract class MainController
 {
     /**
-     * @var Environment
+     * @var GlobalsController|null
+     */
+    protected $globals = null;
+
+    /**
+     * @var Environment|null
      */
     protected $twig = null;
 
@@ -26,7 +31,7 @@ abstract class MainController extends GlobalController
      */
     public function __construct()
     {
-        parent::__construct();
+        $this->globals = new GlobalsController();
 
         $this->twig = new Environment(new FilesystemLoader('../src/View'), array(
             'cache' => false,

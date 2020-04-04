@@ -1,14 +1,12 @@
 <?php
 
-namespace Pam;
-
-use Pam\Controller\MainController;
+namespace Pam\Controller;
 
 /**
- * Class Router
+ * Class FrontController
  * @package Pam\Controller
  */
-class Router extends MainController
+class FrontController extends MainController
 {
     const DEFAULT_PATH        = 'App\Controller\\';
     const DEFAULT_CONTROLLER  = 'HomeController';
@@ -25,7 +23,7 @@ class Router extends MainController
     private $method = self::DEFAULT_METHOD;
 
     /**
-     * Router constructor
+     * FrontController constructor
      */
     public function __construct()
     {
@@ -41,7 +39,7 @@ class Router extends MainController
      */
     public function parseUrl()
     {
-        $access = $this->get->getGetVar('access');
+        $access = $this->globals->getGet()->getGetVar('access');
 
         if (!isset($access)) {
             $access = 'home';

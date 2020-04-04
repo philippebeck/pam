@@ -9,14 +9,9 @@ namespace Pam\Controller\Globals;
 class CookieController
 {
     /**
-     * @var mixed
+     * @var mixed|null
      */
     private $cookie = null;
-
-    /**
-     * @var
-     */
-    private $alert = null;
 
     /**
      * CookieController constructor.
@@ -24,33 +19,6 @@ class CookieController
     public function __construct()
     {
         $this->cookie = filter_input_array(INPUT_COOKIE);
-
-        if (isset($this->cookie['alert'])) {
-            $this->alert  = $this->cookie['alert'];
-        }
-    }
-
-    /**
-     * @param string $name
-     * @param string $value
-     * @param int $expire
-     * @return mixed|void
-     */
-    public function createCookie(string $name, string $value = '', int $expire = 0)
-    {
-        if ($expire === 0) {
-            $expire = time() + 3600;
-        }
-        setcookie($name, $value, $expire, '/');
-    }
-
-
-    public function destroyCookie(string $name)
-    {
-        if ($this->cookie[$name] !== null) {
-
-            $this->createCookie($name, '', time() - 3600);
-        }
     }
 
     /**
@@ -71,30 +39,27 @@ class CookieController
     }
 
     /**
-     * @param string $message
-     */
-    public function createAlert(string $message)
-    {
-        $this->createCookie('alert', $message);
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasAlert()
-    {
-        return empty($this->alert) == false;
-    }
-
-    /**
+     * @param string $name
+     * @param string $value
+     * @param int $expire
      * @return mixed|void
      */
-    public function readAlert()
+    public function createCookie(string $name, string $value = '', int $expire = 0)
     {
-        if (isset($this->alert)) {
-            echo filter_var($this->alert, FILTER_SANITIZE_SPECIAL_CHARS);
+        if ($expire === 0) {
+            $expire = time() + 3600;
+        }
+        setcookie($name, $value, $expire, '/');
+    }
 
-            $this->destroyCookie('alert');
+    /**
+     * @param string $name
+     */
+    public function destroyCookie(string $name)
+    {
+        if ($this->cookie[$name] !== null) {
+
+            $this->createCookie($name, '', time() - 3600);
         }
     }
 }

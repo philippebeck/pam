@@ -1,13 +1,13 @@
 {
   "name": "philippebeck/pam",
-  "version": "2.0.4",
+  "version": "3.0.0",
   "type": "library",
   "description": "Php Approachable Microframework",
   "keywords": [
     "php",
     "framework",
     "mvc",
-    "Superglobal",
+    "superglobal",
     "filters",
     "crud",
     "prepared queries",
