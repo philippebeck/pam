@@ -18,7 +18,9 @@ class MailController
      */
     public function defaultMethod(array $mail)
     {
-        $transport = (new Swift_SmtpTransport(MAIL_SMTP, MAIL_PORT))
+        $transport = (new Swift_SmtpTransport())
+            ->setHost(MAIL_HOST)
+            ->setPort(MAIL_PORT)
             ->setUsername(MAIL_FROM)
             ->setPassword(MAIL_PASSWORD)
         ;
@@ -32,8 +34,6 @@ class MailController
             ->setBody($mail['message'])
         ;
 
-        $result = $mailer->send($message);
-
-        return $result;
+        return $mailer->send($message);
     }
 }
