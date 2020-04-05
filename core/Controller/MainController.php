@@ -3,6 +3,7 @@
 namespace Pam\Controller;
 
 use Pam\View\PamExtension;
+use ReCaptcha\ReCaptcha;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -82,5 +83,19 @@ abstract class MainController
     public function render(string $view, array $params = [])
     {
         return $this->twig->render($view, $params);
+    }
+
+    /**
+     * @param string $response
+     * @return bool
+     */
+    public function checkRecaptcha(string $response)
+    {
+        $recaptcha = new ReCaptcha(RECAPTCHA_TOKEN);
+
+        $result = $recaptcha->setExpectedHostname($this->globals->getServer()->getServerVar('SERVER_NAME'))
+            ->verify($response, $this->globals->getServer()->getServerVar('REMOTE_ADDR'));
+
+        return $result->isSuccess();
     }
 }
