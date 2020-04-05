@@ -16,7 +16,7 @@ class MailController
      * @param array $mail
      * @return int
      */
-    public function defaultMethod(array $mail)
+    public function sendMessage(array $mail)
     {
         $transport = (new Swift_SmtpTransport())
             ->setHost(MAIL_HOST)
