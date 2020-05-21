@@ -98,7 +98,7 @@ class PamExtension extends AbstractExtension
     {
         if (isset($this->alert)) {
 
-            echo $this->alert['message'];
+            echo filter_var($this->alert['message']);
 
             unset($_SESSION['alert']);
         }
