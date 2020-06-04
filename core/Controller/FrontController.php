@@ -6,7 +6,7 @@ namespace Pam\Controller;
  * Class FrontController
  * @package Pam\Controller
  */
-class FrontController extends MainController
+class FrontController
 {
     const DEFAULT_PATH        = 'App\Controller\\';
     const DEFAULT_CONTROLLER  = 'HomeController';
@@ -27,8 +27,6 @@ class FrontController extends MainController
      */
     public function __construct()
     {
-        parent::__construct();
-
         $this->parseUrl();
         $this->setController();
         $this->setMethod();
@@ -39,7 +37,7 @@ class FrontController extends MainController
      */
     public function parseUrl()
     {
-        $access = $this->globals->getGet()->getGetVar('access');
+        $access = filter_input(INPUT_GET, 'access');
 
         if (!isset($access)) {
             $access = 'home';
