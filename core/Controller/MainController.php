@@ -99,4 +99,32 @@ abstract class MainController
 
         return $result->isSuccess();
     }
+
+    public function checkAdminAccess()
+    {
+        $session = $this->globals->getSession()->getSessionArray();
+        $isAdmin = false;
+
+        if (isset($session["user"]["admin"])) {
+            if ($this->globals->getSession()->getUserVar("admin") === true || $this->globals->getSession()->getUserVar("admin") === 1) {
+                $isAdmin = true;
+            }
+
+        } elseif (isset($session["user"]["role"])) {
+            if ($this->globals->getSession()->getUserVar("role") === 1 || $this->globals->getSession()->getUserVar("role") === "admin") {
+                $isAdmin = true;
+            }
+
+        } else {
+            if ($this->globals->getSession()->islogged() === true) {
+                $isAdmin = true;
+            }
+        }
+
+        if ($isAdmin === false) {
+            $this->globals->getSession()->createAlert("You must be logged in as Admin to access to the administration", "black");
+
+            $this->redirect("home");
+        }
+    }
 }
