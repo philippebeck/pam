@@ -40,9 +40,9 @@ abstract class MainController
         $this->globals  = new GlobalsController();
         $this->mail     = new MailController();
 
-        $this->twig = new Environment(new FilesystemLoader('../src/View'), array(
-            'cache' => false,
-            'debug' => true
+        $this->twig = new Environment(new FilesystemLoader("../src/View"), array(
+            "cache" => false,
+            "debug" => true
         ));
 
         $this->twig->addExtension(new DebugExtension());
@@ -56,9 +56,9 @@ abstract class MainController
      */
     public function url(string $page, array $params = [])
     {
-        $params['access'] = $page;
+        $params["access"] = $page;
 
-        return 'index.php?' . http_build_query($params);
+        return "index.php?" . http_build_query($params);
     }
 
     /**
@@ -67,7 +67,7 @@ abstract class MainController
      */
     public function redirect(string $page, array $params = [])
     {
-        header('Location: ' . $this->url($page, $params));
+        header("Location: " . $this->url($page, $params));
 
         exit;
     }
@@ -93,8 +93,9 @@ abstract class MainController
     {
         $recaptcha = new ReCaptcha(RECAPTCHA_TOKEN);
 
-        $result = $recaptcha->setExpectedHostname($this->globals->getServer()->getServerVar('SERVER_NAME'))
-            ->verify($response, $this->globals->getServer()->getServerVar('REMOTE_ADDR'));
+        $result = $recaptcha
+            ->setExpectedHostname($this->globals->getServer()->getServerVar("SERVER_NAME"))
+            ->verify($response, $this->globals->getServer()->getServerVar("REMOTE_ADDR"));
 
         return $result->isSuccess();
     }

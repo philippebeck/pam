@@ -32,10 +32,10 @@ class PamExtension extends AbstractExtension
     public function __construct()
     {
         $this->session = filter_var_array($_SESSION);
-        $this->alert = $this->session['alert'];
+        $this->alert = $this->session["alert"];
 
-        if (isset($this->session['user'])) {
-            $this->user = $this->session['user'];
+        if (isset($this->session["user"])) {
+            $this->user = $this->session["user"];
         }
     }
 
@@ -45,13 +45,13 @@ class PamExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction('url',             array($this, 'url')),
-            new TwigFunction('getSessionArray', array($this, 'getSessionArray')),
-            new TwigFunction('hasAlert',        array($this, 'hasAlert')),
-            new TwigFunction('getAlertType',    array($this, 'getAlertType')),
-            new TwigFunction('getAlertMessage', array($this, 'getAlertMessage')),
-            new TwigFunction('isLogged',        array($this, 'isLogged')),
-            new TwigFunction('getUserVar',      array($this, 'getUserVar'))
+            new TwigFunction("url",             array($this, "url")),
+            new TwigFunction("getSessionArray", array($this, "getSessionArray")),
+            new TwigFunction("hasAlert",        array($this, "hasAlert")),
+            new TwigFunction("getAlertType",    array($this, "getAlertType")),
+            new TwigFunction("getAlertMessage", array($this, "getAlertMessage")),
+            new TwigFunction("isLogged",        array($this, "isLogged")),
+            new TwigFunction("getUserVar",      array($this, "getUserVar"))
         );
     }
 
@@ -62,9 +62,9 @@ class PamExtension extends AbstractExtension
      */
     public function url(string $page, array $params = [])
     {
-        $params['access'] = $page;
+        $params["access"] = $page;
 
-        return 'index.php?' . http_build_query($params);
+        return "index.php?" . http_build_query($params);
     }
 
     /**
@@ -90,7 +90,7 @@ class PamExtension extends AbstractExtension
     {
         if (isset($this->alert)) {
 
-            return $this->alert['type'];
+            return $this->alert["type"];
         }
     }
 
@@ -98,9 +98,9 @@ class PamExtension extends AbstractExtension
     {
         if (isset($this->alert)) {
 
-            echo filter_var($this->alert['message']);
+            echo filter_var($this->alert["message"]);
 
-            unset($_SESSION['alert']);
+            unset($_SESSION["alert"]);
         }
     }
 
@@ -109,7 +109,7 @@ class PamExtension extends AbstractExtension
      */
     public function isLogged()
     {
-        if (array_key_exists('user', $this->session)) {
+        if (array_key_exists("user", $this->session)) {
 
             if (!empty($this->user)) {
 

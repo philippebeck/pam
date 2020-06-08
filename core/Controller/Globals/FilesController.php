@@ -27,8 +27,8 @@ class FilesController
     {
         $this->files = filter_var_array($_FILES);
 
-        if (isset($this->files['file'])) {
-            $this->file = $this->files['file'];
+        if (isset($this->files["file"])) {
+            $this->file = $this->files["file"];
         }
     }
 
