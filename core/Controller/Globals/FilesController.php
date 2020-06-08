@@ -83,5 +83,57 @@ class FilesController
             return $e->getMessage();
         }
     }
-}
 
+    /**
+     * @param string $src
+     * @param int $width
+     * @param string|null $dest
+     * @return bool|string
+     */
+    public function makeThumbnail(string $src, int $width = 300, string $dest = null)
+    {
+        if ($dest === null) {
+            $dest = $src;
+        }
+
+        $imageType = exif_imagetype($src);
+
+        try {
+            switch ($imageType) {
+                case IMAGETYPE_JPEG:
+                    $imageCreate = imagecreatefromjpeg($src);
+                    break;
+                case IMAGETYPE_PNG:
+                    $imageCreate = imagecreatefrompng($src);
+                    break;
+                case IMAGETYPE_GIF:
+                    $imageCreate = imagecreatefromgif($src);
+                    break;
+                default:
+                    throw new Exception("Image Type not accepted...");
+            }
+
+            $imageScale = imagescale($imageCreate, $width);
+
+            switch ($imageType) {
+                case IMAGETYPE_JPEG:
+                    $img = imagejpeg($imageScale, $dest);
+                    break;
+                case IMAGETYPE_PNG:
+                    $img = imagepng($imageScale, $dest);
+                    break;
+                case IMAGETYPE_GIF:
+                    $img = imagegif($imageScale, $dest);
+                    break;
+                default:
+                    throw new Exception("Something was Wrong with the Thumbnail...");
+            }
+
+            return $img;
+
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+        }
+    }
+}
