@@ -94,6 +94,13 @@ class SessionController
      */
     public function createSession(array $user)
     {
+        if (isset($user["pass"])) {
+            unset($user["pass"]);
+
+        } elseif (isset($user["password"])) {
+            unset($user["password"]);
+        }
+
         $_SESSION["user"] = $user;
     }
 
