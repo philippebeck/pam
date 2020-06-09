@@ -100,12 +100,6 @@ class FilesController
      */
     public function uploadFile(string $fileDir, string $fileName = null, int $fileSize = 50000000)
     {
-        if ($fileName === null) {
-            $dest = $fileDir . $this->file["name"];
-        } else {
-            $dest = $fileDir . $fileName . $this->setFileExtension();
-        }
-
         try {
             if (!isset($this->file["error"]) || is_array($this->file["error"])) {
                 throw new Exception("Invalid parameters...");
@@ -115,7 +109,7 @@ class FilesController
                 throw new Exception("Exceeded filesize limit...");
             }
 
-            if (!move_uploaded_file($this->file["tmp_name"], $dest)) {
+            if (!move_uploaded_file($this->file["tmp_name"], $this->setFileName($fileDir, $fileName))) {
                 throw new Exception("Failed to move uploaded file...");
             }
 
