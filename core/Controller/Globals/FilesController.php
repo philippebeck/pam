@@ -41,14 +41,6 @@ class FilesController
     }
 
     /**
-     * @return mixed
-     */
-    public function getFileArray()
-    {
-        return $this->file;
-    }
-
-    /**
      * @param string $var
      * @return mixed
      */
