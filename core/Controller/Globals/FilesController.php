@@ -181,19 +181,20 @@ class FilesController
         try {
             switch ($imgType) {
                 case IMAGETYPE_JPEG:
-                    $isOutput = imagejpeg($imgSrc, $imgDest);
+                    return imagejpeg($imgSrc, $imgDest);
                     break;
+
                 case IMAGETYPE_PNG:
-                    $isOutput = imagepng($imgSrc, $imgDest);
+                    return imagepng($imgSrc, $imgDest);
                     break;
+
                 case IMAGETYPE_GIF:
-                    $isOutput = imagegif($imgSrc, $imgDest);
+                    return imagegif($imgSrc, $imgDest);
                     break;
+
                 default:
                     throw new Exception("Image Type not accepted to Output the Image...");
             }
-
-            return $isOutput;
 
         } catch (Exception $e) {
 
