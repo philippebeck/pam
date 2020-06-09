@@ -50,6 +50,21 @@ class FilesController
     }
 
     /**
+     * @param string $fileDir
+     * @param string|null $fileName
+     * @return string
+     */
+    public function setFileName(string $fileDir, string $fileName = null)
+    {
+        if ($fileName === null) {
+
+            return $fileDir . $this->file["name"];
+        }
+
+        return $fileDir . $fileName . $this->setFileExtension();
+    }
+
+    /**
      * @return string
      */
     public function setFileExtension()
