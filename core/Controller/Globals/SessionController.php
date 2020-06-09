@@ -28,15 +28,15 @@ class SessionController
      */
     public function __construct()
     {
-        if (array_key_exists('alert', $_SESSION) === false) {
-            $_SESSION['alert'] = [];
+        if (array_key_exists("alert", $_SESSION) === false) {
+            $_SESSION["alert"] = [];
         }
 
         $this->session = filter_var_array($_SESSION);
-        $this->alert = $this->session['alert'];
+        $this->alert = $this->session["alert"];
 
-        if (isset($this->session['user'])) {
-            $this->user = $this->session['user'];
+        if (isset($this->session["user"])) {
+            $this->user = $this->session["user"];
         }
     }
 
@@ -54,9 +54,9 @@ class SessionController
      */
     public function createAlert(string $message, string $type)
     {
-        $_SESSION['alert'] = [
-            'message' => $message,
-            'type'    => $type
+        $_SESSION["alert"] = [
+            "message" => $message,
+            "type"    => $type
         ];
     }
 
@@ -75,7 +75,7 @@ class SessionController
     {
         if (isset($this->alert)) {
 
-            return $this->alert['type'];
+            return $this->alert["type"];
         }
     }
 
@@ -83,9 +83,9 @@ class SessionController
     {
         if (isset($this->alert)) {
 
-            echo filter_var($this->alert['message']);
+            echo filter_var($this->alert["message"]);
 
-            unset($_SESSION['alert']);
+            unset($_SESSION["alert"]);
         }
     }
 
@@ -94,7 +94,14 @@ class SessionController
      */
     public function createSession(array $user)
     {
-        $_SESSION['user'] = $user;
+        if (isset($user["pass"])) {
+            unset($user["pass"]);
+
+        } elseif (isset($user["password"])) {
+            unset($user["password"]);
+        }
+
+        $_SESSION["user"] = $user;
     }
 
     /**
@@ -102,7 +109,7 @@ class SessionController
      */
     public function isLogged()
     {
-        if (array_key_exists('user', $this->session)) {
+        if (array_key_exists("user", $this->session)) {
 
             if (!empty($this->user)) {
 
@@ -127,7 +134,7 @@ class SessionController
 
     public function destroySession()
     {
-        $_SESSION['user'] = [];
+        $_SESSION["user"] = [];
         session_destroy();
     }
 }

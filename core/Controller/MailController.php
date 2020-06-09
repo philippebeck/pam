@@ -28,10 +28,10 @@ class MailController
         $mailer = new Swift_Mailer($transport);
 
         $message = (new Swift_Message())
-            ->setSubject($mail['subject'])
+            ->setSubject($mail["subject"])
             ->setFrom([MAIL_FROM => MAIL_USERNAME])
-            ->setTo([MAIL_TO => MAIL_USERNAME, $mail['email'] => $mail['name']])
-            ->setBody($mail['message'])
+            ->setTo([MAIL_TO => MAIL_USERNAME, $mail["email"] => $mail["name"]])
+            ->setBody($mail["message"])
         ;
 
         return $mailer->send($message);

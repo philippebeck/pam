@@ -1,6 +1,6 @@
 {
   "name": "philippebeck/pam",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "type": "library",
   "description": "Php Approachable Microframework",
   "keywords": [
@@ -32,7 +32,9 @@
     "php": "^7.3",
     "google/recaptcha": "^1.2.4",
     "swiftmailer/swiftmailer": "^6.2.3",
-    "twig/twig": "^3.0.3"
+    "twig/twig": "^3.0.3",
+    "ext-gd": "*",
+    "ext-exif": "*"
   },
   "require-dev": {
     "tracy/tracy": "^2.7.2"
