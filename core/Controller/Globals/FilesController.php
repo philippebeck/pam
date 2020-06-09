@@ -170,4 +170,23 @@ class FilesController
             return $e->getMessage();
         }
     }
+
+    /**
+     * @param string $imgSrc
+     * @param int $tnWidth
+     * @param string|null $imgDest
+     * @return bool|string
+     */
+    public function makeThumbnail(string $imgSrc, int $tnWidth = 300, string $thumbnail = null)
+    {
+        if ($thumbnail === null) {
+            $thumbnail = $imgSrc;
+        }
+
+        $imgType      = $this->getImageType($imgSrc);
+        $imgCreated   = $this->createImage($imgType, $imgSrc);
+        $imgScaled    = imagescale($imgCreated, $tnWidth);
+
+        return $this->outputImage($imgType, $imgScaled, $thumbnail);
+    }
 }
