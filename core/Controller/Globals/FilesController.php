@@ -140,21 +140,30 @@ class FilesController
         }
     }
 
-            switch ($imageType) {
+    /**
+     * @param int $imgType
+     * @param $imgSrc
+     * @param string $imgDest
+     * @return bool|string
+     */
+    public function outputImage(int $imgType, $imgSrc, string $imgDest)
+    {
+        try {
+            switch ($imgType) {
                 case IMAGETYPE_JPEG:
-                    $img = imagejpeg($imageScale, $dest);
+                    $isOutput = imagejpeg($imgSrc, $imgDest);
                     break;
                 case IMAGETYPE_PNG:
-                    $img = imagepng($imageScale, $dest);
+                    $isOutput = imagepng($imgSrc, $imgDest);
                     break;
                 case IMAGETYPE_GIF:
-                    $img = imagegif($imageScale, $dest);
+                    $isOutput = imagegif($imgSrc, $imgDest);
                     break;
                 default:
-                    throw new Exception("Something was Wrong with the Thumbnail...");
+                    throw new Exception("Image Type not accepted to Output the Image...");
             }
 
-            return $img;
+            return $isOutput;
 
         } catch (Exception $e) {
 
