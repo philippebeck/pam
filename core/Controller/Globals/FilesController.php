@@ -97,18 +97,18 @@ class FilesController
     }
 
     /**
-     * @param string $src
-     * @param int $width
-     * @param string|null $dest
-     * @return bool|string
+     * @param string $img
+     * @return bool|false|int
      */
-    public function makeThumbnail(string $src, int $width = 300, string $dest = null)
+    public function getImageType(string $img)
     {
-        if ($dest === null) {
-            $dest = $src;
+        if (exif_imagetype($img) === false) {
+
+            return false;
         }
 
-        $imageType = exif_imagetype($src);
+        return exif_imagetype($img);
+    }
 
         try {
             switch ($imageType) {
