@@ -110,22 +110,35 @@ class FilesController
         return exif_imagetype($img);
     }
 
+    /**
+     * @param int $imgType
+     * @param string $imgSrc
+     * @return false|resource|string
+     */
+    public function createImage(int $imgType, string $imgSrc)
+    {
         try {
-            switch ($imageType) {
+            switch ($imgType) {
                 case IMAGETYPE_JPEG:
-                    $imageCreate = imagecreatefromjpeg($src);
+                    $imgCreated = imagecreatefromjpeg($imgSrc);
                     break;
                 case IMAGETYPE_PNG:
-                    $imageCreate = imagecreatefrompng($src);
+                    $imgCreated = imagecreatefrompng($imgSrc);
                     break;
                 case IMAGETYPE_GIF:
-                    $imageCreate = imagecreatefromgif($src);
+                    $imgCreated = imagecreatefromgif($imgSrc);
                     break;
                 default:
-                    throw new Exception("Image Type not accepted...");
+                    throw new Exception("Image Type not accepted to Create the Image...");
             }
 
-            $imageScale = imagescale($imageCreate, $width);
+            return $imgCreated;
+
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+        }
+    }
 
             switch ($imageType) {
                 case IMAGETYPE_JPEG:
