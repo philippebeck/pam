@@ -82,7 +82,7 @@ class FilesController
      * @param string|null $fileName
      * @return mixed|string
      */
-    public function uploadFile(string $fileDir, string $fileName = null)
+    public function uploadFile(string $fileDir, string $fileName = null, int $fileSize = 50000000)
     {
         if ($fileName === null) {
             $dest = $fileDir . $this->file["name"];
@@ -95,7 +95,7 @@ class FilesController
                 throw new Exception("Invalid parameters...");
             }
 
-            if ($this->file["size"] > 1000000) {
+            if ($this->file["size"] > $fileSize) {
                 throw new Exception("Exceeded filesize limit...");
             }
 
