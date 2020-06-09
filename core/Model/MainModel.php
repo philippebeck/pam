@@ -38,13 +38,11 @@ abstract class MainModel implements ModelInterface
     public function listData(string $value = null, string $key = null)
     {
         if (isset($key)) {
-            $query = "SELECT * FROM " . $this->table . " WHERE " . $key . " = ?";
 
-            return $this->database->getAllData($query, [$value]);
+            return $this->database->getAllData("SELECT * FROM " . $this->table . " WHERE " . $key . " = ?", [$value]);
         }
-        $query = "SELECT * FROM " . $this->table;
 
-        return $this->database->getAllData($query);
+        return $this->database->getAllData("SELECT * FROM " . $this->table);
     }
 
     /**
@@ -67,12 +65,11 @@ abstract class MainModel implements ModelInterface
     public function readData(string $value, string $key = null)
     {
         if (isset($key)) {
-            $query = "SELECT * FROM " . $this->table . " WHERE " . $key . " = ?";
-        } else {
-            $query = "SELECT * FROM " . $this->table . " WHERE id = ?";
+
+            return $this->database->getData("SELECT * FROM " . $this->table . " WHERE " . $key . " = ?", [$value]);
         }
 
-        return $this->database->getData($query, [$value]);
+        return $this->database->getData("SELECT * FROM " . $this->table . " WHERE id = ?", [$value]);
     }
 
     /**
@@ -92,6 +89,7 @@ abstract class MainModel implements ModelInterface
 
         if (isset($key)) {
             $query = "UPDATE " . $this->table . " SET " . $set . " WHERE " . $key . " = ?";
+
         } else {
             $query = "UPDATE " . $this->table . " SET " . $set . " WHERE id = ?";
         }
@@ -107,6 +105,7 @@ abstract class MainModel implements ModelInterface
     {
         if (isset($key)) {
             $query = "DELETE FROM " . $this->table . " WHERE " . $key . " = ?";
+
         } else {
             $query = "DELETE FROM " . $this->table . " WHERE id = ?";
         }
