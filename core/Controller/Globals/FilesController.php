@@ -141,28 +141,28 @@ class FilesController
     }
 
     /**
-     * @param int $imgType
-     * @param string $imgSrc
+     * @param string $img
      * @return false|resource|string
      */
-    public function createImage(int $imgType, string $imgSrc)
+    public function createImage(string $img)
     {
         try {
-            switch ($imgType) {
+            switch ($this->getImageType($img)) {
                 case IMAGETYPE_JPEG:
-                    $imgCreated = imagecreatefromjpeg($imgSrc);
+                    return imagecreatefromjpeg($img);
                     break;
+
                 case IMAGETYPE_PNG:
-                    $imgCreated = imagecreatefrompng($imgSrc);
+                    return imagecreatefrompng($img);
                     break;
+
                 case IMAGETYPE_GIF:
-                    $imgCreated = imagecreatefromgif($imgSrc);
+                    return imagecreatefromgif($img);
                     break;
+
                 default:
                     throw new Exception("Image Type not accepted to Create the Image...");
             }
-
-            return $imgCreated;
 
         } catch (Exception $e) {
 
