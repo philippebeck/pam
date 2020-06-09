@@ -202,21 +202,19 @@ class FilesController
     }
 
     /**
-     * @param string $imgSrc
-     * @param int $tnWidth
-     * @param string|null $imgDest
+     * @param string $img
+     * @param int $width
+     * @param string|null $thumbnail
      * @return bool|string
      */
-    public function makeThumbnail(string $imgSrc, int $tnWidth = 300, string $thumbnail = null)
+    public function makeThumbnail(string $img, int $width = 300, string $thumbnail = null)
     {
         if ($thumbnail === null) {
-            $thumbnail = $imgSrc;
+            $thumbnail = $img;
         }
 
-        $imgType      = $this->getImageType($imgSrc);
-        $imgCreated   = $this->createImage($imgType, $imgSrc);
-        $imgScaled    = imagescale($imgCreated, $tnWidth);
+        $imgScaled = imagescale($this->createImage($img), $width);
 
-        return $this->outputImage($imgType, $imgScaled, $thumbnail);
+        return $this->outputImage($this->getImageType($img), $imgScaled, $thumbnail);
     }
 }
