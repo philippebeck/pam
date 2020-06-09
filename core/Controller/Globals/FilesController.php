@@ -50,15 +50,11 @@ class FilesController
     }
 
     /**
-     * @param string $fileDir
-     * @param string|null $fileName
-     * @return mixed|string
+     * @return string
      */
-    public function uploadFile(string $fileDir, string $fileName = null)
+    public function setFileExtension()
     {
-        if ($fileName === null) {
-            $dest = $fileDir . $this->file["name"];
-        } else {
+        try {
             switch ($this->file["type"]) {
                 case "image/jpeg":
                     $fileExt = ".jpg";
@@ -70,9 +66,28 @@ class FilesController
                     $fileExt = ".gif";
                     break;
                 default:
-                    throw new Exception("Image Type not accepted...");
+                    throw new Exception("Image Type not Set...");
             }
-            $dest = $fileDir . $fileName . $fileExt;
+
+            return $fileExt;
+
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param string $fileDir
+     * @param string|null $fileName
+     * @return mixed|string
+     */
+    public function uploadFile(string $fileDir, string $fileName = null)
+    {
+        if ($fileName === null) {
+            $dest = $fileDir . $this->file["name"];
+        } else {
+            $dest = $fileDir . $fileName . $this->setFileExtension();
         }
 
         try {
