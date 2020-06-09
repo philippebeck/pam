@@ -72,19 +72,20 @@ class FilesController
         try {
             switch ($this->file["type"]) {
                 case "image/jpeg":
-                    $fileExt = ".jpg";
+                    return ".jpg";
                     break;
-                case "image/png":
-                    $fileExt = ".png";
-                    break;
-                case "image/gif":
-                    $fileExt = ".gif";
-                    break;
-                default:
-                    throw new Exception("Image Type not Set...");
-            }
 
-            return $fileExt;
+                case "image/png":
+                    return ".png";
+                    break;
+
+                case "image/gif":
+                    return ".gif";
+                    break;
+
+                default:
+                    throw new Exception("The File Type : " . $this->file["type"] . " is not accepted...");
+            }
 
         } catch (Exception $e) {
 
