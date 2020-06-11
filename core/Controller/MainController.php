@@ -84,6 +84,22 @@ abstract class MainController
     }
 
     /**
+     * @param array $array
+     * @param string $key
+     * @return array
+     */
+    public function getArrayElements(array $array, string $key = "category")
+    {
+        $elements = [];
+
+        foreach ($array as $element) {
+            $elements[$element[$key]][] = $element;
+        }
+
+        return $elements;
+    }
+
+    /**
      * @param string $page
      * @param array $params
      * @return string

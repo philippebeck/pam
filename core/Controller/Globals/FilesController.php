@@ -50,6 +50,21 @@ class FilesController
     }
 
     /**
+     * @param string $fileDir
+     * @param string|null $fileName
+     * @return string
+     */
+    public function setFileName(string $fileDir, string $fileName = null)
+    {
+        if ($fileName === null) {
+
+            return $fileDir . $this->file["name"];
+        }
+
+        return $fileDir . $fileName . $this->setFileExtension();
+    }
+
+    /**
      * @return string
      */
     public function setFileExtension()
@@ -57,19 +72,20 @@ class FilesController
         try {
             switch ($this->file["type"]) {
                 case "image/jpeg":
-                    $fileExt = ".jpg";
+                    return ".jpg";
                     break;
-                case "image/png":
-                    $fileExt = ".png";
-                    break;
-                case "image/gif":
-                    $fileExt = ".gif";
-                    break;
-                default:
-                    throw new Exception("Image Type not Set...");
-            }
 
-            return $fileExt;
+                case "image/png":
+                    return ".png";
+                    break;
+
+                case "image/gif":
+                    return ".gif";
+                    break;
+
+                default:
+                    throw new Exception("The File Type : " . $this->file["type"] . " is not accepted...");
+            }
 
         } catch (Exception $e) {
 
@@ -84,12 +100,6 @@ class FilesController
      */
     public function uploadFile(string $fileDir, string $fileName = null, int $fileSize = 50000000)
     {
-        if ($fileName === null) {
-            $dest = $fileDir . $this->file["name"];
-        } else {
-            $dest = $fileDir . $fileName . $this->setFileExtension();
-        }
-
         try {
             if (!isset($this->file["error"]) || is_array($this->file["error"])) {
                 throw new Exception("Invalid parameters...");
@@ -99,7 +109,7 @@ class FilesController
                 throw new Exception("Exceeded filesize limit...");
             }
 
-            if (!move_uploaded_file($this->file["tmp_name"], $dest)) {
+            if (!move_uploaded_file($this->file["tmp_name"], $this->setFileName($fileDir, $fileName))) {
                 throw new Exception("Failed to move uploaded file...");
             }
 
@@ -126,28 +136,28 @@ class FilesController
     }
 
     /**
-     * @param int $imgType
-     * @param string $imgSrc
+     * @param string $img
      * @return false|resource|string
      */
-    public function createImage(int $imgType, string $imgSrc)
+    public function createImage(string $img)
     {
         try {
-            switch ($imgType) {
+            switch ($this->getImageType($img)) {
                 case IMAGETYPE_JPEG:
-                    $imgCreated = imagecreatefromjpeg($imgSrc);
+                    return imagecreatefromjpeg($img);
                     break;
+
                 case IMAGETYPE_PNG:
-                    $imgCreated = imagecreatefrompng($imgSrc);
+                    return imagecreatefrompng($img);
                     break;
+
                 case IMAGETYPE_GIF:
-                    $imgCreated = imagecreatefromgif($imgSrc);
+                    return imagecreatefromgif($img);
                     break;
+
                 default:
                     throw new Exception("Image Type not accepted to Create the Image...");
             }
-
-            return $imgCreated;
 
         } catch (Exception $e) {
 
@@ -166,19 +176,20 @@ class FilesController
         try {
             switch ($imgType) {
                 case IMAGETYPE_JPEG:
-                    $isOutput = imagejpeg($imgSrc, $imgDest);
+                    return imagejpeg($imgSrc, $imgDest);
                     break;
+
                 case IMAGETYPE_PNG:
-                    $isOutput = imagepng($imgSrc, $imgDest);
+                    return imagepng($imgSrc, $imgDest);
                     break;
+
                 case IMAGETYPE_GIF:
-                    $isOutput = imagegif($imgSrc, $imgDest);
+                    return imagegif($imgSrc, $imgDest);
                     break;
+
                 default:
                     throw new Exception("Image Type not accepted to Output the Image...");
             }
-
-            return $isOutput;
 
         } catch (Exception $e) {
 
@@ -187,21 +198,19 @@ class FilesController
     }
 
     /**
-     * @param string $imgSrc
-     * @param int $tnWidth
-     * @param string|null $imgDest
+     * @param string $img
+     * @param int $width
+     * @param string|null $thumbnail
      * @return bool|string
      */
-    public function makeThumbnail(string $imgSrc, int $tnWidth = 300, string $thumbnail = null)
+    public function makeThumbnail(string $img, int $width = 300, string $thumbnail = null)
     {
         if ($thumbnail === null) {
-            $thumbnail = $imgSrc;
+            $thumbnail = $img;
         }
 
-        $imgType      = $this->getImageType($imgSrc);
-        $imgCreated   = $this->createImage($imgType, $imgSrc);
-        $imgScaled    = imagescale($imgCreated, $tnWidth);
+        $imgScaled = imagescale($this->createImage($img), $width);
 
-        return $this->outputImage($imgType, $imgScaled, $thumbnail);
+        return $this->outputImage($this->getImageType($img), $imgScaled, $thumbnail);
     }
 }
