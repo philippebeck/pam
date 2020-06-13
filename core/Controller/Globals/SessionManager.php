@@ -3,10 +3,10 @@
 namespace Pam\Controller\Globals;
 
 /**
- * Class SessionController
- * @package Pam\Controller
+ * Class SessionManager
+ * @package Pam\Controller\Globals
  */
-class SessionController
+class SessionManager
 {
     /**
      * @var mixed|null
@@ -24,7 +24,7 @@ class SessionController
     private $user = null;
 
     /**
-     * SessionController constructor.
+     * SessionManager constructor.
      */
     public function __construct()
     {

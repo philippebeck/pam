@@ -3,10 +3,10 @@
 namespace Pam\Controller\Globals;
 
 /**
- * Class PostController
- * @package Pam\Controller
+ * Class PostManager
+ * @package Pam\Controller\Globals
  */
-class PostController
+class PostManager
 {
     /**
      * @var mixed
@@ -14,7 +14,7 @@ class PostController
     private $post = null;
 
     /**
-     * PostController constructor.
+     * PostManager constructor.
      */
     public function __construct()
     {

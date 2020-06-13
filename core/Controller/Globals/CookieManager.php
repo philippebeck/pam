@@ -3,10 +3,10 @@
 namespace Pam\Controller\Globals;
 
 /**
- * Class CookieController
- * @package Pam\Controller
+ * Class CookieManager
+ * @package Pam\Controller\Globals
  */
-class CookieController
+class CookieManager
 {
     /**
      * @var mixed|null
@@ -14,7 +14,7 @@ class CookieController
     private $cookie = null;
 
     /**
-     * CookieController constructor.
+     * CookieManager constructor.
      */
     public function __construct()
     {

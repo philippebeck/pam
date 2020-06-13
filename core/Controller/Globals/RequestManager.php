@@ -3,10 +3,10 @@
 namespace Pam\Controller\Globals;
 
 /**
- * Class RequestController
- * @package Pam\Controller
+ * Class RequestManager
+ * @package Pam\Controller\Globals
  */
-class RequestController
+class RequestManager
 {
     /**
      * @var mixed
@@ -14,7 +14,7 @@ class RequestController
     private $request = null;
 
     /**
-     * PostController constructor.
+     * RequestManager constructor.
      */
     public function __construct()
     {

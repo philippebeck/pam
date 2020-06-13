@@ -3,10 +3,10 @@
 namespace Pam\Controller\Globals;
 
 /**
- * Class GetController
- * @package Pam\Controller
+ * Class GetManager
+ * @package Pam\Controller\Globals
  */
-class GetController
+class GetManager
 {
     /**
      * @var mixed
@@ -14,7 +14,7 @@ class GetController
     private $get = null;
 
     /**
-     * GetController constructor.
+     * GetManager constructor.
      */
     public function __construct()
     {

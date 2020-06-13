@@ -3,10 +3,10 @@
 namespace Pam\Controller\Globals;
 
 /**
- * Class ServerController
- * @package Pam\Controller
+ * Class ServerManager
+ * @package Pam\Controller\Globals
  */
-class ServerController
+class ServerManager
 {
     /**
      * @var mixed
@@ -14,7 +14,7 @@ class ServerController
     private $server = null;
 
     /**
-     * PostController constructor.
+     * ServerManager constructor.
      */
     public function __construct()
     {
