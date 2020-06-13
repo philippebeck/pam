@@ -1,18 +1,23 @@
 {
   "name": "philippebeck/pam",
-  "version": "3.3.2",
+  "version": "4.0.0",
   "type": "library",
   "description": "Php Approachable Microframework",
   "keywords": [
     "php",
     "framework",
     "mvc",
-    "superglobal",
+    "superglobals",
     "filters",
     "crud",
     "prepared queries",
-    "twig extension",
-    "integrate profiler"
+    "array",
+    "image",
+    "mail",
+    "security",
+    "string",
+    "twig",
+    "profiler"
   ],
   "license": "MIT",
   "authors": [
