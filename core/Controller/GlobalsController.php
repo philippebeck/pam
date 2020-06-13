@@ -2,58 +2,58 @@
 
 namespace Pam\Controller;
 
-use Pam\Controller\Globals\CookieController;
-use Pam\Controller\Globals\EnvController;
-use Pam\Controller\Globals\FilesController;
-use Pam\Controller\Globals\GetController;
-use Pam\Controller\Globals\PostController;
-use Pam\Controller\Globals\RequestController;
-use Pam\Controller\Globals\ServerController;
-use Pam\Controller\Globals\SessionController;
+use Pam\Controller\Globals\CookieManager;
+use Pam\Controller\Globals\EnvManager;
+use Pam\Controller\Globals\FilesManager;
+use Pam\Controller\Globals\GetManager;
+use Pam\Controller\Globals\PostManager;
+use Pam\Controller\Globals\RequestManager;
+use Pam\Controller\Globals\ServerManager;
+use Pam\Controller\Globals\SessionManager;
 
 /**
  * Class GlobalsController
  * @package Pam\Controller
  */
-class GlobalsController
+abstract class GlobalsController
 {
     /**
-     * @var CookieController
+     * @var CookieManager
      */
     private $cookie = null;
 
     /**
-     * @var EnvController
+     * @var EnvManager
      */
     private $env = null;
 
     /**
-     * @var FilesController
+     * @var FilesManager
      */
     private $files = null;
 
     /**
-     * @var GetController
+     * @var GetManager
      */
     private $get = null;
 
     /**
-     * @var PostController
+     * @var PostManager
      */
     private $post = null;
 
     /**
-     * @var RequestController
+     * @var RequestManager
      */
     private $request = null;
 
     /**
-     * @var ServerController
+     * @var ServerManager
      */
     private $server = null;
 
     /**
-     * @var SessionController
+     * @var SessionManager
      */
     private $session = null;
 
@@ -62,76 +62,76 @@ class GlobalsController
      */
     public function __construct()
     {
-        $this->cookie   = new CookieController();
-        $this->env      = new EnvController();
-        $this->files    = new FilesController();
-        $this->get      = new GetController();
-        $this->post     = new PostController();
-        $this->request  = new RequestController();
-        $this->server   = new ServerController();
-        $this->session  = new SessionController();
+        $this->cookie   = new CookieManager();
+        $this->env      = new EnvManager();
+        $this->files    = new FilesManager();
+        $this->get      = new GetManager();
+        $this->post     = new PostManager();
+        $this->request  = new RequestManager();
+        $this->server   = new ServerManager();
+        $this->session  = new SessionManager();
     }
 
     /**
-     * @return CookieController
+     * @return CookieManager
      */
-    public function getCookie(): CookieController
+    public function getCookie(): CookieManager
     {
         return $this->cookie;
     }
 
     /**
-     * @return EnvController
+     * @return EnvManager
      */
-    public function getEnv(): EnvController
+    public function getEnv(): EnvManager
     {
         return $this->env;
     }
 
     /**
-     * @return FilesController
+     * @return FilesManager
      */
-    public function getFiles(): FilesController
+    public function getFiles(): FilesManager
     {
         return $this->files;
     }
 
     /**
-     * @return GetController
+     * @return GetManager
      */
-    public function getGet(): GetController
+    public function getGet(): GetManager
     {
         return $this->get;
     }
 
     /**
-     * @return PostController
+     * @return PostManager
      */
-    public function getPost(): PostController
+    public function getPost(): PostManager
     {
         return $this->post;
     }
 
     /**
-     * @return RequestController
+     * @return RequestManager
      */
-    public function getRequest(): RequestController
+    public function getRequest(): RequestManager
     {
         return $this->request;
     }
 
     /**
-     * @return ServerController
+     * @return ServerManager
      */
-    public function getServer(): ServerController
+    public function getServer(): ServerManager
     {
         return $this->server;
     }
 
     /**
-     * @return SessionController
+     * @return SessionManager
      */
-    public function getSession(): SessionController
+    public function getSession(): SessionManager
     {
         return $this->session;
     }
