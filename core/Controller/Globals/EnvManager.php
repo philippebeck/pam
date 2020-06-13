@@ -3,10 +3,10 @@
 namespace Pam\Controller\Globals;
 
 /**
- * Class EnvController
- * @package Pam\Controller
+ * Class EnvManager
+ * @package Pam\Controller\Globals
  */
-class EnvController
+class EnvManager
 {
     /**
      * @var mixed
@@ -14,7 +14,7 @@ class EnvController
     private $env = null;
 
     /**
-     * PostController constructor.
+     * EnvManager constructor.
      */
     public function __construct()
     {

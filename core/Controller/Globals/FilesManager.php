@@ -5,10 +5,10 @@ namespace Pam\Controller\Globals;
 use Exception;
 
 /**
- * Class FilesController
- * @package Pam\Controller
+ * Class FilesManager
+ * @package Pam\Controller\Globals
  */
-class FilesController
+class FilesManager
 {
     /**
      * @var
@@ -21,7 +21,7 @@ class FilesController
     private $file = null;
 
     /**
-     * FilesController constructor.
+     * FilesManager constructor.
      */
     public function __construct()
     {
@@ -119,98 +119,5 @@ class FilesController
 
             return $e->getMessage();
         }
-    }
-
-    /**
-     * @param string $img
-     * @return bool|false|int
-     */
-    public function getImageType(string $img)
-    {
-        if (exif_imagetype($img) === false) {
-
-            return false;
-        }
-
-        return exif_imagetype($img);
-    }
-
-    /**
-     * @param string $img
-     * @return false|resource|string
-     */
-    public function createImage(string $img)
-    {
-        try {
-            switch ($this->getImageType($img)) {
-                case IMAGETYPE_JPEG:
-                    return imagecreatefromjpeg($img);
-                    break;
-
-                case IMAGETYPE_PNG:
-                    return imagecreatefrompng($img);
-                    break;
-
-                case IMAGETYPE_GIF:
-                    return imagecreatefromgif($img);
-                    break;
-
-                default:
-                    throw new Exception("Image Type not accepted to Create the Image...");
-            }
-
-        } catch (Exception $e) {
-
-            return $e->getMessage();
-        }
-    }
-
-    /**
-     * @param int $imgType
-     * @param $imgSrc
-     * @param string $imgDest
-     * @return bool|string
-     */
-    public function outputImage(int $imgType, $imgSrc, string $imgDest)
-    {
-        try {
-            switch ($imgType) {
-                case IMAGETYPE_JPEG:
-                    return imagejpeg($imgSrc, $imgDest);
-                    break;
-
-                case IMAGETYPE_PNG:
-                    return imagepng($imgSrc, $imgDest);
-                    break;
-
-                case IMAGETYPE_GIF:
-                    return imagegif($imgSrc, $imgDest);
-                    break;
-
-                default:
-                    throw new Exception("Image Type not accepted to Output the Image...");
-            }
-
-        } catch (Exception $e) {
-
-            return $e->getMessage();
-        }
-    }
-
-    /**
-     * @param string $img
-     * @param int $width
-     * @param string|null $thumbnail
-     * @return bool|string
-     */
-    public function makeThumbnail(string $img, int $width = 300, string $thumbnail = null)
-    {
-        if ($thumbnail === null) {
-            $thumbnail = $img;
-        }
-
-        $imgScaled = imagescale($this->createImage($img), $width);
-
-        return $this->outputImage($this->getImageType($img), $imgScaled, $thumbnail);
     }
 }
