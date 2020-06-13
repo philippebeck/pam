@@ -150,11 +150,3 @@ Philippe Beck
 Code released under the MIT License
 
 [![GitHub License](https://img.shields.io/github/license/philippebeck/pam.svg?label=License)](https://github.com/philippebeck/pam/blob/master/LICENSE)
-
----
-
-## Support on Beerpay
-
-Hey dude! Help me out for a couple of :beers:!
-
-[![Beerpay](https://beerpay.io/philippebeck/pam/badge.svg?style=beer-square)](https://beerpay.io/philippebeck/pam)  [![Beerpay](https://beerpay.io/philippebeck/pam/make-wish.svg?style=flat-square)](https://beerpay.io/philippebeck/pam?focus=wish)
