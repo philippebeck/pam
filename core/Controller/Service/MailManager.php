@@ -1,16 +1,16 @@
 <?php
 
-namespace Pam\Controller;
+namespace Pam\Controller\Service;
 
 use Swift_Mailer;
 use Swift_Message;
 use Swift_SmtpTransport;
 
 /**
- * Class MailController
- * @package App\Controller
+ * Class MailManager
+ * @package App\Controller\Service
  */
-class MailController
+class MailManager
 {
     /**
      * @param array $mail
