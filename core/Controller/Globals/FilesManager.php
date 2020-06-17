@@ -71,6 +71,14 @@ class FilesManager
     {
         try {
             switch ($this->file["type"]) {
+                case "image/bmp":
+                    return ".bmp";
+                    break;
+
+                case "image/gif":
+                    return ".gif";
+                    break;
+
                 case "image/jpeg":
                     return ".jpg";
                     break;
@@ -79,8 +87,8 @@ class FilesManager
                     return ".png";
                     break;
 
-                case "image/gif":
-                    return ".gif";
+                case "image/webp":
+                    return ".webp";
                     break;
 
                 default:
