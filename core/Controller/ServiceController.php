@@ -3,6 +3,7 @@
 namespace Pam\Controller;
 
 use Pam\Controller\Service\ArrayManager;
+use Pam\Controller\Service\CurlManager;
 use Pam\Controller\Service\ImageManager;
 use Pam\Controller\Service\MailManager;
 use Pam\Controller\Service\SecurityManager;
@@ -18,6 +19,11 @@ class ServiceController
      * @var ArrayManager
      */
     private $array = null;
+
+    /**
+     * @var CurlManager
+     */
+    private $curl = null;
 
     /**
      * @var ImageManager
@@ -45,6 +51,7 @@ class ServiceController
     public function __construct()
     {
         $this->array    = new ArrayManager();
+        $this->curl     = new CurlManager();
         $this->image    = new ImageManager();
         $this->mail     = new MailManager();
         $this->security = new SecurityManager();
@@ -57,6 +64,14 @@ class ServiceController
     public function getArray(): ArrayManager
     {
         return $this->array;
+    }
+
+    /**
+     * @return CurlManager
+     */
+    public function getCurl(): CurlManager
+    {
+        return $this->curl;
     }
 
     /**
