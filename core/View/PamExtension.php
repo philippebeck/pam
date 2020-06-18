@@ -46,6 +46,7 @@ class PamExtension extends AbstractExtension
     {
         return array(
             new TwigFunction("url",             array($this, "url")),
+            new TwigFunction("cleanString",     array($this, "cleanString")),
             new TwigFunction("getSessionArray", array($this, "getSessionArray")),
             new TwigFunction("hasAlert",        array($this, "hasAlert")),
             new TwigFunction("getAlertType",    array($this, "getAlertType")),
@@ -65,6 +66,30 @@ class PamExtension extends AbstractExtension
         $params["access"] = $page;
 
         return "index.php?" . http_build_query($params);
+    }
+
+    /**
+     * @param string $string
+     * @return string
+     */
+    public function cleanString(string $string)
+    {
+        $string =
+            str_replace("_", " ",
+                str_replace(array("ù", "û", "ü"), "u",
+                    str_replace(array("ô", "ö"), "o",
+                        str_replace(array("î", "ï"), "i",
+                            str_replace(array("é", "è", "ê", "ë"), "e",
+                                str_replace(array("ç"), "c",
+                                    str_replace(array("à", "â", "ä"), "a", $string)
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+
+        return ucwords($string);
     }
 
     /**
