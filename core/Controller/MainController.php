@@ -2,7 +2,9 @@
 
 namespace Pam\Controller;
 
-use Pam\View\PamExtension;
+use Pam\View\GlobalsExtension;
+use Pam\View\MainExtension;
+use Pam\View\ServiceExtension;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -40,7 +42,9 @@ abstract class MainController extends GlobalsController
         ));
 
         $this->twig->addExtension(new DebugExtension());
-        $this->twig->addExtension(new PamExtension());
+        $this->twig->addExtension(new MainExtension());
+        $this->twig->addExtension(new GlobalsExtension());
+        $this->twig->addExtension(new ServiceExtension());
     }
 
     /**

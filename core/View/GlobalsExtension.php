@@ -6,11 +6,16 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 /**
- * Class PamExtension
+ * Class GlobalsExtension
  * @package Pam\View
  */
-class PamExtension extends AbstractExtension
+class GlobalsExtension extends AbstractExtension
 {
+    /**
+     * @var mixed
+     */
+    private $get = null;
+
     /**
      * @var array|mixed
      */
@@ -27,12 +32,13 @@ class PamExtension extends AbstractExtension
     private $alert = null;
 
     /**
-     * PamExtension constructor.
+     * GlobalsExtension constructor.
      */
     public function __construct()
     {
-        $this->session = filter_var_array($_SESSION);
-        $this->alert = $this->session["alert"];
+        $this->get      = filter_input_array(INPUT_GET);
+        $this->session  = filter_var_array($_SESSION);
+        $this->alert    = $this->session["alert"];
 
         if (isset($this->session["user"])) {
             $this->user = $this->session["user"];
@@ -45,9 +51,7 @@ class PamExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction("url",             array($this, "url")),
-            new TwigFunction("cleanString",     array($this, "cleanString")),
-            new TwigFunction("getSessionArray", array($this, "getSessionArray")),
+            new TwigFunction("getGetVar",       array($this, "getGetVar")),
             new TwigFunction("hasAlert",        array($this, "hasAlert")),
             new TwigFunction("getAlertType",    array($this, "getAlertType")),
             new TwigFunction("getAlertMessage", array($this, "getAlertMessage")),
@@ -57,47 +61,12 @@ class PamExtension extends AbstractExtension
     }
 
     /**
-     * @param string $page
-     * @param array $params
-     * @return string
+     * @param $var
+     * @return mixed
      */
-    public function url(string $page, array $params = [])
+    public function getGetVar($var)
     {
-        $params["access"] = $page;
-
-        return "index.php?" . http_build_query($params);
-    }
-
-    /**
-     * @param string $string
-     * @return string
-     */
-    public function cleanString(string $string)
-    {
-        $string =
-            str_replace("_", " ",
-                str_replace(array("ù", "û", "ü"), "u",
-                    str_replace(array("ô", "ö"), "o",
-                        str_replace(array("î", "ï"), "i",
-                            str_replace(array("é", "è", "ê", "ë"), "e",
-                                str_replace(array("ç"), "c",
-                                    str_replace(array("à", "â", "ä"), "a", $string)
-                                )
-                            )
-                        )
-                    )
-                )
-            );
-
-        return ucwords($string);
-    }
-
-    /**
-     * @return array|mixed
-     */
-    public function getSessionArray()
-    {
-        return $this->session;
+        return $this->get[$var];
     }
 
     /**
