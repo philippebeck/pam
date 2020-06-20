@@ -2,14 +2,14 @@
 
 namespace Pam\Controller\Service;
 
-use Pam\Controller\GlobalsController;
+use Pam\Controller\MainController;
 use ReCaptcha\ReCaptcha;
 
 /**
  * Class SecurityManager
  * @package Pam\Controller\Service
  */
-class SecurityManager extends GlobalsController
+class SecurityManager extends MainController
 {
     /**
      * @param string $response
