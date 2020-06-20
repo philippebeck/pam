@@ -2,14 +2,14 @@
 
 namespace Pam\Controller\Service;
 
-use Pam\Controller\MainController;
+use Pam\Controller\GlobalsController;
 use ReCaptcha\ReCaptcha;
 
 /**
  * Class SecurityManager
  * @package Pam\Controller\Service
  */
-class SecurityManager extends MainController
+class SecurityManager extends GlobalsController
 {
     /**
      * @param string $response
@@ -26,7 +26,7 @@ class SecurityManager extends MainController
         return $result->isSuccess();
     }
 
-    public function checkAdminAccess()
+    public function checkIsAdmin()
     {
         $session = $this->getSession()->getSessionArray();
         $isAdmin = false;
@@ -50,7 +50,8 @@ class SecurityManager extends MainController
         if ($isAdmin === false) {
             $this->getSession()->createAlert("You must be logged in as Admin to access to the administration", "black");
 
-            $this->redirect("home");
         }
+
+        return $isAdmin;
     }
 }
