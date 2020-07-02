@@ -23,9 +23,9 @@ The Controller part inherits the essential methods of the MainController & the F
 
 The sessions are managed by Pam for user connection actions & for user alert actions, all with filters
 
-All superglobals are managed by GlobalsController with filters too.
+All superglobals are managed by the GlobalsController with filters too.
 
-The contact part is managed by MailController with SwiftMailer package.
+The service part is managed by the ServiceController.
 
 ## Summary
 
@@ -99,7 +99,7 @@ Pam has continuous support !
 
 Documentation is available !
 
-[![WebSite Status](https://img.shields.io/website-up-down-green-red/https/github.com/philippebeck/pam/wiki.svg?label=Documentation)](https://github.com/philippebeck/pam/wiki)
+[![WebSite Status](https://img.shields.io/website-up-down-green-red/https/pam.philippebeck.net.svg?label=Documentation)](https://pam.philippebeck.net)
 
 ---
 
