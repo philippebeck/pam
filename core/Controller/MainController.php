@@ -36,12 +36,8 @@ abstract class MainController extends GlobalsController
         parent::__construct();
 
         $this->service  = new ServiceController();
-        $this->twig     = new Environment(new FilesystemLoader("../src/View"), array(
-            "cache" => false,
-            "debug" => true
-        ));
+        $this->twig     = new Environment(new FilesystemLoader(TWIG_TEMPLATES), array("cache" => TWIG_CACHE));
 
-        $this->twig->addExtension(new DebugExtension());
         $this->twig->addExtension(new MainExtension());
         $this->twig->addExtension(new GlobalsExtension());
         $this->twig->addExtension(new ServiceExtension());
