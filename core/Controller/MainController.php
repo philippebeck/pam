@@ -44,24 +44,24 @@ abstract class MainController extends GlobalsController
     }
 
     /**
-     * @param string $page
+     * @param string $access
      * @param array $params
      * @return string
      */
-    public function url(string $page, array $params = [])
+    public function url(string $access, array $params = [])
     {
-        $params["access"] = $page;
+        $params["access"] = $access;
 
         return "index.php?" . http_build_query($params);
     }
 
     /**
-     * @param string $page
+     * @param string $access
      * @param array $params
      */
-    public function redirect(string $page, array $params = [])
+    public function redirect(string $access, array $params = [])
     {
-        header("Location: " . $this->url($page, $params));
+        header("Location: " . $this->url($access, $params));
 
         exit;
     }
