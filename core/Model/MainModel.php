@@ -27,7 +27,7 @@ abstract class MainModel implements ModelInterface
         $this->database = $database;
 
         $model          = explode("\\", get_class($this));
-        $this->table    = ucfirst(str_replace("Model", "", array_pop($model)));
+        $this->table    = ucfirst(str_replace(MODEL_NAME, "", array_pop($model)));
     }
 
     /**

@@ -36,7 +36,7 @@ abstract class MainController extends GlobalsController
         parent::__construct();
 
         $this->service  = new ServiceController();
-        $this->twig     = new Environment(new FilesystemLoader(TWIG_TEMPLATES), array("cache" => TWIG_CACHE));
+        $this->twig     = new Environment(new FilesystemLoader(VIEW_PATH), array("cache" => VIEW_CACHE));
 
         $this->twig->addExtension(new MainExtension());
         $this->twig->addExtension(new GlobalsExtension());
@@ -50,7 +50,7 @@ abstract class MainController extends GlobalsController
      */
     public function url(string $access, array $params = [])
     {
-        $params["access"] = $access;
+        $params[ACCESS_KEY] = $access;
 
         return "index.php?" . http_build_query($params);
     }
