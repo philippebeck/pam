@@ -26,6 +26,9 @@ class SecurityManager extends GlobalsController
         return $result->isSuccess();
     }
 
+    /**
+     * @return bool
+     */
     public function checkIsAdmin()
     {
         $session = $this->getSession()->getSessionArray();

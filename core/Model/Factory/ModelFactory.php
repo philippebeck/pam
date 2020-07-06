@@ -25,7 +25,7 @@ class ModelFactory
             return self::$models[$table];
         }
 
-        $class = "App\Model\\" . ucfirst($table) . "Model";
+        $class = MODEL_PATH . ucfirst($table) . MODEL_NAME;
         self::$models[$table] = new $class(new PdoDb(PdoFactory::getPDO()));
 
         return self::$models[$table];
