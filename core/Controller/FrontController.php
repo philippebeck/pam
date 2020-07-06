@@ -8,19 +8,15 @@ namespace Pam\Controller;
  */
 class FrontController
 {
-    const DEFAULT_PATH        = "App\Controller\\";
-    const DEFAULT_CONTROLLER  = "HomeController";
-    const DEFAULT_METHOD      = "defaultMethod";
+    /**
+     * @var string
+     */
+    private $controller = CTRL_DEFAULT . CTRL_NAME;
 
     /**
      * @var string
      */
-    private $controller = self::DEFAULT_CONTROLLER;
-
-    /**
-     * @var string
-     */
-    private $method = self::DEFAULT_METHOD;
+    private $method = CTRL_METHOD_DEFAULT . CTRL_METHOD_NAME;
 
     /**
      * FrontController constructor
@@ -37,16 +33,16 @@ class FrontController
      */
     public function parseUrl()
     {
-        $access = filter_input(INPUT_GET, "access");
+        $access = filter_input(INPUT_GET, ACCESS_KEY);
 
         if (!isset($access)) {
-            $access = "home";
+            $access = CTRL_DEFAULT;
         }
 
         $access = explode("!", $access);
 
         $this->controller   = $access[0];
-        $this->method       = count($access) == 1 ? "default" : $access[1];
+        $this->method       = count($access) == 1 ? CTRL_METHOD_DEFAULT : $access[1];
     }
 
     /**
@@ -54,11 +50,11 @@ class FrontController
      */
     public function setController()
     {
-        $this->controller = ucfirst(strtolower($this->controller)) . "Controller";
-        $this->controller = self::DEFAULT_PATH . $this->controller;
+        $this->controller = ucfirst(strtolower($this->controller)) . CTRL_NAME;
+        $this->controller = CTRL_PATH . $this->controller;
 
         if (!class_exists($this->controller)) {
-            $this->controller = self::DEFAULT_PATH . self::DEFAULT_CONTROLLER;
+            $this->controller = CTRL_PATH . CTRL_DEFAULT . CTRL_NAME;
         }
     }
 
@@ -67,10 +63,10 @@ class FrontController
      */
     public function setMethod()
     {
-        $this->method = strtolower($this->method) . "Method";
+        $this->method = strtolower($this->method) . CTRL_METHOD_NAME;
 
         if (!method_exists($this->controller, $this->method)) {
-            $this->method = self::DEFAULT_METHOD;
+            $this->method = CTRL_METHOD_DEFAULT . CTRL_METHOD_NAME;
         }
     }
 
