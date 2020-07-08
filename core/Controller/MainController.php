@@ -9,20 +9,14 @@ use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
-use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 
 /**
  * Class MainController
  * @package Pam\Controller
  */
-abstract class MainController extends GlobalsController
+abstract class MainController extends ServiceController
 {
-    /**
-     * @var ServiceController|null
-     */
-    protected $service = null;
-
     /**
      * @var Environment|null
      */
@@ -35,8 +29,7 @@ abstract class MainController extends GlobalsController
     {
         parent::__construct();
 
-        $this->service  = new ServiceController();
-        $this->twig     = new Environment(new FilesystemLoader(VIEW_PATH), array("cache" => VIEW_CACHE));
+        $this->twig = new Environment(new FilesystemLoader(VIEW_PATH), array("cache" => VIEW_CACHE));
 
         $this->twig->addExtension(new MainExtension());
         $this->twig->addExtension(new GlobalsExtension());
