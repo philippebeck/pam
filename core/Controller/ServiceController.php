@@ -13,7 +13,7 @@ use Pam\Controller\Service\StringManager;
  * Class ServiceController
  * @package Pam\Controller
  */
-class ServiceController
+abstract class ServiceController extends GlobalsController
 {
     /**
      * @var ArrayManager
@@ -50,6 +50,8 @@ class ServiceController
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->array    = new ArrayManager();
         $this->curl     = new CurlManager();
         $this->image    = new ImageManager();
