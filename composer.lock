@@ -1,10 +1,15 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< Updated upstream
     "content-hash": "12f04349f856acb70ab48fa021f45ac8",
+=======
+    "hash": "b3091dc63384cbaa9775cd70adc70863",
+    "content-hash": "39fc7d741672194ce219329776f35b18",
+>>>>>>> Stashed changes
     "packages": [
         {
             "name": "doctrine/lexer",
@@ -66,6 +71,7 @@
                 "parser",
                 "php"
             ],
+<<<<<<< Updated upstream
             "funding": [
                 {
                     "url": "https://www.doctrine-project.org/sponsorship.html",
@@ -81,6 +87,9 @@
                 }
             ],
             "time": "2020-05-25T17:44:05+00:00"
+=======
+            "time": "2020-05-25 17:44:05"
+>>>>>>> Stashed changes
         },
         {
             "name": "egulias/email-validator",
@@ -138,7 +147,11 @@
                 "validation",
                 "validator"
             ],
+<<<<<<< Updated upstream
             "time": "2020-06-16T20:11:17+00:00"
+=======
+            "time": "2020-02-13 22:36:52"
+>>>>>>> Stashed changes
         },
         {
             "name": "google/recaptcha",
@@ -185,7 +198,7 @@
                 "recaptcha",
                 "spam"
             ],
-            "time": "2020-03-31T17:50:54+00:00"
+            "time": "2020-03-31 17:50:54"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -247,10 +260,11 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2019-11-12T09:31:26+00:00"
+            "time": "2019-11-12 09:31:26"
         },
         {
             "name": "symfony/polyfill-ctype",
+<<<<<<< Updated upstream
             "version": "v1.17.1",
             "source": {
                 "type": "git",
@@ -261,6 +275,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/2edd75b8b35d62fd3eeabba73b26b8f1f60ce13d",
                 "reference": "2edd75b8b35d62fd3eeabba73b26b8f1f60ce13d",
+=======
+            "version": "v1.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "e94c8b1bbe2bc77507a1056cdb06451c75b427f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e94c8b1bbe2bc77507a1056cdb06451c75b427f9",
+                "reference": "e94c8b1bbe2bc77507a1056cdb06451c75b427f9",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -273,10 +299,13 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.17-dev"
+<<<<<<< Updated upstream
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
                     "url": "https://github.com/symfony/polyfill"
+=======
+>>>>>>> Stashed changes
                 }
             },
             "autoload": {
@@ -309,6 +338,7 @@
                 "polyfill",
                 "portable"
             ],
+<<<<<<< Updated upstream
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -337,6 +367,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/ba6c9c18db36235b859cc29b8372d1c01298c035",
                 "reference": "ba6c9c18db36235b859cc29b8372d1c01298c035",
+=======
+            "time": "2020-05-12 16:14:59"
+        },
+        {
+            "name": "symfony/polyfill-iconv",
+            "version": "v1.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-iconv.git",
+                "reference": "c4de7601eefbf25f9d47190abe07f79fe0a27424"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/c4de7601eefbf25f9d47190abe07f79fe0a27424",
+                "reference": "c4de7601eefbf25f9d47190abe07f79fe0a27424",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -349,10 +395,13 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.17-dev"
+<<<<<<< Updated upstream
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
                     "url": "https://github.com/symfony/polyfill"
+=======
+>>>>>>> Stashed changes
                 }
             },
             "autoload": {
@@ -386,6 +435,7 @@
                 "portable",
                 "shim"
             ],
+<<<<<<< Updated upstream
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -414,6 +464,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/a57f8161502549a742a63c09f0a604997bf47027",
                 "reference": "a57f8161502549a742a63c09f0a604997bf47027",
+=======
+            "time": "2020-05-12 16:47:27"
+        },
+        {
+            "name": "symfony/polyfill-intl-idn",
+            "version": "v1.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-intl-idn.git",
+                "reference": "3bff59ea7047e925be6b7f2059d60af31bb46d6a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/3bff59ea7047e925be6b7f2059d60af31bb46d6a",
+                "reference": "3bff59ea7047e925be6b7f2059d60af31bb46d6a",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -428,10 +494,13 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.17-dev"
+<<<<<<< Updated upstream
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
                     "url": "https://github.com/symfony/polyfill"
+=======
+>>>>>>> Stashed changes
                 }
             },
             "autoload": {
@@ -466,6 +535,7 @@
                 "portable",
                 "shim"
             ],
+<<<<<<< Updated upstream
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -494,6 +564,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7110338d81ce1cbc3e273136e4574663627037a7",
                 "reference": "7110338d81ce1cbc3e273136e4574663627037a7",
+=======
+            "time": "2020-05-12 16:47:27"
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.17.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fa79b11539418b02fc5e1897267673ba2c19419c",
+                "reference": "fa79b11539418b02fc5e1897267673ba2c19419c",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -506,10 +592,13 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.17-dev"
+<<<<<<< Updated upstream
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
                     "url": "https://github.com/symfony/polyfill"
+=======
+>>>>>>> Stashed changes
                 }
             },
             "autoload": {
@@ -543,6 +632,7 @@
                 "portable",
                 "shim"
             ],
+<<<<<<< Updated upstream
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -558,6 +648,9 @@
                 }
             ],
             "time": "2020-06-06T08:46:27+00:00"
+=======
+            "time": "2020-05-12 16:47:27"
+>>>>>>> Stashed changes
         },
         {
             "name": "symfony/polyfill-php72",
@@ -612,6 +705,7 @@
                 "portable",
                 "shim"
             ],
+<<<<<<< Updated upstream
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -627,6 +721,9 @@
                 }
             ],
             "time": "2020-05-12T16:47:27+00:00"
+=======
+            "time": "2020-05-12 16:47:27"
+>>>>>>> Stashed changes
         },
         {
             "name": "twig/twig",
@@ -688,6 +785,7 @@
             "keywords": [
                 "templating"
             ],
+<<<<<<< Updated upstream
             "funding": [
                 {
                     "url": "https://certification.symfony.com/",
@@ -711,6 +809,9 @@
                 }
             ],
             "time": "2020-07-05T13:18:14+00:00"
+=======
+            "time": "2020-02-11 15:33:47"
+>>>>>>> Stashed changes
         }
     ],
     "packages-dev": [
@@ -785,7 +886,7 @@
                 "nette",
                 "profiler"
             ],
-            "time": "2020-05-17T09:50:45+00:00"
+            "time": "2020-05-17 09:50:45"
         }
     ],
     "aliases": [],
