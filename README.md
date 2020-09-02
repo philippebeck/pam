@@ -1,4 +1,4 @@
-[![Pam Logo](https://philippebeck.net/img/projects/pam.png)](https://github.com/philippebeck/pam)
+[![Pam Logo](https://pam.philippebeck.net/img/pam.png)](https://github.com/philippebeck/pam)
 
 # Pam
 
