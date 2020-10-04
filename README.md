@@ -1,11 +1,11 @@
-[![Pam Logo](https://pam.philippebeck.net/img/pam.png)](https://github.com/philippebeck/pam)
+[![Pam Logo](https://pam.devsagency.net/img/pam.png)](https://github.com/devsagency/pam)
 
 # Pam
 
 Php Adaptive Microframework
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5a23727fb6954400b6c3a38a0105089e)](https://www.codacy.com/app/philippebeck/pam?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=philippebeck/pam&amp;utm_campaign=Badge_Grade)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6cb34d98d271777ecdb1/maintainability)](https://codeclimate.com/github/philippebeck/pam/maintainability)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d23a35cde327458388799fddea39fc96)](https://www.codacy.com/gh/devsagency/pam/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=devsagency/pam&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/72ab5ccaf9a8278df405/maintainability)](https://codeclimate.com/github/devsagency/pam/maintainability)
 
 ## Overview
 
@@ -47,19 +47,19 @@ The service part is managed by the ServiceController.
 
 ## Package Manager
 
-[![Packagist Version](https://img.shields.io/packagist/v/philippebeck/pam.svg?label=Packagist)](https://packagist.org/packages/philippebeck/pam)
+[![Packagist Version](https://img.shields.io/packagist/v/devsagency/pam.svg?label=Packagist)](https://packagist.org/packages/devsagency/pam)
 
-Composer : `composer require philippebeck/pam`  
+Composer : `composer require devsagency/pam`  
 
 ---
 
 ## Download
 
-[Latest Release](https://github.com/philippebeck/pam/releases)  
+[Latest Release](https://github.com/devsagency/pam/releases)  
 
-`git clone https://github.com/philippebeck/pam.git`  
+`git clone https://github.com/devsagency/pam.git`  
   
-[![Repo Size](https://img.shields.io/github/repo-size/philippebeck/pam.svg?label=Repo+Size)](https://github.com/philippebeck/pam/tree/master)
+[![Repo Size](https://img.shields.io/github/repo-size/devsagency/pam.svg?label=Repo+Size)](https://github.com/devsagency/pam/tree/master)
 
 ---
 
@@ -68,7 +68,7 @@ Composer : `composer require philippebeck/pam`
 The project contains :  
 -   **core** folder => MVC source code : `Model` - `View` - `Controller`  
 
-[![CSS Code Size](https://img.shields.io/github/languages/code-size/philippebeck/pam.svg?label=Code+Size)](https://github.com/philippebeck/pam/tree/master)
+[![Code Size](https://img.shields.io/github/languages/code-size/devsagency/pam.svg?label=Code+Size)](https://github.com/devsagency/pam/tree/master)
 
 ---
 
@@ -76,7 +76,7 @@ The project contains :
 
 Pam is wrote with PHP
 
-[![GitHub Top Language](https://img.shields.io/github/languages/top/philippebeck/pam.svg?label=PHP)](https://github.com/philippebeck/pam)
+[![GitHub Top Language](https://img.shields.io/github/languages/top/devsagency/pam.svg?label=PHP)](https://github.com/devsagency/pam)
 
 ---
 
@@ -84,14 +84,14 @@ Pam is wrote with PHP
 
 Pam has continuous support !
 
-[![Project Maintained](https://img.shields.io/maintenance/yes/2020.svg?label=Maintained)](https://github.com/philippebeck/pam)
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/philippebeck/pam.svg?label=Last+Commit)](https://github.com/philippebeck/pam/commits/master)
+[![Project Maintained](https://img.shields.io/maintenance/yes/2020.svg?label=Maintained)](https://github.com/devsagency/pam)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/devsagency/pam.svg?label=Last+Commit)](https://github.com/devsagency/pam/commits/master)
 
 ---
 
 ## Open-Source
 
-[![GitHub Stars](https://img.shields.io/github/stars/philippebeck/pam.svg?label=GitHub+:+Pam+|+Stars)](https://github.com/philippebeck/pam)
+[![GitHub Stars](https://img.shields.io/github/stars/devsagency/pam.svg?label=GitHub+:+Pam+|+Stars)](https://github.com/devsagency/pam)
 
 ---
 
@@ -99,7 +99,7 @@ Pam has continuous support !
 
 Documentation is available !
 
-[![WebSite Status](https://img.shields.io/website-up-down-green-red/https/pam.philippebeck.net.svg?label=Documentation)](https://pam.philippebeck.net)
+[![WebSite Status](https://img.shields.io/website-up-down-green-red/https/pam.devsagency.net.svg?label=Documentation)](https://pam.devsagency.net)
 
 ---
 
@@ -107,7 +107,7 @@ Documentation is available !
 
 Issues can be created here
 
-[![GitHub Open Issues](https://img.shields.io/github/issues/philippebeck/pam.svg?label=Issues)](https://github.com/philippebeck/pam/issues)
+[![GitHub Open Issues](https://img.shields.io/github/issues/devsagency/pam.svg?label=Issues)](https://github.com/devsagency/pam/issues)
 
 ---
 
@@ -115,7 +115,7 @@ Issues can be created here
 
 And Pull Requests can be created there
 
-[![GitHub Open Pull Requests](https://img.shields.io/github/issues-pr/philippebeck/pam.svg?label=Pull+Requests)](https://github.com/philippebeck/pam/pulls)
+[![GitHub Open Pull Requests](https://img.shields.io/github/issues-pr/devsagency/pam.svg?label=Pull+Requests)](https://github.com/devsagency/pam/pulls)
 
 ---
 
@@ -123,7 +123,7 @@ And Pull Requests can be created there
 
 Pam needs you if you like it : sends pull requests on GitHub to improve it !!
 
-[![GitHub Contributors](https://img.shields.io/github/contributors/philippebeck/pam.svg?label=Contributors)](https://github.com/philippebeck/pam/graphs/contributors)
+[![GitHub Contributors](https://img.shields.io/github/contributors/devsagency/pam.svg?label=Contributors)](https://github.com/devsagency/pam/graphs/contributors)
 
 ---
 
@@ -131,7 +131,7 @@ Pam needs you if you like it : sends pull requests on GitHub to improve it !!
 
 Pam is maintained under the [Semantic Versioning 2.0.0](https://semver.org)
 
-[![GitHub Version](https://img.shields.io/github/tag/philippebeck/pam.svg?label=Version)](https://github.com/philippebeck/pam/blob/master/composer.json)
+[![GitHub Version](https://img.shields.io/github/tag/devsagency/pam.svg?label=Version)](https://github.com/devsagency/pam/blob/master/composer.json)
 
 ---
 
@@ -149,4 +149,4 @@ Philippe Beck
 
 Code released under the MIT License
 
-[![GitHub License](https://img.shields.io/github/license/philippebeck/pam.svg?label=License)](https://github.com/philippebeck/pam/blob/master/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/devsagency/pam.svg?label=License)](https://github.com/devsagency/pam/blob/master/LICENSE)
