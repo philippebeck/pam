@@ -1,6 +1,6 @@
 {
   "name": "devsagency/pam",
-  "version": "4.6.0",
+  "version": "4.6.1",
   "type": "library",
   "description": "Php Adaptive Microframework",
   "keywords": [
