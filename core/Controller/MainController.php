@@ -41,7 +41,7 @@ abstract class MainController extends ServiceController
      * @param array $params
      * @return string
      */
-    public function url(string $access, array $params = [])
+    protected function url(string $access, array $params = [])
     {
         $params[ACCESS_KEY] = $access;
 
@@ -52,7 +52,7 @@ abstract class MainController extends ServiceController
      * @param string $access
      * @param array $params
      */
-    public function redirect(string $access, array $params = [])
+    protected function redirect(string $access, array $params = [])
     {
         header("Location: " . $this->url($access, $params));
 
@@ -67,7 +67,7 @@ abstract class MainController extends ServiceController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function render(string $view, array $params = [])
+    protected function render(string $view, array $params = [])
     {
         return $this->twig->render($view, $params);
     }

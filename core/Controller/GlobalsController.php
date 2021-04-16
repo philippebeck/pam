@@ -75,7 +75,7 @@ abstract class GlobalsController
     /**
      * @return CookieManager
      */
-    public function getCookie(): CookieManager
+    protected function getCookie(): CookieManager
     {
         return $this->cookie;
     }
@@ -83,7 +83,7 @@ abstract class GlobalsController
     /**
      * @return EnvManager
      */
-    public function getEnv(): EnvManager
+    protected function getEnv(): EnvManager
     {
         return $this->env;
     }
@@ -91,7 +91,7 @@ abstract class GlobalsController
     /**
      * @return FilesManager
      */
-    public function getFiles(): FilesManager
+    protected function getFiles(): FilesManager
     {
         return $this->files;
     }
@@ -99,7 +99,7 @@ abstract class GlobalsController
     /**
      * @return GetManager
      */
-    public function getGet(): GetManager
+    protected function getGet(): GetManager
     {
         return $this->get;
     }
@@ -107,7 +107,7 @@ abstract class GlobalsController
     /**
      * @return PostManager
      */
-    public function getPost(): PostManager
+    protected function getPost(): PostManager
     {
         return $this->post;
     }
@@ -115,7 +115,7 @@ abstract class GlobalsController
     /**
      * @return RequestManager
      */
-    public function getRequest(): RequestManager
+    protected function getRequest(): RequestManager
     {
         return $this->request;
     }
@@ -123,7 +123,7 @@ abstract class GlobalsController
     /**
      * @return ServerManager
      */
-    public function getServer(): ServerManager
+    protected function getServer(): ServerManager
     {
         return $this->server;
     }
@@ -131,7 +131,7 @@ abstract class GlobalsController
     /**
      * @return SessionManager
      */
-    public function getSession(): SessionManager
+    protected function getSession(): SessionManager
     {
         return $this->session;
     }

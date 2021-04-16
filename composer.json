@@ -1,6 +1,6 @@
 {
   "name": "devsagency/pam",
-  "version": "4.6.1",
+  "version": "4.7.0",
   "type": "library",
   "description": "Php Adaptive Microframework",
   "keywords": [
@@ -41,11 +41,11 @@
     "ext-curl": "*",
     "ext-json": "*",
     "google/recaptcha": "^1.2.4",
-    "swiftmailer/swiftmailer": "^6.2.3",
-    "twig/twig": "^3.0.3"
+    "swiftmailer/swiftmailer": "^6.2.7",
+    "twig/twig": "^3.3.0"
   },
   "require-dev": {
-    "tracy/tracy": "^2.7.5"
+    "tracy/tracy": "^2.8.3"
   },
   "config": {
     "platform": {
