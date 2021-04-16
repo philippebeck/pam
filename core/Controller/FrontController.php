@@ -31,7 +31,7 @@ class FrontController
     /**
      * @return mixed|void
      */
-    public function parseUrl()
+    private function parseUrl()
     {
         $access = filter_input(INPUT_GET, ACCESS_KEY);
 
@@ -48,7 +48,7 @@ class FrontController
     /**
      * @return mixed|void
      */
-    public function setController()
+    private function setController()
     {
         $this->controller = ucfirst(strtolower($this->controller)) . CTRL_NAME;
         $this->controller = CTRL_PATH . $this->controller;
@@ -61,7 +61,7 @@ class FrontController
     /**
      * @return mixed|void
      */
-    public function setMethod()
+    private function setMethod()
     {
         $this->method = strtolower($this->method) . CTRL_METHOD_NAME;
 
