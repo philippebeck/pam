@@ -63,7 +63,7 @@ abstract class ServiceController extends GlobalsController
     /**
      * @return ArrayManager
      */
-    public function getArray(): ArrayManager
+    protected function getArray(): ArrayManager
     {
         return $this->array;
     }
@@ -71,7 +71,7 @@ abstract class ServiceController extends GlobalsController
     /**
      * @return CurlManager
      */
-    public function getCurl(): CurlManager
+    protected function getCurl(): CurlManager
     {
         return $this->curl;
     }
@@ -79,7 +79,7 @@ abstract class ServiceController extends GlobalsController
     /**
      * @return ImageManager
      */
-    public function getImage(): ImageManager
+    protected function getImage(): ImageManager
     {
         return $this->image;
     }
@@ -87,7 +87,7 @@ abstract class ServiceController extends GlobalsController
     /**
      * @return MailManager
      */
-    public function getMail(): MailManager
+    protected function getMail(): MailManager
     {
         return $this->mail;
     }
@@ -95,7 +95,7 @@ abstract class ServiceController extends GlobalsController
     /**
      * @return SecurityManager
      */
-    public function getSecurity(): SecurityManager
+    protected function getSecurity(): SecurityManager
     {
         return $this->security;
     }
@@ -103,7 +103,7 @@ abstract class ServiceController extends GlobalsController
     /**
      * @return StringManager
      */
-    public function getString(): StringManager
+    protected function getString(): StringManager
     {
         return $this->string;
     }
