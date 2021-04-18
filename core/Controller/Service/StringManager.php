@@ -11,7 +11,7 @@ class StringManager
     /**
      * @var string $string
      */
-    private string $string = "";
+    private $string = "";
 
     /**
      * @param string $string
