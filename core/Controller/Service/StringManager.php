@@ -18,9 +18,13 @@ class StringManager
      * @param string $case
      * @return string
      */
-    public function cleanString(string $string, string $case = "")
-    {
-        $this->string = (string) strtolower(trim($string));
+    public function cleanString(
+        string $string, 
+        string $case = ""
+    ) {
+        $this->string = (string) strtolower(
+            trim($string)
+        );
 
         $this->setStandardLetters();
         $this->setStandardCharacters();
@@ -31,12 +35,26 @@ class StringManager
 
     private function setStandardLetters()
     {
-        $this->string = str_replace(array("ù", "û", "ü"), "u",
-            str_replace(array("ô", "ö"), "o",
-                str_replace(array("î", "ï"), "i",
-                    str_replace(array("é", "è", "ê", "ë"), "e",
-                        str_replace(array("ç"), "c",
-                            str_replace(array("à", "â", "ä"), "a", $this->string)
+        $this->string = str_replace(
+            array("ù", "û", "ü"), 
+            "u",
+            str_replace(
+                array("ô", "ö"), 
+                "o",
+                str_replace(
+                    array("î", "ï"), 
+                    "i",
+                    str_replace(
+                        array("é", "è", "ê", "ë"), 
+                        "e",
+                        str_replace(
+                            array("ç"), 
+                            "c",
+                            str_replace(
+                                array("à", "â", "ä"), 
+                                "a", 
+                                $this->string
+                            )
                         )
                     )
                 )
@@ -46,8 +64,14 @@ class StringManager
 
     private function setStandardCharacters()
     {
-        $this->string = preg_replace("/ +/", " ",
-            preg_replace("/[^A-Za-z0-9\ ]/", " ", $this->string)
+        $this->string = preg_replace(
+            "/ +/", 
+            " ",
+            preg_replace(
+                "/[^A-Za-z0-9\ ]/", 
+                " ", 
+                $this->string
+            )
         );
     }
 
@@ -105,59 +129,111 @@ class StringManager
 
     private function setAlphaCase()
     {
-        $this->string = preg_replace("/[^A-Za-z]/", "", $this->string);
+        $this->string = preg_replace(
+            "/[^A-Za-z]/", 
+            "", 
+            $this->string
+        );
     }
 
     private function setCamelCase()
     {
-        $this->string = lcfirst(str_replace(" ", "", ucwords($this->string)));
+        $this->string = lcfirst(
+            str_replace(
+                " ", 
+                "", 
+                ucwords($this->string)
+            )
+        );
     }
 
     private function setConstCase()
     {
-        $this->string = strtoupper(str_replace(" ", "_", $this->string));
+        $this->string = strtoupper(
+            str_replace(
+                " ", 
+                "_", 
+                $this->string
+            )
+        );
     }
 
     private function setCramCase()
     {
-        $this->string = str_replace(" ", "", $this->string);
+        $this->string = str_replace(
+            " ", 
+            "", 
+            $this->string
+        );
     }
 
     private function setDotCase()
     {
-        $this->string = str_replace(" ", ".", $this->string);
+        $this->string = str_replace(
+            " ", 
+            ".", 
+            $this->string
+        );
     }
 
     private function setEnumCase()
     {
-        $this->string = str_replace(" ", ":", $this->string);
+        $this->string = str_replace(
+            " ", 
+            ":", 
+            $this->string
+        );
     }
 
     private function setKebabCase()
     {
-        $this->string = str_replace(" ", "-", $this->string);
+        $this->string = str_replace(
+            " ", 
+            "-", 
+            $this->string
+        );
     }
 
     private function setNameCase()
     {
-        $this->string = str_replace(" ", "-", ucwords(
-            preg_replace("/[^A-Za-z\ ]/", "", $this->string))
+        $this->string = str_replace(
+            " ", 
+            "-", 
+            ucwords(
+                preg_replace(
+                    "/[^A-Za-z\ ]/", 
+                    "", 
+                    $this->string
+                )
+            )
         );
     }
 
     private function setPascalCase()
     {
-        $this->string = str_replace(" ", "", ucwords($this->string));
+        $this->string = str_replace(
+            " ", 
+            "", 
+            ucwords($this->string)
+        );
     }
 
     private function setPathCase()
     {
-        $this->string = str_replace(" ", "/", $this->string);
+        $this->string = str_replace(
+            " ", 
+            "/", 
+            $this->string
+        );
     }
 
     private function setSnakeCase()
     {
-        $this->string = str_replace(" ", "_", $this->string);
+        $this->string = str_replace(
+            " ", 
+            "_", 
+            $this->string
+        );
     }
 
     private function setTitleCase()

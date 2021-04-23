@@ -92,7 +92,9 @@ class FilesManager
                     break;
 
                 default:
-                    throw new Exception("The File Type : " . $this->file["type"] . " is not accepted...");
+                    throw new Exception(
+                        "The File Type : " . $this->file["type"] . " is not accepted..."
+                    );
             }
 
         } catch (Exception $e) {
@@ -106,10 +108,16 @@ class FilesManager
      * @param string|null $fileName
      * @return mixed|string
      */
-    public function uploadFile(string $fileDir, string $fileName = null, int $fileSize = 50000000)
-    {
+    public function uploadFile(
+        string $fileDir, 
+        string $fileName = null, 
+        int $fileSize = 50000000
+    ) {
         try {
-            if (!isset($this->file["error"]) || is_array($this->file["error"])) {
+            if (
+                !isset($this->file["error"]) 
+                || is_array($this->file["error"])
+            ) {
                 throw new Exception("Invalid parameters...");
             }
 
@@ -117,7 +125,12 @@ class FilesManager
                 throw new Exception("Exceeded filesize limit...");
             }
 
-            if (!move_uploaded_file($this->file["tmp_name"], $this->setFileName($fileDir, $fileName))) {
+            if (
+                !move_uploaded_file(
+                    $this->file["tmp_name"], 
+                    $this->setFileName($fileDir, $fileName)
+                )
+            ) {
                 throw new Exception("Failed to move uploaded file...");
             }
 

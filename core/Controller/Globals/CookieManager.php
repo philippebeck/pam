@@ -44,8 +44,11 @@ class CookieManager
      * @param int $expire
      * @return mixed|void
      */
-    public function createCookie(string $name, string $value = "", int $expire = 0)
-    {
+    public function createCookie(
+        string $name, 
+        string $value = "", 
+        int $expire = 0
+    ) {
         if ($expire === 0) {
             $expire = time() + 3600;
         }
