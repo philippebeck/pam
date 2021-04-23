@@ -39,10 +39,15 @@ abstract class MainModel implements ModelInterface
     {
         if (isset($key)) {
 
-            return $this->database->getAllData("SELECT * FROM " . $this->table . " WHERE " . $key . " = ?", [$value]);
+            return $this->database->getAllData(
+                "SELECT * FROM " . $this->table . " WHERE " . $key . " = ?", 
+                [$value]
+            );
         }
 
-        return $this->database->getAllData("SELECT * FROM " . $this->table);
+        return $this->database->getAllData(
+            "SELECT * FROM " . $this->table
+        );
     }
 
     /**
@@ -66,10 +71,16 @@ abstract class MainModel implements ModelInterface
     {
         if (isset($key)) {
 
-            return $this->database->getData("SELECT * FROM " . $this->table . " WHERE " . $key . " = ?", [$value]);
+            return $this->database->getData(
+                "SELECT * FROM " . $this->table . " WHERE " . $key . " = ?", 
+                [$value]
+            );
         }
 
-        return $this->database->getData("SELECT * FROM " . $this->table . " WHERE id = ?", [$value]);
+        return $this->database->getData(
+            "SELECT * FROM " . $this->table . " WHERE id = ?", 
+            [$value]
+        );
     }
 
     /**
