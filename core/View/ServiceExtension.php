@@ -30,8 +30,14 @@ class ServiceExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction("cleanString",     array($this, "cleanString")),
-            new TwigFunction("checkIsAdmin",    array($this, "checkIsAdmin"))
+            new TwigFunction(
+                "cleanString",
+                array($this, "cleanString")
+            ),
+            new TwigFunction(
+                "checkIsAdmin",
+                array($this, "checkIsAdmin")
+            )
         );
     }
 
@@ -41,7 +47,11 @@ class ServiceExtension extends AbstractExtension
      */
     public function cleanString(string $string)
     {
-        $string = str_replace("_", " ", $string);
+        $string = str_replace(
+            "_", 
+            " ", 
+            $string
+        );
 
         return ucwords($string);
     }
@@ -51,12 +61,18 @@ class ServiceExtension extends AbstractExtension
         $isAdmin = false;
 
         if (isset($session["user"]["admin"])) {
-            if ($this->session["admin"] === true || $this->session["admin"] === 1) {
+            if (
+                $this->session["admin"] === true 
+                || $this->session["admin"] === 1
+            ) {
                 $isAdmin = true;
             }
 
         } elseif (isset($session["user"]["role"])) {
-            if ($this->session["role"] === 1 || $this->session["role"] === "admin") {
+            if (
+                $this->session["role"] === 1 
+                || $this->session["role"] === "admin"
+            ) {
                 $isAdmin = true;
             }
         }

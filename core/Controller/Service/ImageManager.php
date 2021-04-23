@@ -53,7 +53,9 @@ class ImageManager
                     break;
 
                 default:
-                    throw new Exception("Image Type not accepted to Input the Image...");
+                    throw new Exception(
+                        "Image Type not accepted to Input the Image..."
+                    );
             }
 
             return $imgInput;
@@ -70,8 +72,11 @@ class ImageManager
      * @param string $imgDest
      * @return bool|string
      */
-    public function outputImage($imgSrc, int $imgType, string $imgDest)
-    {
+    public function outputImage(
+        $imgSrc, 
+        int $imgType, 
+        string $imgDest
+    ) {
         try {
             switch ($imgType) {
                 case IMAGETYPE_BMP:
@@ -95,7 +100,9 @@ class ImageManager
                     break;
 
                 default:
-                    throw new Exception("Image Type not accepted to Output the Image...");
+                    throw new Exception(
+                        "Image Type not accepted to Output the Image..."
+                    );
             }
 
             return $imgOutput;
@@ -112,8 +119,11 @@ class ImageManager
      * @param string $imgDest
      * @return bool|string
      */
-    public function convertImage(string $imgSrc, string $imgType, string $imgDest)
-    {
+    public function convertImage(
+        string $imgSrc, 
+        string $imgType, 
+        string $imgDest
+    ) {
         try {
             switch ($imgType) {
                 case ".bmp":
@@ -138,10 +148,16 @@ class ImageManager
                     break;
 
                 default:
-                    throw new Exception("Image Type not accepted to Convert the Image...");
+                    throw new Exception(
+                        "Image Type not accepted to Convert the Image..."
+                    );
             }
 
-            return $this->outputImage($this->inputImage($imgSrc), $imgType, $imgDest);
+            return $this->outputImage(
+                $this->inputImage($imgSrc), 
+                $imgType, 
+                $imgDest
+            );
 
         } catch (Exception $e) {
 
@@ -155,14 +171,24 @@ class ImageManager
      * @param string|null $thumbnail
      * @return bool|string
      */
-    public function makeThumbnail(string $img, int $width = 300, string $thumbnail = null)
-    {
+    public function makeThumbnail(
+        string $img, 
+        int $width = 300, 
+        string $thumbnail = null
+    ) {
         if ($thumbnail === null) {
             $thumbnail = $img;
         }
 
-        $imgScaled = imagescale($this->inputImage($img), $width);
+        $imgScaled = imagescale(
+            $this->inputImage($img), 
+            $width
+        );
 
-        return $this->outputImage($imgScaled, $this->getImageType($img), $thumbnail);
+        return $this->outputImage(
+            $imgScaled, 
+            $this->getImageType($img), 
+            $thumbnail
+        );
     }
 }

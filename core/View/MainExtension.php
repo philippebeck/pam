@@ -17,8 +17,14 @@ class MainExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction("url", array($this, "url")),
-            new TwigFunction("redirect", array($this, "redirect"))
+            new TwigFunction(
+                "url", 
+                array($this, "url")
+            ),
+            new TwigFunction(
+                "redirect", 
+                array($this, "redirect")
+            )
         );
     }
 

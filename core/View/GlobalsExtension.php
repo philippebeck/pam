@@ -51,12 +51,30 @@ class GlobalsExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction("getGetVar",       array($this, "getGetVar")),
-            new TwigFunction("hasAlert",        array($this, "hasAlert")),
-            new TwigFunction("getAlertType",    array($this, "getAlertType")),
-            new TwigFunction("getAlertMessage", array($this, "getAlertMessage")),
-            new TwigFunction("isLogged",        array($this, "isLogged")),
-            new TwigFunction("getUserVar",      array($this, "getUserVar"))
+            new TwigFunction(
+                "getGetVar", 
+                array($this, "getGetVar")
+            ),
+            new TwigFunction(
+                "hasAlert",
+                array($this, "hasAlert")
+            ),
+            new TwigFunction(
+                "getAlertType",
+                array($this, "getAlertType")
+            ),
+            new TwigFunction(
+                "getAlertMessage", 
+                array($this, "getAlertMessage")
+            ),
+            new TwigFunction(
+                "isLogged",
+                array($this, "isLogged")
+            ),
+            new TwigFunction(
+                "getUserVar",
+                array($this, "getUserVar")
+            )
         );
     }
 

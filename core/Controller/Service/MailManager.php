@@ -30,7 +30,10 @@ class MailManager
         $message = (new Swift_Message())
             ->setSubject($mail["subject"])
             ->setFrom([MAIL_FROM => MAIL_USERNAME])
-            ->setTo([MAIL_TO => MAIL_USERNAME, $mail["email"] => $mail["name"]])
+            ->setTo(
+                [MAIL_TO => MAIL_USERNAME, 
+                $mail["email"] => $mail["name"]]
+            )
             ->setBody($mail["message"])
         ;
 

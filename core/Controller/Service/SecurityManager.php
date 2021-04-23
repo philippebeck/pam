@@ -20,8 +20,13 @@ class SecurityManager extends GlobalsController
         $recaptcha = new ReCaptcha(RECAPTCHA_TOKEN);
 
         $result = $recaptcha
-            ->setExpectedHostname($this->getServer()->getServerVar("SERVER_NAME"))
-            ->verify($response, $this->getServer()->getServerVar("REMOTE_ADDR"));
+            ->setExpectedHostname(
+                $this->getServer()->getServerVar("SERVER_NAME")
+            )
+            ->verify(
+                $response, 
+                $this->getServer()->getServerVar("REMOTE_ADDR")
+            );
 
         return $result->isSuccess();
     }
@@ -35,12 +40,18 @@ class SecurityManager extends GlobalsController
         $isAdmin = false;
 
         if (isset($session["user"]["admin"])) {
-            if ($this->getSession()->getUserVar("admin") === true || $this->getSession()->getUserVar("admin") === 1) {
+            if (
+                $this->getSession()->getUserVar("admin") === true 
+                || $this->getSession()->getUserVar("admin") === 1
+            ) {
                 $isAdmin = true;
             }
 
         } elseif (isset($session["user"]["role"])) {
-            if ($this->getSession()->getUserVar("role") === 1 || $this->getSession()->getUserVar("role") === "admin") {
+            if (
+                $this->getSession()->getUserVar("role") === 1
+                || $this->getSession()->getUserVar("role") === "admin"
+            ) {
                 $isAdmin = true;
             }
 
@@ -51,8 +62,10 @@ class SecurityManager extends GlobalsController
         }
 
         if ($isAdmin === false) {
-            $this->getSession()->createAlert("You must be logged in as Admin to access to the administration", "black");
-
+            $this->getSession()->createAlert(
+                "You must be logged in as Admin to access to the administration", 
+                "black"
+            );
         }
 
         return $isAdmin;
