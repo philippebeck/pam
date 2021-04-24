@@ -29,7 +29,8 @@ abstract class MainController extends ServiceController
     {
         parent::__construct();
 
-        $this->twig = new Environment(new FilesystemLoader(VIEW_PATH), array("cache" => VIEW_CACHE));
+        $loader = new FilesystemLoader(VIEW_PATH);
+        $this->twig = new Environment($loader, ["cache" => VIEW_CACHE]);
 
         $this->twig->addExtension(new MainExtension());
         $this->twig->addExtension(new GlobalsExtension());
