@@ -306,7 +306,7 @@ abstract class ServiceController extends GlobalsController
      */
     protected function cleanString(string $string, string $case = "") 
     {
-        $this->string = (string) strtolower(trim($string));
+        $this->string = (string) trim($string);
         $this->string = strtolower($string);
 
         $this->setStandardLetters();
@@ -318,12 +318,12 @@ abstract class ServiceController extends GlobalsController
 
     private function setStandardLetters()
     {
-        $this->string = str_replace(array("à", "â", "ä"), "a", $this->string);
-        $this->string = str_replace(array("ç"), "c", $this->string);
-        $this->string = str_replace(array("é", "è", "ê", "ë"), "e", $this->string);
-        $this->string = str_replace(array("î", "ï"), "i", $this->string);
-        $this->string = str_replace(array("ô", "ö"), "o", $this->string);
-        $this->string = str_replace(array("ù", "û", "ü"), "u", $this->string);
+        $this->string = str_replace(["à", "â", "ä"], "a", $this->string);
+        $this->string = str_replace(["ç"], "c", $this->string);
+        $this->string = str_replace(["é", "è", "ê", "ë"], "e", $this->string);
+        $this->string = str_replace(["î", "ï"], "i", $this->string);
+        $this->string = str_replace(["ô", "ö"], "o", $this->string);
+        $this->string = str_replace(["ù", "û", "ü"], "u", $this->string);
     }
 
     private function setStandardCharacters()
@@ -339,111 +339,51 @@ abstract class ServiceController extends GlobalsController
     {
         switch ($case) {
             case "alpha": 
-                $this->setAlphaCase();
+                $this->string = preg_replace("/[^A-Za-z]/", "", $this->string);
                 break;
+
             case "camel":
-                $this->setCamelCase();
+                $this->string = lcfirst(str_replace(" ", "", ucwords($this->string)));
                 break;
+
             case "const":
-                $this->setConstCase();
+                $this->string = strtoupper(str_replace(" ", "_", $this->string));
                 break;
+
             case "cram":
-                $this->setCramCase();
+                $this->string = str_replace(" ", "", $this->string);
                 break;
+
             case "dot":
-                $this->setDotCase();
+                $this->string = str_replace(" ", ".", $this->string);
                 break;
+
             case "enum":
-                $this->setEnumCase();
+                $this->string = str_replace(" ", ":", $this->string);
                 break;
-            case "kebab":
-                $this->setKebabCase();
-                break;
+
             case "name":
-                $this->setNameCase();
+                $this->string = str_replace(" ", "-", ucwords(preg_replace("/[^A-Za-z\ ]/", "", $this->string)));
                 break;
+
             case "pascal":
-                $this->setPascalCase();
+                $this->string = str_replace(" ", "", ucwords($this->string));
                 break;
+
             case "path":
-                $this->setPathCase();
+                $this->string = str_replace(" ", "/", $this->string);
                 break;
+
             case "snake":
-                $this->setSnakeCase();
+                $this->string = str_replace(" ", "_", $this->string);
                 break;
-            case "space":
-                break;
+
             case "title":
-                $this->setTitleCase();
+                $this->string = ucwords($this->string);
                 break;
+
             default:
-                $this->setKebabCase();
+                $this->string = str_replace(" ", "-", $this->string);
         }
-    }
-
-    private function setAlphaCase()
-    {
-        $this->string = preg_replace("/[^A-Za-z]/", "", $this->string);
-    }
-
-    private function setCamelCase()
-    {
-        $this->string = ucwords($this->string);
-        $this->string = str_replace(" ", "", $this->string);
-        $this->string = lcfirst($this->string);
-    }
-
-    private function setConstCase()
-    {
-        $this->string = str_replace(" ", "_", $this->string);
-        $this->string = strtoupper($this->string);
-    }
-
-    private function setCramCase()
-    {
-        $this->string = str_replace(" ", "", $this->string);
-    }
-
-    private function setDotCase()
-    {
-        $this->string = str_replace(" ", ".", $this->string);
-    }
-
-    private function setEnumCase()
-    {
-        $this->string = str_replace(" ", ":", $this->string);
-    }
-
-    private function setKebabCase()
-    {
-        $this->string = str_replace(" ", "-", $this->string);
-    }
-
-    private function setNameCase()
-    {
-        $this->string = preg_replace("/[^A-Za-z\ ]/", "", $this->string);
-        $this->string = ucwords($this->string);
-        $this->string = str_replace(" ", "-", $this->string);
-    }
-
-    private function setPascalCase()
-    {
-        $this->string = str_replace(" ", "", $this->string);
-        $this->string = ucwords($this->string);
-    }
-
-    private function setPathCase()
-    {
-        $this->string = str_replace(" ", "/", $this->string);
-    }
-
-    private function setSnakeCase()
-    {
-        $this->string = str_replace(" ", "_", $this->string);
-    }
-
-    private function setTitleCase()
-    {
-        $this->string = ucwords($this->string);
     }
 }
