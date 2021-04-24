@@ -12,32 +12,32 @@ use Twig\TwigFunction;
 class GlobalsExtension extends AbstractExtension
 {
     /**
-     * @var mixed
+     * @var array
      */
-    private $get = null;
+    private $get = [];
 
     /**
-     * @var array|mixed
+     * @var array
      */
-    private $session = null;
+    private $session = [];
 
     /**
-     * @var mixed
+     * @var array
      */
-    private $user = null;
+    private $user = [];
 
     /**
-     * @var
+     * @var array
      */
-    private $alert = null;
+    private $alert = [];
 
     /**
-     * GlobalsExtension constructor.
+     * GlobalsExtension constructor
      */
     public function __construct()
     {
-        $this->get      = filter_input_array(INPUT_GET);
-        $this->session  = filter_var_array($_SESSION);
+        $this->get      = filter_input_array(INPUT_GET) ?? [];
+        $this->session  = filter_var_array($_SESSION) ?? [];
         $this->alert    = $this->session["alert"];
 
         if (isset($this->session["user"])) {
@@ -52,8 +52,8 @@ class GlobalsExtension extends AbstractExtension
     {
         return array(
             new TwigFunction(
-                "getGetVar", 
-                array($this, "getGetVar")
+                "getGet", 
+                array($this, "getGet")
             ),
             new TwigFunction(
                 "hasAlert",
@@ -82,9 +82,14 @@ class GlobalsExtension extends AbstractExtension
      * @param $var
      * @return mixed
      */
-    public function getGetVar($var)
+    public function getGet(string $var = null)
     {
-        return $this->get[$var];
+        if ($var === null) {
+
+            return $this->get;
+        }
+
+        return $this->get[$var] ?? "";
     }
 
     /**
@@ -135,12 +140,12 @@ class GlobalsExtension extends AbstractExtension
      * @param $var
      * @return mixed
      */
-    public function getUserVar($var)
+    public function getUserVar(string $var)
     {
         if ($this->isLogged() === false) {
             $this->user[$var] = null;
         }
 
-        return $this->user[$var];
+        return $this->user[$var] ?? "";
     }
 }
