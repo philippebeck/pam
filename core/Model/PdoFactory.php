@@ -16,7 +16,7 @@ class PdoFactory
     private static $pdo = null;
 
     /**
-     * @return PDO|null
+     * @return PDO
      */
     public static function getPDO()
     {
