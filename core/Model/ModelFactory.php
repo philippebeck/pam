@@ -1,6 +1,6 @@
 <?php
 
-namespace Pam\Model\Factory;
+namespace Pam\Model;
 
 use Pam\Model\PdoDb;
 
