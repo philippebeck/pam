@@ -140,73 +140,33 @@ abstract class GlobalsController
     }
 
     /**
-     * @param array $session
+     * Set User Session or User Alert
+     * @param array $user
+     * @param bool $alert
      */
-    protected function setSession(array $session)
+    protected function setUser(array $user, bool $session = false)
     {
-        if (isset($session["alert"]) || isset($session["message"])) {
+        if ($session === false) {
 
-            $_SESSION["alert"] = $session;
+            $_SESSION["alert"] = $user;
 
-        } elseif (isset($session["email"]) || isset($session["user"])) {
+        } elseif ($session === true) {
 
-            if (isset($session["pass"])) {
-                unset($session["pass"]);
+            if (isset($user["pass"])) {
+                unset($user["pass"]);
     
-            } elseif (isset($session["password"])) {
-                unset($session["password"]);
+            } elseif (isset($user["password"])) {
+                unset($user["password"]);
             }
     
-            $_SESSION["user"] = $session;
-        }
-    }
-
-    /**
-     * @param string $fileDir
-     * @param string|null $fileName
-     * @return mixed|string
-     */
-    protected function setUploadedFile(string $fileDir, string $fileName = null, int $fileSize = 50000000) {
-        try {
-            if (
-                !isset($this->file["error"]) 
-                || is_array($this->file["error"])
-            ) {
-                throw new Exception("Invalid parameters...");
-            }
-
-            if ($this->file["size"] > $fileSize) {
-                throw new Exception("Exceeded filesize limit...");
-            }
-
-            if (
-                !move_uploaded_file(
-                    $this->file["tmp_name"], 
-                    $this->setFileName($fileDir, $fileName)
-                )
-            ) {
-                throw new Exception("Failed to move uploaded file...");
-            }
-
-            return $this->file["name"];
-
-        } catch (Exception $e) {
-
-            return $e->getMessage();
+            $_SESSION["user"] = $user;
         }
     }
 
     // ******************** CHECKERS ******************** \\
 
     /**
-     * @return bool
-     */
-    protected function checkAlert()
-    {
-        return empty($this->alert) === false;
-    }
-
-    /**
+     * Check the Array or a Var of a Specific Global
      * @param array $global
      * @param string $var
      * @return bool
@@ -230,10 +190,16 @@ abstract class GlobalsController
     }
 
     /**
+     * Check User Alert or User Session
      * @return bool
      */
-    protected function checkUser()
+    protected function checkUser(bool $session = false)
     {
+        if ($session === false) {
+
+            return empty($this->alert) === false;
+        }
+
         if (array_key_exists("user", $this->session)) {
 
             if (!empty($this->user)) {
