@@ -98,18 +98,6 @@ abstract class GlobalsController
     // ******************** SETTERS ******************** \\
 
     /**
-     * @param string $message
-     * @param string $type
-     */
-    protected function setAlert(string $message, string $type = "black")
-    {
-        $_SESSION["alert"] = [
-            "message" => $message,
-            "type"    => $type
-        ];
-    }
-
-    /**
      * @param string $name
      * @param string $value
      * @param int $expire
@@ -178,18 +166,25 @@ abstract class GlobalsController
     }
 
     /**
-     * @param array $user
+     * @param array $session
      */
-    protected function setSession(array $user)
+    protected function setSession(array $session)
     {
-        if (isset($user["pass"])) {
-            unset($user["pass"]);
+        if (isset($session["alert"]) || isset($session["message"])) {
 
-        } elseif (isset($user["password"])) {
-            unset($user["password"]);
+            $_SESSION["alert"] = $session;
+
+        } elseif (isset($session["email"]) || isset($session["user"])) {
+
+            if (isset($session["pass"])) {
+                unset($session["pass"]);
+    
+            } elseif (isset($session["password"])) {
+                unset($session["password"]);
+            }
+    
+            $_SESSION["user"] = $session;
         }
-
-        $_SESSION["user"] = $user;
     }
 
     /**
