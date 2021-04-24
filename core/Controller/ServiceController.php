@@ -191,9 +191,7 @@ abstract class ServiceController extends GlobalsController
                     throw new Exception("Image Type not accepted to Convert the Image...");
             }
 
-            $inputImg = $this->getInputImage($imgSrc);
-
-            return $this->getOutputImage($inputImg, $imgType, $imgDest);
+            return $this->getOutputImage($$this->getInputImage($imgSrc), $imgType, $imgDest);
 
         } catch (Exception $e) {
 
