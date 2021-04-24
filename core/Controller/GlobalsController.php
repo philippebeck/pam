@@ -392,20 +392,11 @@ abstract class GlobalsController
 
             return $this->session;
         }
-        
-        return $this->session[$var] ?? "";
-    }
 
-    /**
-     * @param string $var
-     * @return mixed
-     */
-    protected function getUser(string $var)
-    {
         if ($this->checkUser() === false) {
             $this->user[$var] = null;
         }
-
+        
         return $this->user[$var] ?? "";
     }
 
