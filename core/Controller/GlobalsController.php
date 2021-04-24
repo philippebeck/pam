@@ -409,22 +409,22 @@ abstract class GlobalsController
         return $this->user[$var] ?? "";
     }
 
-    // ******************** DESTROYERS ******************** \\
+    // ******************** DESTROYER ******************** \\
 
     /**
+     * Destroy cookie or session
      * @param string $name
      */
-    protected function destroyCookie(string $name)
+    protected function destroyGlobal(string $name = null)
     {
-        if ($this->cookie[$name] !== null) {
+        if ($name === null) {
+
+            $_SESSION["user"] = [];
+            session_destroy();
+
+        } elseif ($this->cookie[$name] !== null) {
 
             $this->setCookie($name, "", time() - 3600);
         }
-    }
-
-    protected function destroySession()
-    {
-        $_SESSION["user"] = [];
-        session_destroy();
     }
 }
