@@ -299,9 +299,7 @@ abstract class GlobalsController
                     break;
 
                 default:
-                    throw new Exception(
-                        "The File Type : " . $this->file["type"] . " is not accepted..."
-                    );
+                    throw new Exception("The File Type : " . $this->file["type"] . " is not accepted...");
             }
 
             return $fileExtension;
