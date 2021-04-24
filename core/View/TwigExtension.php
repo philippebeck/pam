@@ -64,6 +64,9 @@ class TwigExtension extends AbstractExtension
         );
     }
 
+    /**
+     * @return bool
+     */
     public function checkIsAdmin()
     {
         $isAdmin = false;
@@ -74,7 +77,7 @@ class TwigExtension extends AbstractExtension
                 $isAdmin = true;
             }
 
-        } elseif (isset($session["user"]["role"])) {
+        } elseif (isset($this->session["user"]["role"])) {
 
             if ($this->session["role"] === 1 || $this->session["role"] === "admin") {
                 $isAdmin = true;
