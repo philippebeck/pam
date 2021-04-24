@@ -279,23 +279,23 @@ abstract class GlobalsController
         try {
             switch ($this->file["type"]) {
                 case "image/bmp":
-                    return ".bmp";
+                    $fileExtension = ".bmp";
                     break;
 
                 case "image/gif":
-                    return ".gif";
+                    $fileExtension =  ".gif";
                     break;
 
                 case "image/jpeg":
-                    return ".jpg";
+                    $fileExtension =  ".jpg";
                     break;
 
                 case "image/png":
-                    return ".png";
+                    $fileExtension =  ".png";
                     break;
 
                 case "image/webp":
-                    return ".webp";
+                    $fileExtension =  ".webp";
                     break;
 
                 default:
@@ -303,6 +303,8 @@ abstract class GlobalsController
                         "The File Type : " . $this->file["type"] . " is not accepted..."
                     );
             }
+
+            return $fileExtension;
 
         } catch (Exception $e) {
 
