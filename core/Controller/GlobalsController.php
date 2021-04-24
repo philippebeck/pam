@@ -194,19 +194,19 @@ abstract class GlobalsController
 
     /**
      * Check User Alert or User Session
-     * @param string $session
+     * @param string $var
      * @return bool
      */
-    protected function checkSession(string $session = null)
+    protected function checkSession(string $var = null)
     {
-        if ($session === null) {
+        if ($var === null) {
 
             return empty($this->alert) === false;
         }
 
-        if ($session !== "user") {
+        if ($var !== "user") {
 
-            return $this->session["user"][$session] === true;
+            return $this->checkGlobal($this->user, $var);
         }
 
         if (array_key_exists("user", $this->session)) {
