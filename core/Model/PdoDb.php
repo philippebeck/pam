@@ -8,7 +8,7 @@ use PDO;
  * Class PdoDb
  * @package Pam\Model
  */
-class PdoDb implements DbInterface
+class PdoDb
 {
     /**
      * @var PDO
@@ -16,13 +16,15 @@ class PdoDb implements DbInterface
     private $pdo = null;
 
     /**
-     * PdoDb constructor.
+     * PdoDb constructor
      * @param PDO $pdo
      */
     public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
     }
+
+    // ******************** FETCH ******************** \\
 
     /**
      * @param string $query
@@ -49,6 +51,8 @@ class PdoDb implements DbInterface
 
         return $PDOStatement->fetchAll();
     }
+
+    // ******************** EXECUTE ******************** \\
 
     /**
      * @param string $query
