@@ -2,9 +2,7 @@
 
 namespace Pam\Controller;
 
-use Pam\View\GlobalsExtension;
-use Pam\View\MainExtension;
-use Pam\View\ServiceExtension;
+use Pam\View\TwigExtension;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -32,9 +30,7 @@ abstract class MainController extends ServiceController
         $loader = new FilesystemLoader(VIEW_PATH);
         $this->twig = new Environment($loader, ["cache" => VIEW_CACHE]);
 
-        $this->twig->addExtension(new MainExtension());
-        $this->twig->addExtension(new GlobalsExtension());
-        $this->twig->addExtension(new ServiceExtension());
+        $this->twig->addExtension(new TwigExtension());
     }
 
     /**
