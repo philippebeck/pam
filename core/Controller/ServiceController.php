@@ -19,28 +19,114 @@ abstract class ServiceController extends GlobalsController
      */
     private $string = "";
     
-    // ******************** ARRAY ******************** \\
+    // ******************** SETTERS ******************** \\
 
     /**
-     * @param array $array
-     * @param string $key
-     * @return array
+     * Replace Special Letters with standard Letters
+     * Then Replace Special Characters with Spaces
      */
-    protected function getArrayElements(array $array, string $key = "category") 
+    private function setStandardCharacters()
     {
-        $elements = [];
+        $this->string = str_replace(["à", "â", "ä"], "a", $this->string);
+        $this->string = str_replace(["ç"], "c", $this->string);
+        $this->string = str_replace(["é", "è", "ê", "ë"], "e", $this->string);
+        $this->string = str_replace(["î", "ï"], "i", $this->string);
+        $this->string = str_replace(["ô", "ö"], "o", $this->string);
+        $this->string = str_replace(["ù", "û", "ü"], "u", $this->string);
 
-        foreach ($array as $element) {
-
-            $elements[$element[$key]][] = $element;
-        }
-
-        return $elements;
+        $this->string = preg_replace("/[^A-Za-z0-9\ ]/", " ", $this->string);
+        $this->string = preg_replace("/ +/", " ", $this->string);
     }
 
-    // ******************** CURL ******************** \\
+    /**
+     * Switch between Major Cases to Convert a String
+     * @param string $case
+     */
+    private function setCase(string $case)
+    {
+        switch ($case) {
+            case "alpha": 
+                $this->string = preg_replace("/[^A-Za-z]/", "", $this->string);
+                break;
+
+            case "camel":
+                $this->string = lcfirst(str_replace(" ", "", ucwords($this->string)));
+                break;
+
+            case "dot":
+                $this->string = str_replace(" ", ".", $this->string);
+                break;
+
+            case "pascal":
+                $this->string = str_replace(" ", "", ucwords($this->string));
+                break;
+
+            case "path":
+                $this->string = str_replace(" ", "/", $this->string);
+                break;
+
+            case "snake":
+                $this->string = str_replace(" ", "_", $this->string);
+                break;
+
+            default:
+                $this->string = str_replace(" ", "-", $this->string);
+        }
+    }
+
+    // ******************** CHECKERS ******************** \\
 
     /**
+     * Check Recaptcha Response
+     * @param string $response
+     * @return bool
+     */
+    protected function checkRecaptcha(string $response)
+    {
+        $recaptcha = new ReCaptcha(RECAPTCHA_TOKEN);
+
+        $result = $recaptcha
+            ->setExpectedHostname($this->getServer("SERVER_NAME"))
+            ->verify($response, $this->getServer("REMOTE_ADDR")
+        );
+
+        return $result->isSuccess();
+    }
+
+    /**
+     * Check Admin Status or Login Status
+     * @return bool
+     */
+    protected function checkAdmin()
+    {
+        if ($this->checkSession("admin")) {
+            if ($this->getSession("admin") === true || $this->getSession("admin") === 1) {
+
+                return true;
+            }
+        } 
+        
+        if ($this->checkSession("role")) {
+            if ($this->getSession("role") === 1 || $this->getSession("role") === "admin") {
+
+                return true;
+            }
+        }
+
+        if ($this->checkSession("user")) {
+
+            return true;
+        }
+
+        $this->setSession(["You must be logged in as Admin to access to the administration", "black"]);
+
+        return false;
+    }
+
+    // ******************** GETTERS ******************** \\
+
+    /**
+     * Get Data from an API with Curl
      * @param string $query
      * @return mixed
      */
@@ -58,9 +144,66 @@ abstract class ServiceController extends GlobalsController
         return json_decode($json, true);
     }
 
-    // ******************** IMAGE ******************** \\
+    /**
+     * Get an Array of Elements Indexes by Category or Another Key
+     * @param array $array
+     * @param string $key
+     * @return array
+     */
+    protected function getArrayElements(array $array, string $key = "category") 
+    {
+        $elements = [];
+
+        foreach ($array as $element) {
+
+            $elements[$element[$key]][] = $element;
+        }
+
+        return $elements;
+    }
 
     /**
+     * Get Converted Image from Image Type with Input then Output
+     * @param string $imgSrc
+     * @param string $imgType
+     * @param string $imgDest
+     * @return bool|string
+     */
+    protected function getConvertedImage(string $imgSrc, string $imgType, string $imgDest)
+    {
+        try {
+            switch ($imgType) {
+                case ".gif":
+                    $imgType = IMAGETYPE_GIF;
+                    break;
+
+                case ".jpg":
+                case ".jpeg":
+                    $imgType = IMAGETYPE_JPEG;
+                    break;
+
+                case ".png":
+                    $imgType = IMAGETYPE_PNG;
+                    break;
+
+                case ".webp":
+                    $imgType = IMAGETYPE_WEBP;
+                    break;
+
+                default:
+                    throw new Exception("Image Type not accepted to Convert the Image...");
+            }
+
+            return $this->getOutputImage($this->getInputImage($imgSrc), $imgType, $imgDest);
+
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * Get Image Type from the Source Image
      * @param string $img
      * @return bool|false|int
      */
@@ -75,6 +218,7 @@ abstract class ServiceController extends GlobalsController
     }
 
     /**
+     * Get Resource Image from the Source Image
      * @param string $img
      * @return false|resource|string
      */
@@ -111,6 +255,7 @@ abstract class ServiceController extends GlobalsController
     }
 
     /**
+     * Get Render Image from the Resource Image
      * @param $imgSrc
      * @param int $imgType
      * @param string $imgDest
@@ -149,45 +294,24 @@ abstract class ServiceController extends GlobalsController
     }
 
     /**
-     * @param string $imgSrc
-     * @param string $imgType
-     * @param string $imgDest
-     * @return bool|string
+     * Get a Clean String with an Optional Specific Case
+     * @param string $string
+     * @param string $case
+     * @return string
      */
-    protected function getConvertImage(string $imgSrc, string $imgType, string $imgDest)
+    protected function getString(string $string, string $case = "") 
     {
-        try {
-            switch ($imgType) {
-                case ".gif":
-                    $imgType = IMAGETYPE_GIF;
-                    break;
+        $this->string = (string) trim($string);
+        $this->string = strtolower($string);
 
-                case ".jpg":
-                case ".jpeg":
-                    $imgType = IMAGETYPE_JPEG;
-                    break;
+        $this->setStandardCharacters();
+        $this->setCase($case);
 
-                case ".png":
-                    $imgType = IMAGETYPE_PNG;
-                    break;
-
-                case ".webp":
-                    $imgType = IMAGETYPE_WEBP;
-                    break;
-
-                default:
-                    throw new Exception("Image Type not accepted to Convert the Image...");
-            }
-
-            return $this->getOutputImage($$this->getInputImage($imgSrc), $imgType, $imgDest);
-
-        } catch (Exception $e) {
-
-            return $e->getMessage();
-        }
+        return $this->string;
     }
 
     /**
+     * Get A Thumbnail from the Source Image with Options for Width & Replacing
      * @param string $img
      * @param int $width
      * @param string|null $thumbnail
@@ -206,13 +330,14 @@ abstract class ServiceController extends GlobalsController
         return $this->getOutputImage($imgScaled, $imgType, $thumbnail);
     }
 
-    // ******************** MAIL ******************** \\
+    // ******************** MAILER ******************** \\
 
     /**
+     * Send Mail with SwiftMailer
      * @param array $mail
      * @return int
      */
-    public function sendMessage(array $mail)
+    public function sendMail(array $mail)
     {
         $transport = (new Swift_SmtpTransport())
             ->setHost(MAIL_HOST)
@@ -231,125 +356,5 @@ abstract class ServiceController extends GlobalsController
         ;
 
         return $mailer->send($message);
-    }
-
-    // ******************** SECURITY ******************** \\
-
-    /**
-     * @param string $response
-     * @return bool
-     */
-    protected function checkRecaptcha(string $response)
-    {
-        $recaptcha = new ReCaptcha(RECAPTCHA_TOKEN);
-
-        $result = $recaptcha
-            ->setExpectedHostname($this->getServer("SERVER_NAME"))
-            ->verify($response, $this->getServer("REMOTE_ADDR")
-        );
-
-        return $result->isSuccess();
-    }
-
-    /**
-     * @return bool
-     */
-    protected function checkIsAdmin()
-    {
-        $isAdmin = false;
-
-        if ($this->checkUser("admin")) {
-
-            if ($this->getUser("admin") === true || $this->getUser("admin") === 1) {
-                $isAdmin = true;
-            }
-
-        } elseif ($this->checkUser("role")) {
-
-            if ($this->getUser("role") === 1 || $this->getUser("role") === "admin") {
-                $isAdmin = true;
-            }
-
-        } else {
-            if ($this->islogged() === true) {
-                $isAdmin = true;
-            }
-        }
-
-        if ($isAdmin === false) {
-            $this->createAlert("You must be logged in as Admin to access to the administration");
-        }
-
-        return $isAdmin;
-    }
-
-    // ******************** STRING ******************** \\
-
-    /**
-     * @param string $string
-     * @param string $case
-     * @return string
-     */
-    protected function cleanString(string $string, string $case = "") 
-    {
-        $this->string = (string) trim($string);
-        $this->string = strtolower($string);
-
-        $this->setStandardCharacters();
-        $this->setCase($case);
-
-        return $this->string;
-    }
-
-    private function setStandardCharacters()
-    {
-        $this->string = str_replace(["à", "â", "ä"], "a", $this->string);
-        $this->string = str_replace(["ç"], "c", $this->string);
-        $this->string = str_replace(["é", "è", "ê", "ë"], "e", $this->string);
-        $this->string = str_replace(["î", "ï"], "i", $this->string);
-        $this->string = str_replace(["ô", "ö"], "o", $this->string);
-        $this->string = str_replace(["ù", "û", "ü"], "u", $this->string);
-
-        $this->string = preg_replace("/[^A-Za-z0-9\ ]/", " ", $this->string);
-        $this->string = preg_replace("/ +/", " ", $this->string);
-    }
-
-    /**
-     * @param string $case
-     */
-    private function setCase(string $case)
-    {
-        switch ($case) {
-            case "alpha": 
-                $this->string = preg_replace("/[^A-Za-z]/", "", $this->string);
-                break;
-
-            case "camel":
-                $this->string = lcfirst(str_replace(" ", "", ucwords($this->string)));
-                break;
-
-            case "const":
-                $this->string = strtoupper(str_replace(" ", "_", $this->string));
-                break;
-
-            case "dot":
-                $this->string = str_replace(" ", ".", $this->string);
-                break;
-
-            case "pascal":
-                $this->string = str_replace(" ", "", ucwords($this->string));
-                break;
-
-            case "path":
-                $this->string = str_replace(" ", "/", $this->string);
-                break;
-
-            case "snake":
-                $this->string = str_replace(" ", "_", $this->string);
-                break;
-
-            default:
-                $this->string = str_replace(" ", "-", $this->string);
-        }
     }
 }
