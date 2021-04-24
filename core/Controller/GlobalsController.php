@@ -66,7 +66,9 @@ abstract class GlobalsController
     private $user = [];
 
     /**
-     * GlobalsController constructor
+     * GlobalsController Constructor
+     * Assign all Globals to Properties
+     * With some Checking for Files & Session
      */
     public function __construct()
     {
@@ -98,6 +100,7 @@ abstract class GlobalsController
     // ******************** SETTERS ******************** \\
 
     /**
+     * Set Cookie
      * @param string $name
      * @param string $value
      * @param int $expire
@@ -214,6 +217,7 @@ abstract class GlobalsController
     // ******************** GETTERS ******************** \\
 
     /**
+     * Get Alert Type or Alert Message
      * @return string
      */
     protected function getAlert(bool $message = true)
@@ -232,6 +236,7 @@ abstract class GlobalsController
     }
 
     /**
+     * Get Cookie Array or Cookie Var
      * @return array|mixed
      */
     protected function getCookie(string $var = null)
@@ -245,6 +250,7 @@ abstract class GlobalsController
     }
 
     /**
+     * Get Env Array or Env Var
      * @return array|mixed
      */
     protected function getEnv(string $var = null)
@@ -324,6 +330,7 @@ abstract class GlobalsController
     }
 
     /**
+     * Get Get Array or Get Var
      * @return array|mixed
      */
     protected function getGet(string $var = null)
@@ -337,6 +344,7 @@ abstract class GlobalsController
     }
 
     /**
+     * Get Post Array or Post Var
      * @param string $var
      * @return mixed
      */
@@ -351,6 +359,7 @@ abstract class GlobalsController
     }
 
     /**
+     * Get Request Array or Request Var
      * @return array|mixed
      */
     protected function getRequest(string $var = null)
@@ -364,6 +373,7 @@ abstract class GlobalsController
     }
 
     /**
+     * Get Server Array or Server Var
      * @return array|mixed
      */
     protected function getServer(string $var = null)
@@ -377,6 +387,7 @@ abstract class GlobalsController
     }
 
     /**
+     * Get Session Array or User Var
      * @return array|mixed
      */
     protected function getSession(string $var = null)
@@ -396,7 +407,7 @@ abstract class GlobalsController
     // ******************** DESTROYER ******************** \\
 
     /**
-     * Destroy cookie or session
+     * Destroy Cookie or Session
      * @param string $name
      */
     protected function destroyGlobal(string $name = null)
