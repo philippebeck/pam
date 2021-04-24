@@ -307,14 +307,13 @@ abstract class ServiceController extends GlobalsController
         $this->string = (string) trim($string);
         $this->string = strtolower($string);
 
-        $this->setStandardLetters();
         $this->setStandardCharacters();
         $this->setCase($case);
 
         return $this->string;
     }
 
-    private function setStandardLetters()
+    private function setStandardCharacters()
     {
         $this->string = str_replace(["à", "â", "ä"], "a", $this->string);
         $this->string = str_replace(["ç"], "c", $this->string);
@@ -322,10 +321,7 @@ abstract class ServiceController extends GlobalsController
         $this->string = str_replace(["î", "ï"], "i", $this->string);
         $this->string = str_replace(["ô", "ö"], "o", $this->string);
         $this->string = str_replace(["ù", "û", "ü"], "u", $this->string);
-    }
 
-    private function setStandardCharacters()
-    {
         $this->string = preg_replace("/[^A-Za-z0-9\ ]/", " ", $this->string);
         $this->string = preg_replace("/ +/", " ", $this->string);
     }
@@ -348,20 +344,8 @@ abstract class ServiceController extends GlobalsController
                 $this->string = strtoupper(str_replace(" ", "_", $this->string));
                 break;
 
-            case "cram":
-                $this->string = str_replace(" ", "", $this->string);
-                break;
-
             case "dot":
                 $this->string = str_replace(" ", ".", $this->string);
-                break;
-
-            case "enum":
-                $this->string = str_replace(" ", ":", $this->string);
-                break;
-
-            case "name":
-                $this->string = str_replace(" ", "-", ucwords(preg_replace("/[^A-Za-z\ ]/", "", $this->string)));
                 break;
 
             case "pascal":
@@ -374,10 +358,6 @@ abstract class ServiceController extends GlobalsController
 
             case "snake":
                 $this->string = str_replace(" ", "_", $this->string);
-                break;
-
-            case "title":
-                $this->string = ucwords($this->string);
                 break;
 
             default:
