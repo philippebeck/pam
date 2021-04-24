@@ -381,19 +381,16 @@ abstract class GlobalsController
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    protected function getAlertType()
+    protected function getAlert(bool $message = true)
     {
         if (isset($this->alert)) {
 
-            return $this->alert["type"];
-        }
-    }
+            if ($message !== true) {
 
-    protected function getAlertMessage()
-    {
-        if (isset($this->alert)) {
+                return $this->alert["type"];
+            }
 
             echo filter_var($this->alert["message"]);
 
@@ -402,10 +399,10 @@ abstract class GlobalsController
     }
 
     /**
-     * @param $var
+     * @param string $var
      * @return mixed
      */
-    protected function getUser($var)
+    protected function getUser(string $var)
     {
         if ($this->isLogged() === false) {
             $this->user[$var] = null;
