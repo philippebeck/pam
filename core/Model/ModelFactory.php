@@ -22,16 +22,15 @@ class ModelFactory
     public static function getModel(string $table)
     {
         if (array_key_exists($table, self::$models)) {
+            
             return self::$models[$table];
         }
 
-        $class = MODEL_PATH . ucfirst($table) . MODEL_NAME;
+        $pdo    = PdoFactory::getPDO();
+        $pdoDb  = new PdoDb($pdo);
+        $class  = MODEL_PATH . ucfirst($table) . MODEL_NAME;
         
-        self::$models[$table] = new $class(
-            new PdoDb(
-                PdoFactory::getPDO()
-            )
-        );
+        self::$models[$table] = new $class($pdoDb);
 
         return self::$models[$table];
     }
