@@ -120,7 +120,7 @@ abstract class GlobalsController
      * @param string|null $fileName
      * @return mixed|string
      */
-    protected function setUploadedFile(string $fileDir, string $fileName = null, int $fileSize = 50000000) {
+    protected function setFile(string $fileDir, string $fileName = null, int $fileSize = 50000000) {
         try {
             if (!isset($this->file["error"]) || is_array($this->file["error"])) {
                 throw new Exception("Invalid parameters...");
@@ -130,7 +130,7 @@ abstract class GlobalsController
                 throw new Exception("Exceeded filesize limit...");
             }
 
-            if (!move_uploaded_file($this->file["tmp_name"], $this->getFileName($fileDir, $fileName))) {
+            if (!move_uploaded_file($this->file["tmp_name"], $this->getFilename($fileDir, $fileName))) {
                 throw new Exception("Failed to move uploaded file...");
             }
 
@@ -147,7 +147,7 @@ abstract class GlobalsController
      * @param array $user
      * @param bool $alert
      */
-    protected function setUser(array $user, bool $session = false)
+    protected function setSession(array $user, bool $session = false)
     {
         if ($session === false) {
 
@@ -194,13 +194,19 @@ abstract class GlobalsController
 
     /**
      * Check User Alert or User Session
+     * @param string $session
      * @return bool
      */
-    protected function checkUser(bool $session = false)
+    protected function checkSession(string $session = null)
     {
-        if ($session === false) {
+        if ($session === null) {
 
             return empty($this->alert) === false;
+        }
+
+        if ($session !== "user") {
+
+            return $this->session["user"][$session] === true;
         }
 
         if (array_key_exists("user", $this->session)) {
@@ -267,7 +273,7 @@ abstract class GlobalsController
      * Get Extension Type from Uploaded File
      * @return string
      */
-    protected function getFileExtension()
+    protected function getExtension()
     {
         try {
             switch ($this->file["type"]) {
@@ -305,14 +311,14 @@ abstract class GlobalsController
      * @param string|null $fileName
      * @return string
      */
-    protected function getFileName(string $fileDir, string $fileName = null)
+    protected function getFilename(string $fileDir, string $fileName = null)
     {
         if ($fileName === null) {
 
             return $fileDir . $this->file["name"];
         }
 
-        return $fileDir . $fileName . $this->getFileExtension();
+        return $fileDir . $fileName . $this->getExtension();
     }
 
     /**
@@ -397,7 +403,7 @@ abstract class GlobalsController
             return $this->session;
         }
 
-        if ($this->checkUser() === false) {
+        if ($this->checkSession(true) === false) {
             $this->user[$var] = null;
         }
         
