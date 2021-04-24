@@ -82,10 +82,6 @@ abstract class ServiceController extends GlobalsController
     {
         try {
             switch ($this->getImageType($img)) {
-                case IMAGETYPE_BMP:
-                    $imgInput = imagecreatefrombmp($img);
-                    break;
-
                 case IMAGETYPE_GIF:
                     $imgInput =  imagecreatefromgif($img);
                     break;
@@ -124,10 +120,6 @@ abstract class ServiceController extends GlobalsController
     {
         try {
             switch ($imgType) {
-                case IMAGETYPE_BMP:
-                    $imgOutput = imagebmp($imgSrc, $imgDest);
-                    break;
-
                 case IMAGETYPE_GIF:
                     $imgOutput = imagegif($imgSrc, $imgDest);
                     break;
@@ -166,10 +158,6 @@ abstract class ServiceController extends GlobalsController
     {
         try {
             switch ($imgType) {
-                case ".bmp":
-                    $imgType = IMAGETYPE_BMP;
-                    break;
-
                 case ".gif":
                     $imgType = IMAGETYPE_GIF;
                     break;
