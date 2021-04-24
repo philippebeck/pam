@@ -21,7 +21,7 @@ class ServiceExtension extends AbstractExtension
      */
     public function __construct()
     {
-        $this->session = filter_var_array($_SESSION);
+        $this->session = filter_var_array($_SESSION) ?? [];
     }
 
     /**
