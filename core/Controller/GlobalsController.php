@@ -95,22 +95,23 @@ abstract class GlobalsController
         }
     }
 
-    // ******************** COOKIE ******************** \\
+    // ******************** GLOBALS ******************** \\
 
     /**
+     * @param array $global
      * @param string $var
      * @return bool
      */
-    protected function checkCookie(string $var = null)
+    protected function checkGlobal(array $global, string $var = null)
     {
-        if (!empty($this->cookie)) {
+        if (!empty($global)) {
 
             if ($var === null) {
 
                 return true;
             }
 
-            if (in_array($var, $this->cookie) && !empty($this->cookie[$var])) {
+            if (in_array($var, $global) && !empty($global[$var])) {
 
                 return true;
             }
@@ -118,6 +119,115 @@ abstract class GlobalsController
 
         return false;
     }
+
+    // ******************** GETTERS ******************** \\
+
+    /**
+     * @return array|mixed
+     */
+    protected function getCookie(string $var = null)
+    {
+        if ($var === null) {
+
+            return $this->cookie;
+        }
+        
+        return $this->cookie[$var] ?? "";
+    }
+
+    /**
+     * @return array|mixed
+     */
+    protected function getEnv(string $var = null)
+    {
+        if ($var === null) {
+
+            return $this->env;
+        }
+        
+        return $this->env[$var] ?? "";
+    }
+
+    /**
+     * @return array|mixed
+     */
+    protected function getFiles(string $var = null)
+    {
+        if ($var === null) {
+
+            return $this->files;
+        }
+        
+        return $this->file[$var] ?? "";
+    }
+
+    /**
+     * @return array|mixed
+     */
+    protected function getGet(string $var = null)
+    {
+        if ($var === null) {
+
+            return $this->get;
+        }
+        
+        return $this->get[$var] ?? "";
+    }
+
+    /**
+     * @param string $var
+     * @return mixed
+     */
+    protected function getPost(string $var = null)
+    {
+        if ($var === null) {
+
+            return $this->post;
+        }
+
+        return $this->post[$var] ?? "";
+    }
+
+    /**
+     * @return array|mixed
+     */
+    protected function getRequest(string $var = null)
+    {
+        if ($var === null) {
+
+            return $this->request;
+        }
+        
+        return $this->request[$var] ?? "";
+    }
+
+    /**
+     * @return array|mixed
+     */
+    protected function getServer(string $var = null)
+    {
+        if ($var === null) {
+
+            return $this->server;
+        }
+        
+        return $this->server[$var] ?? "";
+    }
+
+    /**
+     * @return array|mixed
+     */
+    protected function getSession(string $var = null)
+    {
+        if ($var === null) {
+
+            return $this->session;
+        }
+        
+        return $this->session[$var] ?? "";
+    }
+
+    // ******************** COOKIE ******************** \\
 
     /**
      * @param string $name
@@ -144,92 +254,7 @@ abstract class GlobalsController
         }
     }
 
-    /**
-     * @return array|mixed
-     */
-    protected function getCookie(string $var = null)
-    {
-        if ($var === null) {
-
-            return $this->cookie;
-        }
-        
-        return $this->cookie[$var] ?? "";
-    }
-
-    // ******************** ENV ******************** \\
-
-    /**
-     * @param string $var
-     * @return bool
-     */
-    protected function checkEnv(string $var = null)
-    {
-        if (!empty($this->env)) {
-
-            if ($var === null) {
-
-                return true;
-            }
-
-            if (in_array($var, $this->env) && !empty($this->env[$var])) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @return array|mixed
-     */
-    protected function getEnv(string $var = null)
-    {
-        if ($var === null) {
-
-            return $this->env;
-        }
-        
-        return $this->env[$var] ?? "";
-    }
-
     // ******************** FILES ******************** \\
-
-    /**
-     * @param string $var
-     * @return bool
-     */
-    protected function checkFiles(string $var = null)
-    {
-        if (!empty($this->files)) {
-
-            if ($var === null) {
-
-                return true;
-            }
-
-            if (in_array($var, $this->files) && !empty($this->files[$var])) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @return array|mixed
-     */
-    protected function getFiles(string $var = null)
-    {
-        if ($var === null) {
-
-            return $this->files;
-        }
-        
-        return $this->file[$var] ?? "";
-    }
 
     /**
      * @param string $fileDir
@@ -320,222 +345,7 @@ abstract class GlobalsController
         }
     }
 
-    // ******************** GET ******************** \\
-
-    /**
-     * @param string $var
-     * @return bool
-     */
-    protected function checkGet(string $var = null)
-    {
-        if (!empty($this->get)) {
-
-            if ($var === null) {
-
-                return true;
-            }
-
-            if (in_array($var, $this->get) && !empty($this->get[$var])) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @return array|mixed
-     */
-    protected function getGet(string $var = null)
-    {
-        if ($var === null) {
-
-            return $this->get;
-        }
-        
-        return $this->get[$var] ?? "";
-    }
-
-    // ******************** POST ******************** \\
-
-    /**
-     * @param string $var
-     * @return bool
-     */
-    protected function checkPost(string $var = null)
-    {
-        if (!empty($this->post)) {
-
-            if ($var === null) {
-
-                return true;
-            }
-
-            if (in_array($var, $this->post) && !empty($this->post[$var])) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param string $var
-     * @return mixed
-     */
-    protected function getPost(string $var = null)
-    {
-        if ($var === null) {
-
-            return $this->post;
-        }
-
-        return $this->post[$var] ?? "";
-    }
-
-    // ******************** REQUEST ******************** \\
-
-    /**
-     * @param string $var
-     * @return bool
-     */
-    protected function checkRequest(string $var = null)
-    {
-        if (!empty($this->request)) {
-
-            if ($var === null) {
-
-                return true;
-            }
-
-            if (in_array($var, $this->request) && !empty($this->request[$var])) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @return array|mixed
-     */
-    protected function getRequest(string $var = null)
-    {
-        if ($var === null) {
-
-            return $this->request;
-        }
-        
-        return $this->request[$var] ?? "";
-    }
-
-    // ******************** SERVER ******************** \\
-
-    /**
-     * @param string $var
-     * @return bool
-     */
-    protected function checkServer(string $var = null)
-    {
-        if (!empty($this->server)) {
-
-            if ($var === null) {
-
-                return true;
-            }
-
-            if (in_array($var, $this->server) && !empty($this->server[$var])) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @return array|mixed
-     */
-    protected function getServer(string $var = null)
-    {
-        if ($var === null) {
-
-            return $this->server;
-        }
-        
-        return $this->server[$var] ?? "";
-    }
-
     // ******************** SESSION ******************** \\
-    
-    /**
-     * @param string $var
-     * @return bool
-     */
-    protected function checkAlert(string $var = null)
-    {
-        if (!empty($this->alert)) {
-
-            if ($var === null) {
-
-                return true;
-            }
-
-            if (in_array($var, $this->alert) && !empty($this->alert[$var])) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param string $var
-     * @return bool
-     */
-    protected function checkSession(string $var = null)
-    {
-        if (!empty($this->session)) {
-
-            if ($var === null) {
-
-                return true;
-            }
-
-            if (in_array($var, $this->session) && !empty($this->session[$var])) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param string $var
-     * @return bool
-     */
-    protected function checkUser(string $var = null)
-    {
-        if (!empty($this->user)) {
-
-            if ($var === null) {
-
-                return true;
-            }
-
-            if (in_array($var, $this->user) && !empty($this->user[$var])) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
 
     /**
      * @param string $message
@@ -589,19 +399,6 @@ abstract class GlobalsController
 
             unset($_SESSION["alert"]);
         }
-    }
-
-    /**
-     * @return array|mixed
-     */
-    protected function getSession(string $var = null)
-    {
-        if ($var === null) {
-
-            return $this->session;
-        }
-        
-        return $this->session[$var] ?? "";
     }
 
     /**
