@@ -95,7 +95,147 @@ abstract class GlobalsController
         }
     }
 
-    // ******************** GLOBALS ******************** \\
+    // ******************** SETTERS ******************** \\
+
+    /**
+     * @param string $message
+     * @param string $type
+     */
+    protected function setAlert(string $message, string $type = "black")
+    {
+        $_SESSION["alert"] = [
+            "message" => $message,
+            "type"    => $type
+        ];
+    }
+
+    /**
+     * @param string $name
+     * @param string $value
+     * @param int $expire
+     */
+    protected function setCookie(string $name, string $value = "", int $expire = 0) {
+
+        if ($expire === 0) {
+            $expire = time() + 3600;
+        }
+
+        setcookie($name, $value, $expire, "/");
+    }
+
+    /**
+     * @param string $fileDir
+     * @param string|null $fileName
+     * @return string
+     */
+    protected function setFileName(string $fileDir, string $fileName = null)
+    {
+        if ($fileName === null) {
+
+            return $fileDir . $this->file["name"];
+        }
+
+        return $fileDir . $fileName . $this->setFileExtension();
+    }
+
+    /**
+     * @return string
+     */
+    protected function setFileExtension()
+    {
+        try {
+            switch ($this->file["type"]) {
+                case "image/bmp":
+                    $fileExtension = ".bmp";
+                    break;
+
+                case "image/gif":
+                    $fileExtension =  ".gif";
+                    break;
+
+                case "image/jpeg":
+                    $fileExtension =  ".jpg";
+                    break;
+
+                case "image/png":
+                    $fileExtension =  ".png";
+                    break;
+
+                case "image/webp":
+                    $fileExtension =  ".webp";
+                    break;
+
+                default:
+                    throw new Exception("The File Type : " . $this->file["type"] . " is not accepted...");
+            }
+
+            return $fileExtension;
+
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param array $user
+     */
+    protected function setSession(array $user)
+    {
+        if (isset($user["pass"])) {
+            unset($user["pass"]);
+
+        } elseif (isset($user["password"])) {
+            unset($user["password"]);
+        }
+
+        $_SESSION["user"] = $user;
+    }
+
+    /**
+     * @param string $fileDir
+     * @param string|null $fileName
+     * @return mixed|string
+     */
+    protected function setUploadedFile(string $fileDir, string $fileName = null, int $fileSize = 50000000) {
+        try {
+            if (
+                !isset($this->file["error"]) 
+                || is_array($this->file["error"])
+            ) {
+                throw new Exception("Invalid parameters...");
+            }
+
+            if ($this->file["size"] > $fileSize) {
+                throw new Exception("Exceeded filesize limit...");
+            }
+
+            if (
+                !move_uploaded_file(
+                    $this->file["tmp_name"], 
+                    $this->setFileName($fileDir, $fileName)
+                )
+            ) {
+                throw new Exception("Failed to move uploaded file...");
+            }
+
+            return $this->file["name"];
+
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+        }
+    }
+
+    // ******************** CHECKERS ******************** \\
+
+    /**
+     * @return bool
+     */
+    protected function checkAlert()
+    {
+        return empty($this->alert) === false;
+    }
 
     /**
      * @param array $global
@@ -120,7 +260,41 @@ abstract class GlobalsController
         return false;
     }
 
+    /**
+     * @return bool
+     */
+    protected function checkUser()
+    {
+        if (array_key_exists("user", $this->session)) {
+
+            if (!empty($this->user)) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // ******************** GETTERS ******************** \\
+
+    /**
+     * @return string
+     */
+    protected function getAlert(bool $message = true)
+    {
+        if (isset($this->alert)) {
+
+            if ($message !== true) {
+
+                return $this->alert["type"] ?? "";
+            }
+
+            echo filter_var($this->alert["message"]);
+
+            unset($_SESSION["alert"]);
+        }
+    }
 
     /**
      * @return array|mixed
@@ -227,21 +401,20 @@ abstract class GlobalsController
         return $this->session[$var] ?? "";
     }
 
-    // ******************** COOKIE ******************** \\
-
     /**
-     * @param string $name
-     * @param string $value
-     * @param int $expire
+     * @param string $var
+     * @return mixed
      */
-    protected function createCookie(string $name, string $value = "", int $expire = 0) {
-
-        if ($expire === 0) {
-            $expire = time() + 3600;
+    protected function getUser(string $var)
+    {
+        if ($this->checkUser() === false) {
+            $this->user[$var] = null;
         }
 
-        setcookie($name, $value, $expire, "/");
+        return $this->user[$var] ?? "";
     }
+
+    // ******************** DESTROYERS ******************** \\
 
     /**
      * @param string $name
@@ -250,188 +423,13 @@ abstract class GlobalsController
     {
         if ($this->cookie[$name] !== null) {
 
-            $this->createCookie($name, "", time() - 3600);
+            $this->setCookie($name, "", time() - 3600);
         }
-    }
-
-    // ******************** FILES ******************** \\
-
-    /**
-     * @param string $fileDir
-     * @param string|null $fileName
-     * @return string
-     */
-    protected function setFileName(string $fileDir, string $fileName = null)
-    {
-        if ($fileName === null) {
-
-            return $fileDir . $this->file["name"];
-        }
-
-        return $fileDir . $fileName . $this->setFileExtension();
-    }
-
-    /**
-     * @return string
-     */
-    protected function setFileExtension()
-    {
-        try {
-            switch ($this->file["type"]) {
-                case "image/bmp":
-                    $fileExtension = ".bmp";
-                    break;
-
-                case "image/gif":
-                    $fileExtension =  ".gif";
-                    break;
-
-                case "image/jpeg":
-                    $fileExtension =  ".jpg";
-                    break;
-
-                case "image/png":
-                    $fileExtension =  ".png";
-                    break;
-
-                case "image/webp":
-                    $fileExtension =  ".webp";
-                    break;
-
-                default:
-                    throw new Exception("The File Type : " . $this->file["type"] . " is not accepted...");
-            }
-
-            return $fileExtension;
-
-        } catch (Exception $e) {
-
-            return $e->getMessage();
-        }
-    }
-
-    /**
-     * @param string $fileDir
-     * @param string|null $fileName
-     * @return mixed|string
-     */
-    protected function uploadFile(string $fileDir, string $fileName = null, int $fileSize = 50000000) {
-        try {
-            if (
-                !isset($this->file["error"]) 
-                || is_array($this->file["error"])
-            ) {
-                throw new Exception("Invalid parameters...");
-            }
-
-            if ($this->file["size"] > $fileSize) {
-                throw new Exception("Exceeded filesize limit...");
-            }
-
-            if (
-                !move_uploaded_file(
-                    $this->file["tmp_name"], 
-                    $this->setFileName($fileDir, $fileName)
-                )
-            ) {
-                throw new Exception("Failed to move uploaded file...");
-            }
-
-            return $this->file["name"];
-
-        } catch (Exception $e) {
-
-            return $e->getMessage();
-        }
-    }
-
-    // ******************** SESSION ******************** \\
-
-    /**
-     * @param string $message
-     * @param string $type
-     */
-    protected function createAlert(string $message, string $type = "black")
-    {
-        $_SESSION["alert"] = [
-            "message" => $message,
-            "type"    => $type
-        ];
-    }
-
-    /**
-     * @param array $user
-     */
-    protected function createSession(array $user)
-    {
-        if (isset($user["pass"])) {
-            unset($user["pass"]);
-
-        } elseif (isset($user["password"])) {
-            unset($user["password"]);
-        }
-
-        $_SESSION["user"] = $user;
     }
 
     protected function destroySession()
     {
         $_SESSION["user"] = [];
         session_destroy();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getAlert(bool $message = true)
-    {
-        if (isset($this->alert)) {
-
-            if ($message !== true) {
-
-                return $this->alert["type"];
-            }
-
-            echo filter_var($this->alert["message"]);
-
-            unset($_SESSION["alert"]);
-        }
-    }
-
-    /**
-     * @param string $var
-     * @return mixed
-     */
-    protected function getUser(string $var)
-    {
-        if ($this->isLogged() === false) {
-            $this->user[$var] = null;
-        }
-
-        return $this->user[$var];
-    }
-
-    /**
-     * @return bool
-     */
-    protected function hasAlert()
-    {
-        return empty($this->alert) === false;
-    }
-
-    /**
-     * @return bool
-     */
-    protected function isLogged()
-    {
-        if (array_key_exists("user", $this->session)) {
-
-            if (!empty($this->user)) {
-
-                return true;
-            }
-        }
-
-        return false;
     }
 }
