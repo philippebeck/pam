@@ -279,7 +279,7 @@ abstract class ServiceController extends GlobalsController
      * @param array $mail
      * @return int
      */
-    public function sendMail(array $mail)
+    protected function sendMail(array $mail)
     {
         $transport = (new Swift_SmtpTransport())
             ->setHost(MAIL_HOST)
