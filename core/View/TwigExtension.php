@@ -51,15 +51,43 @@ class TwigExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
+            new TwigFunction("setSession", [$this, "setSession"]),
             new TwigFunction("redirect", [$this, "redirect"]),
             new TwigFunction("url", [$this, "url"]),
             new TwigFunction("checkAdmin", [$this, "checkAdmin"]),
+            new TwigFunction("checkArray", [$this, "checkArray"]),
             new TwigFunction("checkUser", [$this, "checkUser"]),
             new TwigFunction("getAlert", [$this, "getAlert"]),
             new TwigFunction("getGet", [$this, "getGet"]),
             new TwigFunction("getSession", [$this, "getSession"]),
             new TwigFunction("getString", [$this, "getString"])
         );
+    }
+
+    // ******************** SETTER ******************** \\
+
+    /**
+     * Set User Session or User Alert
+     * @param array $user
+     * @param bool $alert
+     */
+    protected function setSession(array $user, bool $session = false)
+    {
+        if ($session === false) {
+
+            $_SESSION["alert"] = $user;
+
+        } elseif ($session === true) {
+
+            if (isset($user["pass"])) {
+                unset($user["pass"]);
+    
+            } elseif (isset($user["password"])) {
+                unset($user["password"]);
+            }
+    
+            $_SESSION["user"] = $user;
+        }
     }
 
     // ******************** REDIRECT ******************** \\
@@ -96,22 +124,52 @@ class TwigExtension extends AbstractExtension
      */
     public function checkAdmin()
     {
-        $isAdmin = false;
+        if ($this->checkArray($this->getSession("user"), "admin")) {
+            if ($this->getSession("admin") === true || $this->getSession("admin") === 1) {
 
-        if (isset($this->session["user"]["admin"])) {
-
-            if ($this->session["admin"] === true || $this->session["admin"] === 1) {
-                $isAdmin = true;
+                return true;
             }
+        } 
+        
+        if ($this->checkArray($this->getSession("user"), "role")) {
+            if ($this->getSession("role") === 1 || $this->getSession("role") === "admin") {
 
-        } elseif (isset($this->session["user"]["role"])) {
-
-            if ($this->session["role"] === 1 || $this->session["role"] === "admin") {
-                $isAdmin = true;
+                return true;
             }
         }
 
-        return $isAdmin;
+        if ($this->checkUser()) {
+
+            return true;
+        }
+
+        $this->setSession(["You must be logged in as Admin to access to the administration", "black"]);
+
+        return false;
+    }
+
+    /**
+     * Check an Array or a Var of an Array
+     * @param array $array
+     * @param string $key
+     * @return bool
+     */
+    protected function checkArray(array $array, string $key = null)
+    {
+        if (!empty($array)) {
+
+            if ($key === null) {
+
+                return true;
+            }
+
+            if (isset($array[$key]) && !empty($array[$key])) {
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
