@@ -11,7 +11,7 @@ use PDO;
 class PdoFactory
 {
     /**
-     * @var null
+     * @var PDO|null
      */
     private static $pdo = null;
 

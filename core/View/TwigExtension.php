@@ -198,7 +198,7 @@ class TwigExtension extends AbstractExtension
     // ******************** GETTERS ******************** \\
 
     /**
-     * Get Alert Type or Alert Message
+     * Get the Alert Type or the Alert Message
      * @param bool $type
      * @return string|void
      */
@@ -218,7 +218,7 @@ class TwigExtension extends AbstractExtension
     }
 
     /**
-     * Get Get Array or Get Var
+     * Get the Get Array or a Get Var
      * @param null|string $var
      * @return array|string
      */
@@ -233,7 +233,7 @@ class TwigExtension extends AbstractExtension
     }
 
     /**
-     * Get Session Array, User Array or User Var
+     * Get the Session Array, the User Array or a User Var
      * @param null|string $var
      * @return array|string
      */
@@ -257,7 +257,7 @@ class TwigExtension extends AbstractExtension
     }
 
     /**
-     * Get a 
+     * Get a User Friendly String
      * @param string $string
      * @return string
      */
