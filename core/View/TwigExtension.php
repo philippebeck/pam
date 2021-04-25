@@ -51,23 +51,50 @@ class TwigExtension extends AbstractExtension
     public function getFunctions()
     {
         return array(
-            new TwigFunction("checkIsAdmin", [$this, "checkIsAdmin"]),
-            new TwigFunction("cleanString", [$this, "cleanString"]),
-            new TwigFunction("getAlertType", [$this, "getAlertType"]),
-            new TwigFunction("getAlertMessage", [$this, "getAlertMessage"]),
-            new TwigFunction("getGet", [$this, "getGet"]),
-            new TwigFunction("getUserVar", [$this, "getUserVar"]),
-            new TwigFunction("hasAlert", [$this, "hasAlert"]),
-            new TwigFunction("isLogged", [$this, "isLogged"]),
             new TwigFunction("redirect", [$this, "redirect"]),
-            new TwigFunction("url", [$this, "url"])
+            new TwigFunction("url", [$this, "url"]),
+            new TwigFunction("checkIsAdmin", [$this, "checkAdmin"]),
+            new TwigFunction("checkSession", [$this, "checkSession"]),
+            new TwigFunction("getAlert", [$this, "getAlert"]),
+            new TwigFunction("getGet", [$this, "getGet"]),
+            new TwigFunction("getSession", [$this, "getSession"]),
+            new TwigFunction("getString", [$this, "getString"])
         );
     }
+
+    // ******************** REDIRECT ******************** \\
+
+    /**
+     * Use the Url Method to Redirect to Another Controller
+     * @param string $access
+     * @param array $params
+     */
+    public function redirect(string $access, array $params = [])
+    {
+        header("Location: " . $this->url($access, $params));
+
+        exit;
+    }
+
+    /**
+     * Get the Access Key to Build the Http Query
+     * @param string $access
+     * @param array $params
+     * @return string
+     */
+    public function url(string $access, array $params = [])
+    {
+        $params["access"] = $access;
+
+        return "index.php?" . http_build_query($params);
+    }
+
+    // ******************** CHECKERS ******************** \\
 
     /**
      * @return bool
      */
-    public function checkIsAdmin()
+    public function checkAdmin()
     {
         $isAdmin = false;
 
@@ -88,19 +115,43 @@ class TwigExtension extends AbstractExtension
     }
 
     /**
-     * @param string $string
-     * @return string
+     * Check User Alert or User Session
+     * @param bool $session
+     * @return bool
      */
-    public function cleanString(string $string)
+    public function checkSession(bool $session = false)
     {
-        $string = str_replace("_", " ", $string);
+        if ($session === false) {
 
-        return ucwords($string);
+            return empty($this->alert) === false;
+        }
+
+        if (array_key_exists("user", $this->session)) {
+
+            if (!empty($this->user)) {
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public function getAlertMessage()
+    // ******************** GETTERS ******************** \\
+
+    /**
+     * Get Alert Type or Alert Message
+     * @param bool $message
+     * @return string|void
+     */
+    public function getAlert(bool $message = true)
     {
         if (isset($this->alert)) {
+
+            if ($message !== true) {
+
+                return $this->alert["type"] ?? "";
+            }
 
             echo filter_var($this->alert["message"]);
 
@@ -109,19 +160,9 @@ class TwigExtension extends AbstractExtension
     }
 
     /**
-     * @return mixed
-     */
-    public function getAlertType()
-    {
-        if (isset($this->alert)) {
-
-            return $this->alert["type"];
-        }
-    }
-
-    /**
-     * @param $var
-     * @return mixed
+     * Get Get Array or Get Var
+     * @param null|string $var
+     * @return array|string
      */
     public function getGet(string $var = null)
     {
@@ -129,67 +170,42 @@ class TwigExtension extends AbstractExtension
 
             return $this->get;
         }
-
+        
         return $this->get[$var] ?? "";
     }
 
     /**
-     * @param $var
-     * @return mixed
+     * Get Session Array or User Var
+     * @param null|string $var
+     * @return array|string
      */
-    public function getUserVar(string $var)
+    public function getSession(string $var = null)
     {
-        if ($this->isLogged() === false) {
-            $this->user[$var] = null;
+        if ($var === null) {
+
+            return $this->session;
         }
 
+        if ($var === "user") {
+
+            return $this->user;
+        }
+
+        if (!$this->checkSession(true)) {
+            $this->user[$var] = null;
+        }
+        
         return $this->user[$var] ?? "";
     }
 
     /**
-     * @return bool
-     */
-    public function hasAlert()
-    {
-        return empty($this->alert) === false;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isLogged()
-    {
-        if (array_key_exists("user", $this->session)) {
-
-            if (!empty($this->user)) {
-
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * @param string $access
-     * @param array $params
-     */
-    public function redirect(string $access, array $params = [])
-    {
-        header("Location: " . $this->url($access, $params));
-
-        exit;
-    }
-
-    /**
-     * @param string $access
-     * @param array $params
+     * @param string $string
      * @return string
      */
-    public function url(string $access, array $params = [])
+    public function getString(string $string)
     {
-        $params["access"] = $access;
+        $string = str_replace("_", " ", $string);
 
-        return "index.php?" . http_build_query($params);
+        return ucwords($string);
     }
-
 }
