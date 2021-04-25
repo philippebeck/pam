@@ -144,7 +144,7 @@ abstract class MainController extends ServiceController
             }
         }
 
-        if ($this->checkSession(true)) {
+        if ($this->checkUser()) {
 
             return true;
         }

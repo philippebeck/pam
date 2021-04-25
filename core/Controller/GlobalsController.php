@@ -140,12 +140,12 @@ abstract class GlobalsController
 
     /**
      * Check User Alert or User Session
-     * @param bool $session
+     * @param bool $alert
      * @return bool
      */
-    protected function checkSession(bool $session = false)
+    public function checkUser(bool $alert = false)
     {
-        if ($session === false) {
+        if ($alert) {
 
             return empty($this->alert) === false;
         }
@@ -165,14 +165,14 @@ abstract class GlobalsController
 
     /**
      * Get Alert Type or Alert Message
-     * @param bool $message
+     * @param bool $type
      * @return string|void
      */
-    protected function getAlert(bool $message = true)
+    protected function getAlert(bool $type = false)
     {
         if (isset($this->alert)) {
 
-            if ($message !== true) {
+            if ($type) {
 
                 return $this->alert["type"] ?? "";
             }
@@ -214,7 +214,7 @@ abstract class GlobalsController
     }
 
     /**
-     * Get Files Array or File Var
+     * Get Files Array, File Array or File Var
      * @param null|string $var
      * @return array|string
      */
@@ -294,7 +294,7 @@ abstract class GlobalsController
     }
 
     /**
-     * Get Session Array or User Var
+     * Get Session Array, User Array or User Var
      * @param null|string $var
      * @return array|string
      */
@@ -310,7 +310,7 @@ abstract class GlobalsController
             return $this->user;
         }
 
-        if (!$this->checkSession(true)) {
+        if (!$this->checkUser()) {
             $this->user[$var] = null;
         }
         
@@ -320,7 +320,7 @@ abstract class GlobalsController
     // ******************** DESTROYER ******************** \\
 
     /**
-     * Destroy Cookie or Session
+     * Destroy $name Cookie or Current Session
      * @param string $name
      */
     protected function destroyGlobal(string $name = null)

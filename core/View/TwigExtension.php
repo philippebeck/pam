@@ -53,8 +53,8 @@ class TwigExtension extends AbstractExtension
         return array(
             new TwigFunction("redirect", [$this, "redirect"]),
             new TwigFunction("url", [$this, "url"]),
-            new TwigFunction("checkIsAdmin", [$this, "checkAdmin"]),
-            new TwigFunction("checkSession", [$this, "checkSession"]),
+            new TwigFunction("checkAdmin", [$this, "checkAdmin"]),
+            new TwigFunction("checkUser", [$this, "checkUser"]),
             new TwigFunction("getAlert", [$this, "getAlert"]),
             new TwigFunction("getGet", [$this, "getGet"]),
             new TwigFunction("getSession", [$this, "getSession"]),
@@ -116,12 +116,12 @@ class TwigExtension extends AbstractExtension
 
     /**
      * Check User Alert or User Session
-     * @param bool $session
+     * @param bool $alert
      * @return bool
      */
-    public function checkSession(bool $session = false)
+    public function checkUser(bool $alert = false)
     {
-        if ($session === false) {
+        if ($alert) {
 
             return empty($this->alert) === false;
         }
@@ -141,14 +141,14 @@ class TwigExtension extends AbstractExtension
 
     /**
      * Get Alert Type or Alert Message
-     * @param bool $message
+     * @param bool $type
      * @return string|void
      */
-    public function getAlert(bool $message = true)
+    public function getAlert(bool $type = false)
     {
         if (isset($this->alert)) {
 
-            if ($message !== true) {
+            if ($type) {
 
                 return $this->alert["type"] ?? "";
             }
@@ -175,7 +175,7 @@ class TwigExtension extends AbstractExtension
     }
 
     /**
-     * Get Session Array or User Var
+     * Get Session Array, User Array or User Var
      * @param null|string $var
      * @return array|string
      */
@@ -191,7 +191,7 @@ class TwigExtension extends AbstractExtension
             return $this->user;
         }
 
-        if (!$this->checkSession(true)) {
+        if (!$this->checkUser()) {
             $this->user[$var] = null;
         }
         
@@ -199,6 +199,7 @@ class TwigExtension extends AbstractExtension
     }
 
     /**
+     * Get a 
      * @param string $string
      * @return string
      */
