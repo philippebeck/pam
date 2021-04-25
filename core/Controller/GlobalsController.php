@@ -374,7 +374,12 @@ abstract class GlobalsController
             return $this->session;
         }
 
-        if ($this->checkSession(true) === false) {
+        if ($var === "user") {
+
+            return $this->user;
+        }
+
+        if (!$this->checkSession(true)) {
             $this->user[$var] = null;
         }
         
