@@ -84,7 +84,6 @@ Pam is wrote with PHP
 
 Pam has continuous support !
 
-[![Project Maintained](https://img.shields.io/maintenance/yes/2020.svg?label=Maintained)](https://github.com/devsagency/pam)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/devsagency/pam.svg?label=Last+Commit)](https://github.com/devsagency/pam/commits/master)
 
 ---
