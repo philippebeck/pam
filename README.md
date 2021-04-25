@@ -66,9 +66,9 @@ Composer : `composer require devsagency/pam`
 ## Content
 
 The project contains :  
--   **config** folder => example of params.php  
+-   **config** folder => example of configuration file `params.php`  
 -   **core** folder => MVC source code : `Model` - `View` - `Controller`  
--   **public** folder => example of index.php  
+-   **public** folder => example of entry point `index.php`  
 
 [![Code Size](https://img.shields.io/github/languages/code-size/devsagency/pam.svg?label=Code+Size)](https://github.com/devsagency/pam/tree/master)
 
