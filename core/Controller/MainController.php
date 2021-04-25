@@ -82,6 +82,18 @@ abstract class MainController extends ServiceController
     // ******************** REDIRECT ******************** \\
 
     /**
+     * Use the Url Method to Redirect to Another Controller
+     * @param string $access
+     * @param array $params
+     */
+    protected function redirect(string $access, array $params = [])
+    {
+        header("Location: " . $this->url($access, $params));
+
+        exit;
+    }
+
+    /**
      * Get the Access Key to Build the Http Query
      * @param string $access
      * @param array $params
@@ -92,18 +104,6 @@ abstract class MainController extends ServiceController
         $params[ACCESS_KEY] = $access;
 
         return "index.php?" . http_build_query($params);
-    }
-
-    /**
-     * Use the Url Method to Redirect to Another Controller
-     * @param string $access
-     * @param array $params
-     */
-    protected function redirect(string $access, array $params = [])
-    {
-        header("Location: " . $this->url($access, $params));
-
-        exit;
     }
 
     // ******************** RENDER ******************** \\
@@ -123,23 +123,6 @@ abstract class MainController extends ServiceController
     }
 
     // ******************** SECURITY ******************** \\
-
-    /**
-     * Check Recaptcha Response
-     * @param string $response
-     * @return bool
-     */
-    protected function checkRecaptcha(string $response)
-    {
-        $recaptcha = new ReCaptcha(RECAPTCHA_TOKEN);
-
-        $result = $recaptcha
-            ->setExpectedHostname($this->getServer("SERVER_NAME"))
-            ->verify($response, $this->getServer("REMOTE_ADDR")
-        );
-
-        return $result->isSuccess();
-    }
 
     /**
      * Check Admin Status or Login Status
@@ -169,6 +152,23 @@ abstract class MainController extends ServiceController
         $this->setSession(["You must be logged in as Admin to access to the administration", "black"]);
 
         return false;
+    }
+
+    /**
+     * Check Recaptcha Response
+     * @param string $response
+     * @return bool
+     */
+    protected function checkRecaptcha(string $response)
+    {
+        $recaptcha = new ReCaptcha(RECAPTCHA_TOKEN);
+
+        $result = $recaptcha
+            ->setExpectedHostname($this->getServer("SERVER_NAME"))
+            ->verify($response, $this->getServer("REMOTE_ADDR")
+        );
+
+        return $result->isSuccess();
     }
 
     // ******************** STRING ******************** \\
