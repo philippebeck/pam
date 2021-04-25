@@ -2,8 +2,6 @@
 
 namespace Pam\Controller;
 
-use Exception;
-
 /**
  * Class GlobalsController
  * @package Pam\Controller
