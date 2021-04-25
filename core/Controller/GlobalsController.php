@@ -195,7 +195,8 @@ abstract class GlobalsController
 
     /**
      * Get Alert Type or Alert Message
-     * @return string
+     * @param bool $message
+     * @return string|void
      */
     protected function getAlert(bool $message = true)
     {
@@ -214,7 +215,8 @@ abstract class GlobalsController
 
     /**
      * Get Cookie Array or Cookie Var
-     * @return array|mixed
+     * @param null|string $var
+     * @return array|string
      */
     protected function getCookie(string $var = null)
     {
@@ -228,7 +230,8 @@ abstract class GlobalsController
 
     /**
      * Get Env Array or Env Var
-     * @return array|mixed
+     * @param null|string $var
+     * @return array|string
      */
     protected function getEnv(string $var = null)
     {
@@ -294,7 +297,8 @@ abstract class GlobalsController
 
     /**
      * Get Files Array or File Var
-     * @return array|mixed
+     * @param null|string $var
+     * @return array|string
      */
     protected function getFiles(string $var = null)
     {
@@ -308,7 +312,8 @@ abstract class GlobalsController
 
     /**
      * Get Get Array or Get Var
-     * @return array|mixed
+     * @param null|string $var
+     * @return array|string
      */
     protected function getGet(string $var = null)
     {
@@ -322,8 +327,8 @@ abstract class GlobalsController
 
     /**
      * Get Post Array or Post Var
-     * @param string $var
-     * @return mixed
+     * @param null|string $var
+     * @return array|string
      */
     protected function getPost(string $var = null)
     {
@@ -337,7 +342,8 @@ abstract class GlobalsController
 
     /**
      * Get Request Array or Request Var
-     * @return array|mixed
+     * @param null|string $var
+     * @return array|string
      */
     protected function getRequest(string $var = null)
     {
@@ -351,7 +357,8 @@ abstract class GlobalsController
 
     /**
      * Get Server Array or Server Var
-     * @return array|mixed
+     * @param null|string $var
+     * @return array|string
      */
     protected function getServer(string $var = null)
     {
@@ -365,7 +372,8 @@ abstract class GlobalsController
 
     /**
      * Get Session Array or User Var
-     * @return array|mixed
+     * @param null|string $var
+     * @return array|string
      */
     protected function getSession(string $var = null)
     {
