@@ -143,7 +143,7 @@ abstract class GlobalsController
      * @param bool $alert
      * @return bool
      */
-    public function checkUser(bool $alert = false)
+    protected function checkUser(bool $alert = false)
     {
         if ($alert) {
 
