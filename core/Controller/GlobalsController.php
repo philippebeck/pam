@@ -169,30 +169,6 @@ abstract class GlobalsController
     // ******************** CHECKERS ******************** \\
 
     /**
-     * Check the Array or a Var of a Specific Global
-     * @param array $global
-     * @param string $var
-     * @return bool
-     */
-    protected function checkGlobal(array $global, string $var = null)
-    {
-        if (!empty($global)) {
-
-            if ($var === null) {
-
-                return true;
-            }
-
-            if (in_array($var, $global) && !empty($global[$var])) {
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * Check User Alert or User Session
      * @param bool $session
      * @return bool
@@ -202,11 +178,6 @@ abstract class GlobalsController
         if ($session === false) {
 
             return empty($this->alert) === false;
-        }
-
-        if ($var !== "user") {
-
-            return $this->checkGlobal($this->user, $var);
         }
 
         if (array_key_exists("user", $this->session)) {
