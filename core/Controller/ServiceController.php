@@ -3,7 +3,6 @@
 namespace Pam\Controller;
 
 use Exception;
-use ReCaptcha\ReCaptcha;
 use Swift_Mailer;
 use Swift_Message;
 use Swift_SmtpTransport;
@@ -34,6 +33,54 @@ abstract class ServiceController extends GlobalsController
         curl_close($curl);
 
         return json_decode($json, true);
+    }
+
+    // ******************** FILE ******************** \\
+
+    /**
+     * Get Name for File from Uploaded File or Parameter
+     * @param string $fileDir
+     * @param string|null $fileName
+     * @return string
+     */
+    protected function getFilename(string $fileDir, string $fileName = null)
+    {
+        if ($fileName === null) {
+
+            return $fileDir . $this->getFiles("name");
+        }
+
+        return $fileDir . $fileName . $this->getExtension();
+    }
+
+    /**
+     * Set Uploaded File to Save Destination
+     * @param string $fileDir
+     * @param string|null $fileName
+     * @return mixed|string
+     */
+    protected function getUploadedFile(string $fileDir, string $fileName = null, int $fileSize = 50000000) {
+        $file = $this->getFiles("file");
+
+        try {
+            if (!isset($file["error"]) || is_array($file["error"])) {
+                throw new Exception("Invalid parameters...");
+            }
+
+            if ($file["size"] > $fileSize) {
+                throw new Exception("Exceeded filesize limit...");
+            }
+
+            if (!move_uploaded_file($file["tmp_name"], $this->getFilename($fileDir, $fileName))) {
+                throw new Exception("Failed to move uploaded file...");
+            }
+
+            return $file["name"];
+
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+        }
     }
 
     // ******************** IMAGE ******************** \\
@@ -112,22 +159,6 @@ abstract class ServiceController extends GlobalsController
 
             return $e->getMessage();
         }
-    }
-
-    /**
-     * Get Name for File from Uploaded File or Parameter
-     * @param string $fileDir
-     * @param string|null $fileName
-     * @return string
-     */
-    protected function getFilename(string $fileDir, string $fileName = null)
-    {
-        if ($fileName === null) {
-
-            return $fileDir . $this->getFiles("name");
-        }
-
-        return $fileDir . $fileName . $this->getExtension();
     }
 
     /**
@@ -239,36 +270,6 @@ abstract class ServiceController extends GlobalsController
         $imgType    = $this->getImageType($img);
 
         return $this->getOutputImage($imgScaled, $imgType, $thumbnail);
-    }
-
-    /**
-     * Set Uploaded File to Save Destination
-     * @param string $fileDir
-     * @param string|null $fileName
-     * @return mixed|string
-     */
-    protected function getUploadedFile(string $fileDir, string $fileName = null, int $fileSize = 50000000) {
-        $file = $this->getFiles("file");
-
-        try {
-            if (!isset($file["error"]) || is_array($file["error"])) {
-                throw new Exception("Invalid parameters...");
-            }
-
-            if ($file["size"] > $fileSize) {
-                throw new Exception("Exceeded filesize limit...");
-            }
-
-            if (!move_uploaded_file($file["tmp_name"], $this->getFilename($fileDir, $fileName))) {
-                throw new Exception("Failed to move uploaded file...");
-            }
-
-            return $file["name"];
-
-        } catch (Exception $e) {
-
-            return $e->getMessage();
-        }
     }
 
     // ******************** MAILER ******************** \\
