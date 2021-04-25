@@ -35,6 +35,32 @@ abstract class MainController extends ServiceController
         $this->twig->addExtension(new TwigExtension());
     }
 
+    // ******************** ARRAY ******************** \\
+
+    /**
+     * Check an Array or a Var of an Array
+     * @param array $array
+     * @param string $key
+     * @return bool
+     */
+    protected function checkArray(array $array, string $key = null)
+    {
+        if (!empty($array)) {
+
+            if ($key === null) {
+
+                return true;
+            }
+
+            if (isset($array[$key]) && !empty($array[$key])) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Get an Array of Elements Indexes by Category or Another Key
      * @param array $array
