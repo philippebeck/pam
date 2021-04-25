@@ -2,15 +2,6 @@
 
 namespace Pam\Controller;
 
-use Pam\Controller\Globals\CookieManager;
-use Pam\Controller\Globals\EnvManager;
-use Pam\Controller\Globals\FilesManager;
-use Pam\Controller\Globals\GetManager;
-use Pam\Controller\Globals\PostManager;
-use Pam\Controller\Globals\RequestManager;
-use Pam\Controller\Globals\ServerManager;
-use Pam\Controller\Globals\SessionManager;
-
 /**
  * Class GlobalsController
  * @package Pam\Controller
@@ -18,121 +9,330 @@ use Pam\Controller\Globals\SessionManager;
 abstract class GlobalsController
 {
     /**
-     * @var CookieManager
+     * @var array
      */
-    private $cookie = null;
+    private $alert = [];
 
     /**
-     * @var EnvManager
+     * @var array
      */
-    private $env = null;
+    private $cookie = [];
 
     /**
-     * @var FilesManager
+     * @var array
      */
-    private $files = null;
+    private $env = [];
 
     /**
-     * @var GetManager
+     * @var array
      */
-    private $get = null;
+    private $file = [];
 
     /**
-     * @var PostManager
+     * @var array
      */
-    private $post = null;
+    private $files = [];
 
     /**
-     * @var RequestManager
+     * @var array
      */
-    private $request = null;
+    private $get = [];
 
     /**
-     * @var ServerManager
+     * @var array
      */
-    private $server = null;
+    private $post = [];
 
     /**
-     * @var SessionManager
+     * @var array
      */
-    private $session = null;
+    private $request = [];
 
     /**
-     * GlobalsController constructor
+     * @var array
+     */
+    private $server = [];
+
+    /**
+     * @var array
+     */
+    private $session = [];
+
+    /**
+     * @var array
+     */
+    private $user = [];
+
+    /**
+     * GlobalsController Constructor
+     * Assign all Globals to Properties
+     * With some Checking for Files & Session
      */
     public function __construct()
     {
-        $this->cookie   = new CookieManager();
-        $this->env      = new EnvManager();
-        $this->files    = new FilesManager();
-        $this->get      = new GetManager();
-        $this->post     = new PostManager();
-        $this->request  = new RequestManager();
-        $this->server   = new ServerManager();
-        $this->session  = new SessionManager();
+        $this->cookie   = filter_input_array(INPUT_COOKIE) ?? [];
+        $this->env      = filter_input_array(INPUT_ENV) ?? [];
+        $this->get      = filter_input_array(INPUT_GET) ?? [];
+        $this->post     = filter_input_array(INPUT_POST) ?? [];
+        $this->server   = filter_input_array(INPUT_SERVER) ?? [];
+
+        $this->files    = filter_var_array($_FILES) ?? [];
+        $this->request  = filter_var_array($_REQUEST) ?? [];
+
+        if (isset($this->files["file"])) {
+            $this->file = $this->files["file"];
+        }
+
+        if (array_key_exists("alert", $_SESSION) === false) {
+            $_SESSION["alert"] = [];
+        }
+
+        $this->session  = filter_var_array($_SESSION) ?? [];
+        $this->alert    = $this->session["alert"];
+
+        if (isset($this->session["user"])) {
+            $this->user = $this->session["user"];
+        }
+    }
+
+    // ******************** SETTERS ******************** \\
+
+    /**
+     * Set Cookie
+     * @param string $name
+     * @param string $value
+     * @param int $expire
+     */
+    protected function setCookie(string $name, string $value = "", int $expire = 0) {
+
+        if ($expire === 0) {
+            $expire = time() + 3600;
+        }
+
+        setcookie($name, $value, $expire, "/");
     }
 
     /**
-     * @return CookieManager
+     * Set User Session or User Alert
+     * @param array $user
+     * @param bool $alert
      */
-    protected function getCookie(): CookieManager
+    protected function setSession(array $user, bool $session = false)
     {
-        return $this->cookie;
+        if ($session === false) {
+
+            $_SESSION["alert"] = $user;
+
+        } elseif ($session === true) {
+
+            if (isset($user["pass"])) {
+                unset($user["pass"]);
+    
+            } elseif (isset($user["password"])) {
+                unset($user["password"]);
+            }
+    
+            $_SESSION["user"] = $user;
+        }
+    }
+
+    // ******************** CHECKERS ******************** \\
+
+    /**
+     * Check User Alert or User Session
+     * @param bool $alert
+     * @return bool
+     */
+    public function checkUser(bool $alert = false)
+    {
+        if ($alert) {
+
+            return empty($this->alert) === false;
+        }
+
+        if (array_key_exists("user", $this->session)) {
+
+            if (!empty($this->user)) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // ******************** GETTERS ******************** \\
+
+    /**
+     * Get Alert Type or Alert Message
+     * @param bool $type
+     * @return string|void
+     */
+    protected function getAlert(bool $type = false)
+    {
+        if (isset($this->alert)) {
+
+            if ($type) {
+
+                return $this->alert["type"] ?? "";
+            }
+
+            echo filter_var($this->alert["message"]);
+
+            unset($_SESSION["alert"]);
+        }
     }
 
     /**
-     * @return EnvManager
+     * Get Cookie Array or Cookie Var
+     * @param null|string $var
+     * @return array|string
      */
-    protected function getEnv(): EnvManager
+    protected function getCookie(string $var = null)
     {
-        return $this->env;
+        if ($var === null) {
+
+            return $this->cookie;
+        }
+        
+        return $this->cookie[$var] ?? "";
     }
 
     /**
-     * @return FilesManager
+     * Get Env Array or Env Var
+     * @param null|string $var
+     * @return array|string
      */
-    protected function getFiles(): FilesManager
+    protected function getEnv(string $var = null)
     {
-        return $this->files;
+        if ($var === null) {
+
+            return $this->env;
+        }
+        
+        return $this->env[$var] ?? "";
     }
 
     /**
-     * @return GetManager
+     * Get Files Array, File Array or File Var
+     * @param null|string $var
+     * @return array|string
      */
-    protected function getGet(): GetManager
+    protected function getFiles(string $var = null)
     {
-        return $this->get;
+        if ($var === null) {
+
+            return $this->files;
+        }
+
+        if ($var === "file") {
+
+            return $this->file;
+        }
+        
+        return $this->file[$var] ?? "";
     }
 
     /**
-     * @return PostManager
+     * Get Get Array or Get Var
+     * @param null|string $var
+     * @return array|string
      */
-    protected function getPost(): PostManager
+    protected function getGet(string $var = null)
     {
-        return $this->post;
+        if ($var === null) {
+
+            return $this->get;
+        }
+        
+        return $this->get[$var] ?? "";
     }
 
     /**
-     * @return RequestManager
+     * Get Post Array or Post Var
+     * @param null|string $var
+     * @return array|string
      */
-    protected function getRequest(): RequestManager
+    protected function getPost(string $var = null)
     {
-        return $this->request;
+        if ($var === null) {
+
+            return $this->post;
+        }
+
+        return $this->post[$var] ?? "";
     }
 
     /**
-     * @return ServerManager
+     * Get Request Array or Request Var
+     * @param null|string $var
+     * @return array|string
      */
-    protected function getServer(): ServerManager
+    protected function getRequest(string $var = null)
     {
-        return $this->server;
+        if ($var === null) {
+
+            return $this->request;
+        }
+        
+        return $this->request[$var] ?? "";
     }
 
     /**
-     * @return SessionManager
+     * Get Server Array or Server Var
+     * @param null|string $var
+     * @return array|string
      */
-    protected function getSession(): SessionManager
+    protected function getServer(string $var = null)
     {
-        return $this->session;
+        if ($var === null) {
+
+            return $this->server;
+        }
+        
+        return $this->server[$var] ?? "";
+    }
+
+    /**
+     * Get Session Array, User Array or User Var
+     * @param null|string $var
+     * @return array|string
+     */
+    protected function getSession(string $var = null)
+    {
+        if ($var === null) {
+
+            return $this->session;
+        }
+
+        if ($var === "user") {
+
+            return $this->user;
+        }
+
+        if (!$this->checkUser()) {
+            $this->user[$var] = null;
+        }
+        
+        return $this->user[$var] ?? "";
+    }
+
+    // ******************** DESTROYER ******************** \\
+
+    /**
+     * Destroy $name Cookie or Current Session
+     * @param string $name
+     */
+    protected function destroyGlobal(string $name = null)
+    {
+        if ($name === null) {
+
+            $_SESSION["user"] = [];
+            session_destroy();
+
+        } elseif ($this->cookie[$name] !== null) {
+
+            $this->setCookie($name, "", time() - 3600);
+        }
     }
 }

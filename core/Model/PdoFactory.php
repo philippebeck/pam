@@ -1,6 +1,6 @@
 <?php
 
-namespace Pam\Model\Factory;
+namespace Pam\Model;
 
 use PDO;
 
@@ -16,7 +16,7 @@ class PdoFactory
     private static $pdo = null;
 
     /**
-     * @return PDO|null
+     * @return PDO
      */
     public static function getPDO()
     {

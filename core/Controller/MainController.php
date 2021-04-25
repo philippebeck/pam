@@ -2,9 +2,8 @@
 
 namespace Pam\Controller;
 
-use Pam\View\GlobalsExtension;
-use Pam\View\MainExtension;
-use Pam\View\ServiceExtension;
+use Pam\View\TwigExtension;
+use ReCaptcha\ReCaptcha;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -24,31 +23,66 @@ abstract class MainController extends ServiceController
 
     /**
      * MainController constructor
+     * Get the Globals Constructor & Set Twig Template Engine
      */
     public function __construct()
     {
         parent::__construct();
 
-        $this->twig = new Environment(new FilesystemLoader(VIEW_PATH), array("cache" => VIEW_CACHE));
+        $loader = new FilesystemLoader(VIEW_PATH);
+        $this->twig = new Environment($loader, ["cache" => VIEW_CACHE]);
 
-        $this->twig->addExtension(new MainExtension());
-        $this->twig->addExtension(new GlobalsExtension());
-        $this->twig->addExtension(new ServiceExtension());
+        $this->twig->addExtension(new TwigExtension());
     }
 
+    // ******************** ARRAY ******************** \\
+
     /**
-     * @param string $access
-     * @param array $params
-     * @return string
+     * Check an Array or a Var of an Array
+     * @param array $array
+     * @param string $key
+     * @return bool
      */
-    protected function url(string $access, array $params = [])
+    protected function checkArray(array $array, string $key = null)
     {
-        $params[ACCESS_KEY] = $access;
+        if (!empty($array)) {
 
-        return "index.php?" . http_build_query($params);
+            if ($key === null) {
+
+                return true;
+            }
+
+            if (isset($array[$key]) && !empty($array[$key])) {
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
+     * Get an Array of Elements Indexes by Category or Another Key
+     * @param array $array
+     * @param string $key
+     * @return array
+     */
+    protected function getArrayElements(array $array, string $key = "category") 
+    {
+        $elements = [];
+
+        foreach ($array as $element) {
+
+            $elements[$element[$key]][] = $element;
+        }
+
+        return $elements;
+    }
+
+    // ******************** REDIRECT ******************** \\
+
+    /**
+     * Use the Url Method to Redirect to Another Controller
      * @param string $access
      * @param array $params
      */
@@ -60,6 +94,22 @@ abstract class MainController extends ServiceController
     }
 
     /**
+     * Get the Access Key to Build the Http Query
+     * @param string $access
+     * @param array $params
+     * @return string
+     */
+    protected function url(string $access, array $params = [])
+    {
+        $params[ACCESS_KEY] = $access;
+
+        return "index.php?" . http_build_query($params);
+    }
+
+    // ******************** RENDER ******************** \\
+
+    /**
+     * Shortcut to the Twig Render Method
      * @param string $view
      * @param array $params
      * @return string
@@ -70,5 +120,114 @@ abstract class MainController extends ServiceController
     protected function render(string $view, array $params = [])
     {
         return $this->twig->render($view, $params);
+    }
+
+    // ******************** SECURITY ******************** \\
+
+    /**
+     * Check Admin Status or Login Status
+     * @return bool
+     */
+    protected function checkAdmin()
+    {
+        if ($this->checkArray($this->getSession("user"), "admin")) {
+            if ($this->getSession("admin") === true || $this->getSession("admin") === 1) {
+
+                return true;
+            }
+        } 
+        
+        if ($this->checkArray($this->getSession("user"), "role")) {
+            if ($this->getSession("role") === 1 || $this->getSession("role") === "admin") {
+
+                return true;
+            }
+        }
+
+        if ($this->checkUser()) {
+
+            return true;
+        }
+
+        $this->setSession(["You must be logged in as Admin to access to the administration", "black"]);
+
+        return false;
+    }
+
+    /**
+     * Check Recaptcha Response
+     * @param string $response
+     * @return bool
+     */
+    protected function checkRecaptcha(string $response)
+    {
+        $recaptcha = new ReCaptcha(RECAPTCHA_TOKEN);
+
+        $result = $recaptcha
+            ->setExpectedHostname($this->getServer("SERVER_NAME"))
+            ->verify($response, $this->getServer("REMOTE_ADDR")
+        );
+
+        return $result->isSuccess();
+    }
+
+    // ******************** STRING ******************** \\
+
+    /**
+     * Get a Clean String with an Optional Specific Case
+     * @param string $string
+     * @param string $case
+     * @return string
+     */
+    protected function getString(string $string, string $case = "") 
+    {
+        $string = (string) trim(strtolower($string));
+
+        $string = str_replace(["ç"], "c", str_replace(["à", "â", "ä"], "a", $string));
+        $string = str_replace(["î", "ï"], "i", str_replace(["é", "è", "ê", "ë"], "e", $string));
+        $string = str_replace(["ù", "û", "ü"], "u", str_replace(["ô", "ö"], "o", $string));
+
+        $string = preg_replace("/ +/", " ", preg_replace("/[^A-Za-z0-9\ ]/", " ", $string));
+
+        return $this->getStringCase($string, $case);
+    }
+
+    /**
+     * Switch between Major Cases to Get a Converted String
+     * @param string $string
+     * @param string $case
+     */
+    private function getStringCase(string $string, string $case)
+    {
+        switch ($case) {
+            case "alpha": 
+                $string = preg_replace("/[^A-Za-z]/", "", $string);
+                break;
+
+            case "camel":
+                $string = lcfirst(str_replace(" ", "", ucwords($string)));
+                break;
+
+            case "dot":
+                $string = str_replace(" ", ".", $string);
+                break;
+
+            case "pascal":
+                $string = str_replace(" ", "", ucwords($string));
+                break;
+
+            case "path":
+                $string = str_replace(" ", "/", $string);
+                break;
+
+            case "snake":
+                $string = str_replace(" ", "_", $string);
+                break;
+
+            default:
+                $string = str_replace(" ", "-", $string);
+        }
+
+        return $string;
     }
 }

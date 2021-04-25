@@ -50,10 +50,11 @@ class FrontController
      */
     private function setController()
     {
-        $this->controller = ucfirst(strtolower($this->controller)) . CTRL_NAME;
-        $this->controller = CTRL_PATH . $this->controller;
+        $this->controller = strtolower($this->controller) . CTRL_NAME;
+        $this->controller = CTRL_PATH . ucfirst($this->controller);
 
         if (!class_exists($this->controller)) {
+
             $this->controller = CTRL_PATH . CTRL_DEFAULT . CTRL_NAME;
         }
     }
@@ -66,6 +67,7 @@ class FrontController
         $this->method = strtolower($this->method) . CTRL_METHOD_NAME;
 
         if (!method_exists($this->controller, $this->method)) {
+
             $this->method = CTRL_METHOD_DEFAULT . CTRL_METHOD_NAME;
         }
     }
@@ -75,8 +77,9 @@ class FrontController
      */
     public function run()
     {
-        $this->controller   = new $this->controller();
-        $response           = call_user_func([$this->controller, $this->method]);
+        $this->controller = new $this->controller();
+
+        $response = call_user_func([$this->controller, $this->method]);
 
         echo filter_var($response);
     }

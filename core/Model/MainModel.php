@@ -6,29 +6,31 @@ namespace Pam\Model;
  * Class MainModel
  * @package Pam\Model
  */
-abstract class MainModel implements ModelInterface
+abstract class MainModel
 {
     /**
-     * @var DbInterface
+     * @var PdoDb
      */
     protected $database = null;
 
     /**
      * @var string
      */
-    protected $table = null;
+    protected $table = "";
 
     /**
      * MainModel constructor
-     * @param DbInterface $database
+     * @param PdoDb $database
      */
-    public function __construct(DbInterface $database)
+    public function __construct(PdoDb $database)
     {
         $this->database = $database;
 
         $model          = explode("\\", get_class($this));
         $this->table    = ucfirst(str_replace(MODEL_NAME, "", array_pop($model)));
     }
+
+    // ******************** LIST ******************** \\
 
     /**
      * @param string|null $value
@@ -50,6 +52,8 @@ abstract class MainModel implements ModelInterface
         );
     }
 
+    // ******************** CREATE ******************** \\
+
     /**
      * @param array $data
      */
@@ -61,6 +65,8 @@ abstract class MainModel implements ModelInterface
 
         $this->database->setData($query);
     }
+
+    // ******************** READ ******************** \\
 
     /**
      * @param string $value
@@ -82,6 +88,8 @@ abstract class MainModel implements ModelInterface
             [$value]
         );
     }
+
+    // ******************** UPDATE ******************** \\
 
     /**
      * @param string $value
@@ -107,6 +115,8 @@ abstract class MainModel implements ModelInterface
 
         $this->database->setData($query, [$value]);
     }
+
+    // ******************** DELETE ******************** \\
 
     /**
      * @param string $value
